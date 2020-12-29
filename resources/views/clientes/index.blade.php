@@ -19,27 +19,30 @@
     </div>
     <div class="card-body">
         <h5 class="card-title"></h5>
-        <table class="table table-striped table-condensed">
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Telefone</th>
-            </tr>
-            @forelse($clients as $client)
-            <tr>
-                <td>{{ $client->id }}</td>
-                <td>{{ $client->name }}</td>
-                <td>{{ $client->email }}</td>
-                <td>{{ $client->phone }}</td>
-            </tr>
-            @empty
-            <div class="alert alert-warning">
-                Não há dados a carregar!
-            </div>
-            @endforelse
-        </table>
-        {{ $clients->links() }}
+        <div class="table-responsive">
+
+            <table class="table table-striped table-condensed">
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                </tr>
+                @forelse($clients as $client)
+                <tr>
+                    <td>{{ $client->id }}</td>
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->phone }}</td>
+                </tr>
+                @empty
+                <div class="alert alert-warning">
+                    Não há dados a carregar!
+                </div>
+                @endforelse
+            </table>
+            {{ $clients->links() }}
+        </div>
     </div>
 </div>
 <script>
