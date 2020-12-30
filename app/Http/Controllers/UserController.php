@@ -3,19 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Client;
 
-
-class ClientController extends Controller
+class UserController extends Controller
 {
-    /**
-     * @var Client
-     */
-    protected $client;
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +13,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = $this->client->orderby('id_client', 'DESC')->paginate(20);
-        return view('clientes.index', compact('clients'));
+        //
     }
 
     /**

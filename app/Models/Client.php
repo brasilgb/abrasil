@@ -9,7 +9,7 @@ class Client extends Model
 {
     use HasFactory;
 
-//    protected $prymarykey = 'id_client';
+    protected $primaryKey = 'id_client';
 //    public $incrementing = false;
 protected $fillable = [
     'name',
@@ -29,4 +29,8 @@ protected $fillable = [
     'contact_phone',
     'contact_mobile'
 ];
+
+public function orders(){
+    return $this->hasMany(Order::class, 'client_id', 'id_client');
+}
 }

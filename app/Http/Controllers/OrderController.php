@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    /**
+     * @var Order
+     */
+    protected $order;
+    protected $client;
+
+    public function __construct(Order $order, Client $client)
+    {
+        $this->order = $order;
+        $this->client = $client;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('ordens.index');
+        //$clients = $this->client->get();
+        $orders = $this->order->orderBy('id_order', 'DESC')->paginate(15);
+
+        return view('ordens.index', compact('orders'));
     }
 
     /**
