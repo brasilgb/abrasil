@@ -3,7 +3,7 @@
 @section('content')
 <div class="card bg-light">
     <div class="card-header clearfix">
-        <a href="#" class="btn btn-primary float-left">Go somewhere</a>
+        <a href="#" class="btn btn-primary float-left">Adicionar</a>
 
         <form class="form-inline d-flex justify-content-end">
             <div class="input-group">

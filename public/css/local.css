@@ -1,7 +1,21 @@
-body {
-    padding-top: 5rem;
-  }
-  .starter-template {
-    /* padding: 3rem 1.5rem; */
-    text-align: left;
-  }
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-top: 70px;
+  padding-bottom:30px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
