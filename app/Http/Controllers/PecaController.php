@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tool;
+use App\Models\Peca;
 use Illuminate\Http\Request;
 
-class ToolController extends Controller
+class PecaController extends Controller
 {
+    /**
+     * @var Peca
+     */
+    public function __construct(Peca $peca)
+    {
+        $this->peca = $peca;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class ToolController extends Controller
      */
     public function index()
     {
-        return view('ferramentas.index');
+        $pecas = $this->peca->orderBy('id_peca', 'DESC')->paginate(15);
+        return view('pecas.index', compact('pecas'));
     }
 
     /**
@@ -41,10 +50,10 @@ class ToolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tool  $tool
+     * @param  \App\Models\Peca  $peca
      * @return \Illuminate\Http\Response
      */
-    public function show(Tool $tool)
+    public function show(Peca $peca)
     {
         //
     }
@@ -52,10 +61,10 @@ class ToolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tool  $tool
+     * @param  \App\Models\Peca  $peca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tool $tool)
+    public function edit(Peca $peca)
     {
         //
     }
@@ -64,10 +73,10 @@ class ToolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tool  $tool
+     * @param  \App\Models\Peca  $peca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tool $tool)
+    public function update(Request $request, Peca $peca)
     {
         //
     }
@@ -75,10 +84,10 @@ class ToolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tool  $tool
+     * @param  \App\Models\Peca  $peca
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tool $tool)
+    public function destroy(Peca $peca)
     {
         //
     }

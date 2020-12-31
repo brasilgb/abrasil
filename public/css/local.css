@@ -15,7 +15,38 @@ html, body {
 .footer {
   position: relative;
   margin-top: -150px; /* negative value of footer height */
-  height: 150px;
+  height: 50px;
   clear:both;
   padding-top:20px;
-} 
+  font-size: 0.9rem;
+  background-image: linear-gradient(180deg, #EBECED 0%, #cdcfcf 100%);
+  border-top: 1px solid rgba(170, 170, 170, 0.4);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.7)!important;
+    font-size: 0.9rem;
+}
+.navbar-dark .navbar-nav .active {
+    color: rgba(255, 255, 255, 0.9)!important;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.9)!important;
+}
+.navbar .dropdown-menu {
+    background-color: #3d63a0;
+    font-size: 0.9rem;
+  }
+  .navbar .dropdown-menu a:hover {
+    background-color: #3d63a0;
+  }
+
+  /* and this styles the dropdwon trigger link, when open */
+  .navbar .dropdown.show a {
+    background-color: #3d63a0;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .navbar .dropdown.show a:hover {
+    /*background-color: #fff;*/
+    color: rgba(255, 255, 255, 0.9);
+  }

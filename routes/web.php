@@ -1,15 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PartController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\BackupController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\EmailController;
-use App\Http\Controllers\ToolController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\OrdemController;
+use App\Http\Controllers\PecaController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\Configuracoes\BackupController;
+use App\Http\Controllers\Configuracoes\EmpresaController;
+use App\Http\Controllers\Configuracoes\EmailController;
+use App\Http\Controllers\Configuracoes\FerramentaController;
+use App\Http\Controllers\Configuracoes\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +26,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('clientes', ClientController::class);
-Route::resource('ordens', OrderController::class);
-Route::resource('agendamentos', ScheduleController::class);
-Route::resource('pecas', PartController::class);
-Route::resource('backups', BackupController::class);
-Route::resource('empresas', CompanyController::class);
-Route::resource('emails', EmailController::class);
-Route::resource('ferramentas', ToolController::class);
-Route::resource('usuarios', UserController::class);
+Route::resource('clientes', ClienteController::class);
+Route::resource('ordens', OrdemController::class);
+Route::resource('agendamentos', AgendaController::class);
+Route::resource('pecas', PecaController::class);
+Route::resource('configuracoes/backups', BackupController::class);
+Route::resource('configuracoes/empresas', EmpresaController::class);
+Route::resource('configuracoes/emails', EmailController::class);
+Route::resource('configuracoes/ferramentas', FerramentaController::class);
+Route::resource('configuracoes/usuarios', UsuarioController::class);
 

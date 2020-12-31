@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Configuracoes;
 
-use App\Models\Email;
+use App\Http\Controllers\Controller;
+use App\Models\Backup;
 use Illuminate\Http\Request;
 
-class EmailController extends Controller
+class BackupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class EmailController extends Controller
      */
     public function index()
     {
-        return view('emails.index');
+        return view('backups.index');
     }
 
     /**
@@ -41,10 +42,10 @@ class EmailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Backup  $backup
      * @return \Illuminate\Http\Response
      */
-    public function show(Email $email)
+    public function show(Backup $backup)
     {
         //
     }
@@ -52,10 +53,10 @@ class EmailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Backup  $backup
      * @return \Illuminate\Http\Response
      */
-    public function edit(Email $email)
+    public function edit(Backup $backup)
     {
         //
     }
@@ -64,10 +65,10 @@ class EmailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Backup  $backup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Email $email)
+    public function update(Request $request, Backup $backup)
     {
         //
     }
@@ -75,10 +76,10 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Backup  $backup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Email $email)
+    public function destroy(Backup $backup)
     {
         //
     }

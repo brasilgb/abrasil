@@ -24,17 +24,19 @@
             <table class="table table-striped table-condensed">
                 <tr>
                     <th>#ID</th>
-                    <th>Cliente</th>
-                    <th>Data</th>
-                    <th>Previsão</th>
+                    <th>Peça</th>
+                    <th>Quantidade</th>
+                    <th>Valor un.</th>
+                    <th>Situação</th>
                     <th></th>
                 </tr>
-                @forelse($orders as $order)
+                @forelse($pecas as $peca)
                 <tr>
-                    <td>{{ $order->id_order }}</td>
-                    <td>{{ $order->clients->name }}</td>
-                    <td>{{ $order->created_at }}</td>
-                    <td>{{ $order->previsao }}</td>
+                    <td>{{ $peca->id_peca }}</td>
+                    <td>{{ $peca->peca }}</td>
+                    <td>{{ $peca->quantidade }}</td>
+                    <td>{{ $peca->valor }}</td>
+                    <td>{{ $peca->situacao }}</td>
                     <td>
                         <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
@@ -46,7 +48,7 @@
                 </div>
                 @endforelse
             </table>
-            {{ $orders->links() }}
+            {{ $pecas->links() }}
         </div>
     </div>
 </div>

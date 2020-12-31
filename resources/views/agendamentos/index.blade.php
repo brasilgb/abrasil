@@ -26,15 +26,15 @@
                     <th>#ID</th>
                     <th>Cliente</th>
                     <th>Data</th>
-                    <th>Previsão</th>
+                    <th>Situação</th>
                     <th></th>
                 </tr>
-                @forelse($orders as $order)
+                @forelse($agendas as $agenda)
                 <tr>
-                    <td>{{ $order->id_order }}</td>
-                    <td>{{ $order->clients->name }}</td>
-                    <td>{{ $order->created_at }}</td>
-                    <td>{{ $order->previsao }}</td>
+                    <td>{{ $agenda->id_agenda }}</td>
+                    <td>{{ $agenda->clientes->cliente }}</td>
+                    <td>{{ $agenda->created_at }}</td>
+                    <td>{{ $agenda->situacao }}</td>
                     <td>
                         <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
@@ -46,7 +46,7 @@
                 </div>
                 @endforelse
             </table>
-            {{ $orders->links() }}
+            {{ $agendas->links() }}
         </div>
     </div>
 </div>

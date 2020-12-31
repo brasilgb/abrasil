@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Client;
-use App\Models\Order;
+use App\Models\Cliente;
+use App\Models\Ordem;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Ramsey\Uuid\Type\Integer;
 
-class OrderFactory extends Factory
+class OrdemFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Order::class;
+    protected $model = Ordem::class;
 
     /**
      * Define the model's default state.
@@ -24,7 +23,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'client_id' => $this->faker->randomElement(Client::pluck('id_client', 'id_client')->toArray()),
+            'cliente_id' => $this->faker->randomElement(Cliente::pluck('id_cliente', 'id_cliente')->toArray()),
             'defeito' => 'todos',
             'equipamento' => 'qualquer',
             'modelo' => 'melhorzinho',

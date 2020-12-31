@@ -1,12 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Configuracoes;
 
-use App\Models\Backup;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class BackupController extends Controller
+class UsuarioController extends Controller
 {
+    /**
+     * @var User
+     */
+    protected $user;
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class BackupController extends Controller
      */
     public function index()
     {
-        return view('backups.index');
+        $usuarios = $this->user->orderBy('id', 'DESC')->paginate(15);
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
@@ -41,10 +52,10 @@ class BackupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Backup  $backup
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Backup $backup)
+    public function show($id)
     {
         //
     }
@@ -52,10 +63,10 @@ class BackupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Backup  $backup
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Backup $backup)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +75,10 @@ class BackupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Backup  $backup
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Backup $backup)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +86,10 @@ class BackupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Backup  $backup
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Backup $backup)
+    public function destroy($id)
     {
         //
     }

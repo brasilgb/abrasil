@@ -1,25 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Configuracoes;
 
-use App\Models\Order;
-use App\Models\Client;
+use App\Http\Controllers\Controller;
+use App\Models\Email;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class EmailController extends Controller
 {
-    /**
-     * @var Order
-     */
-    protected $order;
-    protected $client;
-
-    public function __construct(Order $order, Client $client)
-    {
-        $this->order = $order;
-        $this->client = $client;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,10 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //$clients = $this->client->get();
-        $orders = $this->order->orderBy('id_order', 'DESC')->paginate(15);
-
-        return view('ordens.index', compact('orders'));
+        return view('emails.index');
     }
 
     /**
@@ -57,10 +42,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Email $email)
     {
         //
     }
@@ -68,10 +53,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Email $email)
     {
         //
     }
@@ -80,10 +65,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Email $email)
     {
         //
     }
@@ -91,10 +76,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Email $email)
     {
         //
     }

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Order;
+use App\Models\Peca;
 use Illuminate\Database\Seeder;
 
-class OrderSeeder extends Seeder
+class PecaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::factory()->count(40)->create();
+        Peca::factory()->count(40)->create();
     }
 }

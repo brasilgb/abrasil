@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Configuracoes;
 
-use App\Models\Schedule;
+use App\Http\Controllers\Controller;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('agendamentos.index');
+        return view('empresas.index');
     }
 
     /**
@@ -41,10 +42,10 @@ class ScheduleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $schedule)
+    public function show(Empresa $empresa)
     {
         //
     }
@@ -52,10 +53,10 @@ class ScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Schedule $schedule)
+    public function edit(Empresa $empresa)
     {
         //
     }
@@ -64,10 +65,10 @@ class ScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(Request $request, Empresa $empresa)
     {
         //
     }
@@ -75,10 +76,10 @@ class ScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $schedule)
+    public function destroy(Empresa $empresa)
     {
         //
     }

@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use App\Models\Ordem;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class OrdemController extends Controller
 {
+    /**
+     * @var Ordem
+     */
+    protected $ordem;
+    protected $cliente;
+
+    public function __construct(Ordem $ordem, Cliente $cliente)
+    {
+        $this->ordem = $ordem;
+        $this->cliente = $cliente;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('empresas.index');
+        //$clients = $this->client->get();
+        $ordens = $this->ordem->orderBy('id_ordem', 'DESC')->paginate(15);
+
+        return view('ordens.index', compact('ordens'));
     }
 
     /**
@@ -41,10 +57,10 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Order $order)
     {
         //
     }
@@ -52,10 +68,10 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(Order $order)
     {
         //
     }
@@ -64,10 +80,10 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -75,10 +91,10 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Order $order)
     {
         //
     }

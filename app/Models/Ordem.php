@@ -6,20 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Order extends Model
+class Ordem extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = 'id_order';
+    protected $table = 'ordens';
+    protected $primaryKey = 'id_ordem';
 
     //public $incrementing = false;
 
     protected $fillable = [
-        'client_id',
         'previsao'
     ];
 
-    public function clients(){
-        return $this->belongsTo(Client::class, 'client_id', 'id_client');
+    public function clientes(){
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id_cliente');
     }
 }

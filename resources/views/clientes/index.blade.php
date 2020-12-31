@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card bg-light">
+
+<div class="card">
     <div class="card-header clearfix">
         <a href="#" class="btn btn-primary float-left"><i class="fa fa-plus"></i> Cadastrar</a>
-
         <form class="form-inline d-flex justify-content-end">
             <div class="input-group">
                 <input type="text" class="form-control rounded-left col-xs-4" placeholder="Buscar clientes"
@@ -18,7 +18,14 @@
 
     </div>
     <div class="card-body">
-        <h5 class="card-title"></h5>
+        <h5 class="card-title">
+            <i class="fa fa-users"></i> Clientes
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+          </nav></h5>
         <div class="table-responsive">
 
             <table class="table table-striped table-condensed">
@@ -29,12 +36,12 @@
                     <th>Telefone</th>
                     <th></th>
                 </tr>
-                @forelse($clients as $client)
+                @forelse($clientes as $cliente)
                 <tr>
-                    <td>{{ $client->id_client }}</td>
-                    <td>{{ $client->name }}</td>
-                    <td>{{ $client->email }}</td>
-                    <td>{{ $client->phone }}</td>
+                    <td>{{ $cliente->id_cliente }}</td>
+                    <td>{{ $cliente->cliente }}</td>
+                    <td>{{ $cliente->email }}</td>
+                    <td>{{ $cliente->telefone }}</td>
                     <td>
                         <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
@@ -46,7 +53,7 @@
                 </div>
                 @endforelse
             </table>
-            {{ $clients->links() }}
+            {{ $clientes->links() }}
         </div>
     </div>
 </div>

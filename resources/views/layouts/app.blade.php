@@ -11,7 +11,7 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#3E68AC;">
         <a class="navbar-brand" href="/">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,39 +21,39 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="{{ (request()->is('home*')) ? 'active' : '' }} nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('clientes.index')}}">Clientes</a>
+                    <a class="{{ (request()->is('clientes*')) ? 'active' : '' }} nav-link" href="{{route('clientes.index')}}">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('ordens.index')}}">Ordens</a>
+                    <a class="{{ (request()->is('ordens*')) ? 'active' : '' }} nav-link" href="{{route('ordens.index')}}">Ordens</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('agendamentos.index')}}">Agendamentos</a>
+                    <a class="{{ (request()->is('agendamentos*')) ? 'active' : '' }} nav-link" href="{{route('agendamentos.index')}}">Agendamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('pecas.index')}}">Peças</a>
+                    <a class="{{ (request()->is('pecas*')) ? 'active' : '' }} nav-link" href="{{route('pecas.index')}}">Peças</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Configurações</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{route('backups.index')}}">Backup</a>
-                        <a class="dropdown-item" href="{{route('empresas.index')}}">Empresa</a>
-                        <a class="dropdown-item" href="{{route('emails.index')}}">E-mail</a>
-                        <a class="dropdown-item" href="{{route('ferramentas.index')}}">Ferramentas</a>
-                        <a class="dropdown-item" href="{{route('usuarios.index')}}">Usuários</a>
+                        <a class="dropdown-item" href="{{route('backups.index')}}"><i class="fa fa-caret-right"></i> Backup</a>
+                        <a class="dropdown-item" href="{{route('empresas.index')}}"><i class="fa fa-caret-right"></i> Empresa</a>
+                        <a class="dropdown-item" href="{{route('emails.index')}}"><i class="fa fa-caret-right"></i> E-mail</a>
+                        <a class="dropdown-item" href="{{route('ferramentas.index')}}"><i class="fa fa-caret-right"></i> Ferramentas</a>
+                        <a class="dropdown-item" href="{{route('usuarios.index')}}"><i class="fa fa-caret-right"></i> Usuários</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Relatórios</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="relatorios.clientes">Clientes</a>
-                        <a class="dropdown-item" href="relatorios.ordens">Ordens</a>
-                        <a class="dropdown-item" href="relatorios.agendamentos">Agendamentos</a>
-                        <a class="dropdown-item" href="relatorios.pecas">Peças</a>
+                        <a class="dropdown-item" href="relatorios.clientes"><i class="fa fa-caret-right"></i> Clientes</a>
+                        <a class="dropdown-item" href="relatorios.ordens"><i class="fa fa-caret-right"></i> Ordens</a>
+                        <a class="dropdown-item" href="relatorios.agendamentos"><i class="fa fa-caret-right"></i> Agendamentos</a>
+                        <a class="dropdown-item" href="relatorios.pecas"><i class="fa fa-caret-right"></i> Peças</a>
                     </div>
                 </li>
             </ul>
@@ -71,9 +71,9 @@
 
         </div>
     </div><!-- /.container -->
-    <footer class="footer mt-auto py-3 bg-primary">
+    <footer class="footer mt-auto py-3">
       <div class="container">
-        <span class="text-white">fsdfggsdgdgdgsgdsgg.</span>
+        <span class="text-gray">fsdfggsdgdgdgsgdsgg.</span>
       </div>
     </footer>
 </body>

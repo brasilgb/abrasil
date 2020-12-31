@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Part;
+use App\Models\Agenda;
 use Illuminate\Http\Request;
 
-class PartController extends Controller
+class AgendaController extends Controller
 {
+    /**
+     * @var Agenda
+     */
+    public function __construct(Agenda $agenda)
+    {
+        $this->agenda = $agenda;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class PartController extends Controller
      */
     public function index()
     {
-        return view('pecas.index');
+        $agendas = $this->agenda->orderBy('id_agenda', 'DESC')->paginate(15);
+
+        return view('agendamentos.index', compact('agendas'));
     }
 
     /**
@@ -41,10 +51,10 @@ class PartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Part  $part
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Part $part)
+    public function show(Schedule $schedule)
     {
         //
     }
@@ -52,10 +62,10 @@ class PartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Part  $part
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Part $part)
+    public function edit(Schedule $schedule)
     {
         //
     }
@@ -64,10 +74,10 @@ class PartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Part  $part
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Part $part)
+    public function update(Request $request, Schedule $schedule)
     {
         //
     }
@@ -75,10 +85,10 @@ class PartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Part  $part
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Part $part)
+    public function destroy(Schedule $schedule)
     {
         //
     }
