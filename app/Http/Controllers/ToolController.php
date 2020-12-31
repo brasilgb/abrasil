@@ -14,7 +14,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        //
+        return view('ferramentas.index');
     }
 
     /**

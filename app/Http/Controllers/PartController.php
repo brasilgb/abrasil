@@ -14,7 +14,7 @@ class PartController extends Controller
      */
     public function index()
     {
-        //
+        return view('pecas.index');
     }
 
     /**
