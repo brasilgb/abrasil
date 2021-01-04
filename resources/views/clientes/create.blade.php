@@ -13,10 +13,10 @@
                 <li class="breadcrumb-item"><a href="{{ route('clientes.index') }}">Clientes</a></li>
               <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
             </ol>
-          </nav>   
+          </nav>
     </div>
   </div>
-  
+
 <div class="card bg-light">
     <div class="card-header clearfix">
         <a href="{{ route('clientes.index') }}" class="btn btn-primary float-left"><i class="fa fa-angle-left"></i> Voltar</a>
@@ -172,7 +172,7 @@
                 </div>
             </div>
         </form>
-        
+
     </div>
 </div>
 <script>

@@ -162,8 +162,11 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        flash('<i class="fa fa-check"></i> Cliente removido com sucesso!')->success();
+        return redirect()->route('clientes.index');
+
     }
 }
