@@ -22,7 +22,24 @@ html, body {
   background-image: linear-gradient(180deg, #EBECED 0%, #cdcfcf 100%);
   border-top: 1px solid rgba(170, 170, 170, 0.4);
 }
+/**
+Titulo personalizados
+*/
+.title-head{
+  font-size: 1.2rem;
+  padding-top: 10px;
+}
 
+/**
+Breadcumbs personalizado
+*/
+.breadcrumb{
+  float: right;
+  background-color: transparent!important;
+}
+/**
+Barra navegação personalizada
+*/
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.7)!important;
     font-size: 0.9rem;

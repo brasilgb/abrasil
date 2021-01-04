@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="{{ (request()->is('home*')) ? 'active' : '' }} nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="{{ (request()->is('/*')) ? 'active' : '' }} nav-link"  href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="{{ (request()->is('clientes*')) ? 'active' : '' }} nav-link" href="{{route('clientes.index')}}">Clientes</a>
@@ -36,7 +36,7 @@
                     <a class="{{ (request()->is('pecas*')) ? 'active' : '' }} nav-link" href="{{route('pecas.index')}}">Peças</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                    <a class="{{ (request()->is('configuracoes*')) ? 'active' : '' }} nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Configurações</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="{{route('backups.index')}}"><i class="fa fa-caret-right"></i> Backup</a>
@@ -57,10 +57,16 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Usuário Corrente</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="relatorios.clientes"><i class="fa fa-user"></i> Profile</a>
+                        <a class="dropdown-item" href="relatorios.ordens"><i class="fa fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -73,7 +79,7 @@
     </div><!-- /.container -->
     <footer class="footer mt-auto py-3">
       <div class="container">
-        <span class="text-gray">fsdfggsdgdgdgsgdsgg.</span>
+        <span class="text-gray">ABRASIL-SOS</span>
       </div>
     </footer>
 </body>

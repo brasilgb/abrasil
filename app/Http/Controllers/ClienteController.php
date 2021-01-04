@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
-
+use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
 {
@@ -34,7 +34,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -45,7 +45,44 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'cliente' => 'required',
+            'email' => 'required',
+            'telefone' => 'nullable',
+            'celular' => 'required',
+            'logradouro' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'bairro' => 'required',
+            'estado' => 'required',
+            'cidade' => 'required',
+            'cep' => 'required',
+            'cpf' => 'required',
+            'rg' => 'nullable',
+            'contato' => 'nullable',
+            'telefone_contato' => 'nullable',
+            'celular_contato' => 'nullable'
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $this->cliente->create($data);
+            flash('<i class="fa fa-check"></i> Cliente salvo com sucesso!')->success();
+            return redirect()->route('clientes.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir cliente!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -54,9 +91,9 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -65,9 +102,9 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Cliente $cliente)
     {
-        //
+        return redirect()->route('clientes.show', ['cliente' => $cliente->id_cliente]);
     }
 
     /**
@@ -77,9 +114,46 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cliente $cliente)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'cliente' => 'required',
+            'email' => 'required',
+            'telefone' => 'nullable',
+            'celular' => 'required',
+            'logradouro' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'bairro' => 'required',
+            'estado' => 'required',
+            'cidade' => 'required',
+            'cep' => 'required',
+            'cpf' => 'required',
+            'rg' => 'nullable',
+            'contato' => 'nullable',
+            'telefone_contato' => 'nullable',
+            'celular_contato' => 'nullable'
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $cliente->update($data);
+            flash('<i class="fa fa-check"></i> Cliente salvo com sucesso!')->success();
+            return redirect()->route('clientes.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir cliente!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**

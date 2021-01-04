@@ -1,20 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="row">
+    <div class="col">
+        <h3 class="title-head"><i class="fa fa-memory"></i> Peças</h3>
+    </div>
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Peças</li>
+            </ol>
+          </nav>   
+    </div>
+  </div>
+  
 <div class="card bg-light">
     <div class="card-header clearfix">
-        <a href="#" class="btn btn-primary float-left">Cadastrar</a>
+        <a href="#" class="btn btn-primary float-left"><i class="fa fa-plus"></i> Cadastrar</a>
 
         <form class="form-inline d-flex justify-content-end">
             <div class="input-group">
                 <input type="text" class="form-control rounded-left col-xs-4" placeholder="Buscar clientes"
                     aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-outline-secondary" type="button">Buscar</button>
+                    <button class="rounded-right btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
-
 
     </div>
     <div class="card-body">

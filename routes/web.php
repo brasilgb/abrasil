@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\OrdemController;
 use App\Http\Controllers\PecaController;
@@ -22,10 +23,7 @@ use App\Http\Controllers\Configuracoes\UsuarioController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::resource('/', DashboardController::class);
 Route::resource('clientes', ClienteController::class);
 Route::resource('ordens', OrdemController::class);
 Route::resource('agendamentos', AgendaController::class);
@@ -35,4 +33,3 @@ Route::resource('configuracoes/empresas', EmpresaController::class);
 Route::resource('configuracoes/emails', EmailController::class);
 Route::resource('configuracoes/ferramentas', FerramentaController::class);
 Route::resource('configuracoes/usuarios', UsuarioController::class);
-
