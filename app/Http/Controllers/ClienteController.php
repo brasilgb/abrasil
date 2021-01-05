@@ -23,10 +23,9 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        
-        if($request->term):
-            dd($request->term);
-            $clientes = $this->cliente->where('cliente', $request->post('term'))->get();
+        $term = $request->input('term');
+        if($term):
+            $clientes = $this->cliente->where('cliente', 'LIKE', $term.'%')->get();
         else:
         $clientes = $this->cliente->orderby('id_cliente', 'DESC')->paginate(20);
         endif;
@@ -173,6 +172,15 @@ class ClienteController extends Controller
         $cliente->delete();
         flash('<i class="fa fa-check"></i> Cliente removido com sucesso!')->success();
         return redirect()->route('clientes.index');
+    }
 
+    /**
+     * Autocomplete campo cliente
+     */
+    public function autocomplete(Request $request){
+        $term = $request->input('term');
+        //$_token = $request->input('_token');
+        $clientes = $this->cliente->where('cliente', 'LIKE', $term.'%')->get();
+        return response()->json(['cliente' => $clientes]);
     }
 }

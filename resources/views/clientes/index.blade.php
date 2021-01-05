@@ -20,18 +20,24 @@
     <div class="card-header clearfix">
         <a href="{{ route('clientes.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
             Cadastrar</a>
-        <form action="{{ route('clientes.index') }}" method="POST" class="form-inline d-flex justify-content-end">
+        <form id="form-search" action="{{ route('clientes.index') }}" method="POST"
+            class="form-inline d-flex justify-content-end">
             @csrf
             @method('POST')
             <div class="input-group">
-                <input type="text" class="form-control rounded-left col-xs-4" name="term" placeholder="Buscar cliente"
-                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
+                    placeholder="Buscar cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                    <button class="rounded-right btn btn-outline-secondary" type="submit"><i
+                            class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
-
+        <div class="autocomplete" style="display: none;">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
     </div>
     <div class="card-body">
         @include("flash::message")
@@ -61,8 +67,9 @@
                     </td>
                 </tr>
                 @empty
-                <div class="alert alert-warning">
-                    Não há dados a carregar!
+                <div class="alert alert-danger">
+                    <i class="fa fa-frown"></i> Não há dados a carregar! <a href="{{ route('clientes.index') }}"
+                        title="Listar clientes"><i class="fa fa-sync-alt"></i></a>
                 </div>
                 @endforelse
             </table>
@@ -87,12 +94,14 @@
                 <div class="modal-body">
                     @csrf
                     @method('DELETE')
-                    <p class="text-center text-danger"><i class="fa fa-exclamation-triangle"></i> Tem certeza de que deseja remover este Cliente?</p>
+                    <p class="text-center text-danger"><i class="fa fa-exclamation-triangle"></i> Tem certeza de que
+                        deseja remover este Cliente?</p>
                 </div>
                 <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                        <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
-                            onclick="formSubmit()"><i class="fa fa-check"></i> Excluir</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i>
+                        Cancelar</button>
+                    <button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()"><i
+                            class="fa fa-check"></i> Excluir</button>
                 </div>
             </div>
         </form>
@@ -110,6 +119,37 @@
     {
     $("#deleteForm").submit();
     }
+
+$('#input-search').autocomplete({
+    minLength: 1,
+    autoFocus: true,
+    delay: 300,
+    position: {
+        my: 'left top',
+        at: 'right top'
+    },
+    appendTo: '#form-search',
+    source: function(request, response) {
+        _token = $("input[name='_token']").val();
+        $.ajax({
+                url: '{{ route("clientes.autocomplete") }}',
+                type: 'POST',
+                data: {
+                    '_token': _token,
+                    'term': request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+            });
+        },
+        select: function (event, ui) {
+            $('.autocomplete > ul > li').val(ui.item.label);
+           $('#employeeid').val(ui.item.value);
+           return false;
+        }
+});
+
 </script>
 
 @endsection

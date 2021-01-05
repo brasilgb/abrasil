@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>APP - SOS</title>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/local.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 </head>
 
 <body class="d-flex flex-column h-100">
+
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#3E68AC;">
+        <div class="container">
         <a class="navbar-brand" href="/">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,6 +72,7 @@
                 </li>
             </ul>
         </div>
+       </div>
     </nav>
 
     <div id="main" class="flex-shrink-0">

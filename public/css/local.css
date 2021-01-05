@@ -67,3 +67,27 @@ Barra navegação personalizada
     /*background-color: #fff;*/
     color: rgba(255, 255, 255, 0.9);
   }
+
+  /*Listar dados*/
+#form-search{
+    position: relative;
+    z-index: 1000;
+}
+  .autocomplete{
+      position: absolute;
+      z-index: 20000;
+      right: 0;
+      width: 270px;
+      background-color: #FFF;
+  }
+  .autocomplete ul{
+      margin: 0;
+      padding: 0;
+    list-style-type: none;
+  }
+  .autocomplete ul li{
+      margin: 1px 0 1px 0;
+      background-color: #3d63a0;
+      display: block;
+    cursor: pointer;
+  }
