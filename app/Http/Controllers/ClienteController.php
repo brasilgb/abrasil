@@ -21,9 +21,15 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
+        if($request->term):
+            dd($request->term);
+            $clientes = $this->cliente->where('cliente', $request->post('term'))->get();
+        else:
         $clientes = $this->cliente->orderby('id_cliente', 'DESC')->paginate(20);
+        endif;
         return view('clientes.index', compact('clientes'));
     }
 

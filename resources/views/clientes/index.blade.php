@@ -20,13 +20,14 @@
     <div class="card-header clearfix">
         <a href="{{ route('clientes.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
             Cadastrar</a>
-        <form class="form-inline d-flex justify-content-end">
+        <form action="{{ route('clientes.index') }}" method="POST" class="form-inline d-flex justify-content-end">
+            @csrf
+            @method('POST')
             <div class="input-group">
-                <input type="text" class="form-control rounded-left col-xs-4" placeholder="Buscar cliente"
+                <input type="text" class="form-control rounded-left col-xs-4" name="term" placeholder="Buscar cliente"
                     aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-outline-secondary" type="button"><i
-                            class="fa fa-search"></i></button>
+                    <button class="rounded-right btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
@@ -65,7 +66,9 @@
                 </div>
                 @endforelse
             </table>
-            {{ $clientes->links() }}
+            @if(count($clientes) > 1)
+            {{  $clientes->links() }}
+            @endif
         </div>
     </div>
 </div>
