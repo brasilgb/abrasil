@@ -23,13 +23,19 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
+        $term = '';
+         $clientes = $this->cliente->orderby('id_cliente', 'DESC')->paginate(20);
+        return view('clientes.index', compact('clientes', 'term'));
+    }
+
+    /**
+     * Busca de clientes
+     */
+    public function busca(Request $request)
+    {
         $term = $request->input('term');
-        if($term):
-            $clientes = $this->cliente->where('cliente', 'LIKE', $term.'%')->get();
-        else:
-        $clientes = $this->cliente->orderby('id_cliente', 'DESC')->paginate(20);
-        endif;
-        return view('clientes.index', compact('clientes'));
+        $clientes = $this->cliente->where('cliente', $term)->get();
+        return view('clientes.index', compact('clientes', 'term'));
     }
 
     /**
@@ -177,10 +183,18 @@ class ClienteController extends Controller
     /**
      * Autocomplete campo cliente
      */
-    public function autocomplete(Request $request){
+    public function autocomplete(Request $request)
+    {
         $term = $request->input('term');
-        //$_token = $request->input('_token');
-        $clientes = $this->cliente->where('cliente', 'LIKE', $term.'%')->get();
-        return response()->json(['cliente' => $clientes]);
+        if ($term == '') :
+            $clientes = $this->cliente->orderby('cliente', 'ASC')->select('id_cliente', 'cliente')->limit(5)->get();
+        else :
+            $clientes = $this->cliente->orderby('cliente', 'ASC')->select('id_cliente', 'cliente')->where('cliente', 'LIKE', $term . '%')->get();
+        endif;
+
+        foreach ($clientes as $cliente) {
+            $response[] = ['value' => $cliente->id_cliente, 'label' => $cliente->cliente];
+        }
+        return response()->json($response);
     }
 }

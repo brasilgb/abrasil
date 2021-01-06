@@ -27,10 +27,10 @@ class OrdemController extends Controller
      */
     public function index()
     {
-        //$clients = $this->client->get();
-        $ordens = $this->ordem->orderBy('id_ordem', 'DESC')->paginate(15);
+        $term = '';
+        $ordens = $this->ordem->orderby('id_ordem', 'DESC')->paginate(15);
 
-        return view('ordens.index', compact('ordens'));
+        return view('ordens.index', compact('ordens', 'term'));
     }
 
     /**
@@ -57,33 +57,33 @@ class OrdemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Ordem  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Ordem $orden)
     {
-        //
+        return view('ordens.edit', compact('ordem'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Ordem  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Ordem $ordem)
     {
-        //
+        return redirect()->route('ordens.show', ['ordem' => $ordem->id_ordem]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Ordem  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Ordem $ordem)
     {
         //
     }
@@ -91,10 +91,10 @@ class OrdemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Ordem  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Ordem $ordem)
     {
         //
     }

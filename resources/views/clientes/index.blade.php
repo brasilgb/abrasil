@@ -20,7 +20,10 @@
     <div class="card-header clearfix">
         <a href="{{ route('clientes.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
             Cadastrar</a>
-        <form id="form-search" action="{{ route('clientes.index') }}" method="POST"
+            @if($term)
+            <a href="{{ route('clientes.index') }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i> Voltar</a>
+            @endif
+        <form id="form-search" action="{{ route('clientes.busca') }}" method="POST"
             class="form-inline d-flex justify-content-end">
             @csrf
             @method('POST')
@@ -121,19 +124,20 @@
     }
 
 $('#input-search').autocomplete({
-    minLength: 1,
-    autoFocus: true,
-    delay: 300,
-    position: {
-        my: 'left top',
-        at: 'right top'
-    },
-    appendTo: '#form-search',
+    // minLength: 1,
+    // autoFocus: true,
+    // delay: 300,
+    // position: {
+    //     my: 'left top',
+    //     at: 'right top'
+    // },
+    // appendTo: '#form-search',
     source: function(request, response) {
         _token = $("input[name='_token']").val();
         $.ajax({
                 url: '{{ route("clientes.autocomplete") }}',
                 type: 'POST',
+                dataType: "json",
                 data: {
                     '_token': _token,
                     'term': request.term
@@ -144,8 +148,8 @@ $('#input-search').autocomplete({
             });
         },
         select: function (event, ui) {
-            $('.autocomplete > ul > li').val(ui.item.label);
-           $('#employeeid').val(ui.item.value);
+            $('#input-search').val(ui.item.label);
+           //$('#employeeid').val(ui.item.value);
            return false;
         }
 });

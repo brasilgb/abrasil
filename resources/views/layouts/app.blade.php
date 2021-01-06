@@ -9,6 +9,7 @@
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/local.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
 
 </head>
 
