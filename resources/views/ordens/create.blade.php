@@ -40,9 +40,15 @@
             @method('POST')
             @csrf
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Nome do  cliente:</label>
+                <label class="col-sm-2 col-form-label" for=""> <span class="bg-primary">Ordem n°:</span></label>
                 <div class="col-sm-10">
-                    <input id="cliente" type="text" class="form-control" name="cliente" value="{{old('cliente')}}">
+                    <input type="text" class="form-control" name="" value="{{ $proxordem }}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Cliente</label>
+                <div class="col-sm-10">
+                    <input  id="cliente" type="text" class="form-control" name="cliente" value="{{old('cliente')}}">
                     <input id="cliente_id" type="hidden" class="form-control" name="cliente_id" value="{{old('cliente_id')}}">
                     @error('cliente_id')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> O campo cliente deve ser preenchido!</div>
@@ -125,6 +131,31 @@
 </div>
 <script>
 
+$('#input-search').autocomplete({
+    minLength: 1,
+    autoFocus: true,
+    delay: 300,
+    source: function(request, response) {
+        _token = $("input[name='_token']").val();
+        $.ajax({
+                url: '{{ route("ordens.autocomplete") }}',
+                type: 'POST',
+                dataType: "json",
+                data: {
+                    '_token': _token,
+                    'term': request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+            });
+        },
+        select: function (event, ui) {
+            $('#input-search').val(ui.item.value);
+           return false;
+        }
+});
+
 $('#cliente').autocomplete({
     minLength: 1,
     autoFocus: true,
@@ -145,8 +176,7 @@ $('#cliente').autocomplete({
             });
         },
         select: function (event, ui) {
-            $('#cliente').val(ui.item.label);
-           $('#cliente_id').val(ui.item.value);
+            $('#cliente').val(ui.item.value);
            return false;
         }
 });

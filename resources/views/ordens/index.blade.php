@@ -18,10 +18,11 @@
 
 <div class="card bg-light">
     <div class="card-header clearfix">
-       <a href="{{ route('ordens.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
+        <a href="{{ route('ordens.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
             Cadastrar</a>
-         @if($term)
-        <a href="{{ route('ordens.index') }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i> Voltar</a>
+        @if($term)
+        <a href="{{ route('ordens.index') }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i>
+            Voltar</a>
         @endif
         <form id="form-search" action="{{ route('ordens.busca') }}" method="POST"
             class="form-inline d-flex justify-content-end">
@@ -122,6 +123,31 @@
     {
     $("#deleteForm").submit();
     }
+
+    $('#input-search').autocomplete({
+    minLength: 1,
+    autoFocus: true,
+    delay: 300,
+    source: function(request, response) {
+        _token = $("input[name='_token']").val();
+        $.ajax({
+                url: '{{ route("ordens.autocomplete") }}',
+                type: 'POST',
+                dataType: "json",
+                data: {
+                    '_token': _token,
+                    'term': request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+            });
+        },
+        select: function (event, ui) {
+            $('#input-search').val(ui.item.value);
+           return false;
+        }
+});
 </script>
 
 @endsection

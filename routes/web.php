@@ -24,10 +24,12 @@ use App\Http\Controllers\Configuracoes\UsuarioController;
 */
 
 Route::resource('/', DashboardController::class);
+
 Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])->name('clientes.autocomplete');
 Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca');
 Route::resource('clientes', ClienteController::class);
 
+Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete');
 Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca');
 Route::resource('ordens', OrdemController::class);
 

@@ -20,9 +20,10 @@
     <div class="card-header clearfix">
         <a href="{{ route('clientes.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
             Cadastrar</a>
-            @if($term)
-            <a href="{{ route('clientes.index') }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i> Voltar</a>
-            @endif
+        @if($term)
+        <a href="{{ route('clientes.index') }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i>
+            Voltar</a>
+        @endif
         <form id="form-search" action="{{ route('clientes.busca') }}" method="POST"
             class="form-inline d-flex justify-content-end">
             @csrf

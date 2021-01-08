@@ -51,7 +51,11 @@ class OrdemController extends Controller
      */
     public function create()
     {
-        return view('ordens.create');
+        $ordens = $this->ordem->orderby('id_ordem', 'ASC')->get();
+        foreach($ordens as $next):
+            $proxordem = $next->id_ordem;
+        endforeach;
+        return view('ordens.create', compact('proxordem'));
     }
 
     /**
@@ -124,7 +128,7 @@ class OrdemController extends Controller
      * @param  \App\Models\Ordem  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ordem $ordem)
+    public function update(Request $request, Ordem $orden)
     {
         $data = $request->all();
         $rules = [
@@ -138,11 +142,12 @@ class OrdemController extends Controller
             'observacoes' => 'nullable',
             'previsao' => 'nullable',
             'orcamento' => 'nullable',
-            'desorcamento' => 'nullable',
-            'detalhes' => 'nullable',
+            'valorcamento' => 'nullable',
+            'pecas' => 'nullable',
             'valpecas' => 'nullable',
+            'servico' => 'nullable',
             'valservico' => 'nullable',
-            'custo' => 'nullable',
+            'valtotal' => 'nullable',
             'status' => 'nullable',//orcamento,comunicado, entregue
             'dt_entrega' => 'nullable',
             'tecnico' => 'nullable'
@@ -155,8 +160,8 @@ class OrdemController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
-            $this->ordem->create($data);
-            flash('<i class="fa fa-check"></i> Ordem salvo com sucesso!')->success();
+            $orden->update($data);
+            flash('<i class="fa fa-check"></i> Ordem alterada com sucesso!')->success();
             return redirect()->route('ordens.index');
         } catch (\Exception $e) {
             $message = 'Erro ao inserir ordem!';
@@ -174,8 +179,28 @@ class OrdemController extends Controller
      * @param  \App\Models\Ordem  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ordem $ordem)
+    public function destroy(Ordem $orden)
     {
-        //
+        $orden->delete();
+        flash('<i class="fa fa-check"></i> Ordem removida com sucesso!')->success();
+        return redirect()->route('ordens.index');
+    }
+
+    /**
+     * Autocomplete campo cliente
+     */
+    public function autocomplete(Request $request)
+    {
+        $term = $request->input('term');
+        if ($term == '') :
+            $ordens = $this->ordem->orderby('id_ordem', 'ASC')->select('id_ordem')->limit(5)->get();
+        else :
+            $ordens = $this->ordem->orderby('id_ordem', 'ASC')->select('id_ordem')->where('id_ordem', 'LIKE', $term . '%')->get();
+        endif;
+
+        foreach ($ordens as $ordem) {
+            $response[] = ['value' => $ordem->id_ordem];
+        }
+        return response()->json($response);
     }
 }
