@@ -124,14 +124,9 @@
     }
 
 $('#input-search').autocomplete({
-    // minLength: 1,
-    // autoFocus: true,
-    // delay: 300,
-    // position: {
-    //     my: 'left top',
-    //     at: 'right top'
-    // },
-    // appendTo: '#form-search',
+    minLength: 1,
+    autoFocus: true,
+    delay: 300,
     source: function(request, response) {
         _token = $("input[name='_token']").val();
         $.ajax({

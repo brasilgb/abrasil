@@ -15,7 +15,26 @@ class Ordem extends Model
     //public $incrementing = false;
 
     protected $fillable = [
-        'previsao'
+        'cliente_id',
+        'equipamento',
+        'modelo',
+        'senha',
+        'defeito',
+        'estado',
+        'acessorios',
+        'observacoes',
+        'previsao',
+        'orcamento',
+        'descorcamento',
+        'detalhes',
+        'valpecas',
+        'valservico',
+        'custo',
+        'status',//orcamento,comunicado, entregue
+        'dt_entrega',
+        'hr_entrega',
+        'tecnico',
+
     ];
 
     public function clientes(){

@@ -24,27 +24,23 @@ class OrdemFactory extends Factory
     {
         return [
             'cliente_id' => $this->faker->randomElement(Cliente::pluck('id_cliente', 'id_cliente')->toArray()),
-            'defeito' => 'todos',
             'equipamento' => 'qualquer',
             'modelo' => 'melhorzinho',
             'senha' => '203040',
+            'defeito' => 'todos',
             'estado' => 'bom',
             'acessorios' => 'todos',
+            'observacoes' => 'tudo pronto',
+            'previsao' => '2020-12-15',
             'orcamento' => '0',
             'descorcamento' => 'Troca de pilha',
             'detalhes' => 'dfsdf',
             'valpecas' => '00',
             'valservico' => '00',
             'custo' => '00',
-            'previsao' => '2020-12-15',
-            'statusorcamento' => '1',
             'status' => '1',
-            'comunicado' => '1',
-            'entrega' => '1',
-            'dt_entrega' => '2020-12-20',
-            'hr_entrega' => '20:00',
+            'dt_entrega' => '2020-12-20 20:00:00',
             'tecnico' => 'Anderson',
-            'observacoes' => 'tudo pronto',
         ];
     }
 }

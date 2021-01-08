@@ -28,8 +28,8 @@
             @csrf
             @method('POST')
             <div class="input-group">
-                <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
-                    placeholder="Buscar ordem" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="input-search" type="text" name="term" class="form-control rounded-left col-xs-4" name="term"
+                    placeholder="Buscar ordem">
                 <div class="input-group-append">
                     <button class="rounded-right btn btn-outline-secondary" type="submit"><i
                             class="fa fa-search"></i></button>

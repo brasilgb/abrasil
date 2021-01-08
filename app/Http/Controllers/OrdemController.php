@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ordem;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OrdemController extends Controller
 {
@@ -34,13 +35,23 @@ class OrdemController extends Controller
     }
 
     /**
+     * Busca de ordens
+     */
+    public function busca(Request $request)
+    {
+        $term = $request->input('term');
+        $ordens = $this->ordem->where('id_ordem', $term)->get();
+        return view('ordens.index', compact('ordens', 'term'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('ordens.create');
     }
 
     /**
@@ -51,7 +62,37 @@ class OrdemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'cliente_id' => 'required',
+            'equipamento' => 'required',
+            'modelo' => 'required',
+            'senha' => 'required',
+            'defeito' => 'required',
+            'estado' => 'required',
+            'acessorios' => 'nullable',
+            'observacoes' => 'nullable',
+            'previsao' => 'nullable'
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $this->ordem->create($data);
+            flash('<i class="fa fa-check"></i> Ordem salva com sucesso!')->success();
+            return redirect()->route('ordens.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir ordem!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -62,7 +103,7 @@ class OrdemController extends Controller
      */
     public function show(Ordem $orden)
     {
-        return view('ordens.edit', compact('ordem'));
+        return view('ordens.edit', compact('orden'));
     }
 
     /**
@@ -85,7 +126,46 @@ class OrdemController extends Controller
      */
     public function update(Request $request, Ordem $ordem)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'cliente_id' => 'required',
+            'equipamento' => 'required',
+            'modelo' => 'required',
+            'senha' => 'required',
+            'defeito' => 'required',
+            'estado' => 'required',
+            'acessorios' => 'nullable',
+            'observacoes' => 'nullable',
+            'previsao' => 'nullable',
+            'orcamento' => 'nullable',
+            'desorcamento' => 'nullable',
+            'detalhes' => 'nullable',
+            'valpecas' => 'nullable',
+            'valservico' => 'nullable',
+            'custo' => 'nullable',
+            'status' => 'nullable',//orcamento,comunicado, entregue
+            'dt_entrega' => 'nullable',
+            'tecnico' => 'nullable'
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $this->ordem->create($data);
+            flash('<i class="fa fa-check"></i> Ordem salvo com sucesso!')->success();
+            return redirect()->route('ordens.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir ordem!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**
