@@ -62,6 +62,9 @@
                     <td>{{ $cliente->email }}</td>
                     <td>{{ $cliente->telefone }}</td>
                     <td>
+                        <button 
+                        onclick="window.location.href='{{ route('ordens.ordencliente', ['orden' => $cliente->id_cliente]) }}'"
+                        class="btn btn-sm btn-secondary"><i class="fas fa-tools"></i></button>
                         <button
                             onclick="window.location.href='{{ route('clientes.show', ['cliente' => $cliente->id_cliente]) }}'"
                             class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
