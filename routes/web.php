@@ -29,6 +29,7 @@ Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])
 Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca');
 Route::resource('clientes', ClienteController::class);
 
+Route::get('ordens/ordemcliente/', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente');
 Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete');
 Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca');
 Route::resource('ordens', OrdemController::class);

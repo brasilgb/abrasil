@@ -26,11 +26,10 @@ class OrdemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $term = '';
         $ordens = $this->ordem->orderby('id_ordem', 'DESC')->paginate(15);
-
         return view('ordens.index', compact('ordens', 'term'));
     }
 
@@ -43,6 +42,15 @@ class OrdemController extends Controller
         $ordens = $this->ordem->where('id_ordem', $term)->get();
         return view('ordens.index', compact('ordens', 'term'));
     }
+ /**
+     * Busca de ordens
+     */
+    public function ordemcliente(Cliente $cliente)
+    {
+        $term = '';
+        $ordens = $this->ordem->where('cliente_id', $cliente)->get();
+        return view('ordens.index', compact('ordens', 'term'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -52,7 +60,7 @@ class OrdemController extends Controller
     public function create()
     {
         $ordens = $this->ordem->orderby('id_ordem', 'ASC')->get();
-        foreach($ordens as $next):
+        foreach ($ordens as $next) :
             $proxordem = $next->id_ordem;
         endforeach;
         return view('ordens.create', compact('proxordem'));
@@ -148,7 +156,7 @@ class OrdemController extends Controller
             'servico' => 'nullable',
             'valservico' => 'nullable',
             'valtotal' => 'nullable',
-            'status' => 'nullable',//orcamento,comunicado, entregue
+            'status' => 'nullable', //orcamento,comunicado, entregue
             'dt_entrega' => 'nullable',
             'tecnico' => 'nullable'
         ];
