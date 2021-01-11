@@ -23,6 +23,7 @@ class CreateAgendasTable extends Migration
             $table->text('detalhes');
             $table->string('tecnico');
             $table->integer('status');
+            $table->text('observacoes')->nullable();
             $table->timestamps();
         });
     }

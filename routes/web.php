@@ -29,12 +29,16 @@ Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])
 Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca');
 Route::resource('clientes', ClienteController::class);
 
-Route::get('ordens/ordemcliente/', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente');
+Route::get('ordens/ordemcliente/{cliente}', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente');
 Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete');
 Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca');
 Route::resource('ordens', OrdemController::class);
 
-Route::resource('agendamentos', AgendaController::class);
+Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->name('agendas.autocomplete');
+Route::post('agendas/busca', [AgendaController::class, 'agendas'])->name('agendas.busca');
+Route::resource('agendas', AgendaController::class);
+
+
 Route::resource('pecas', PecaController::class);
 Route::resource('configuracoes/backups', BackupController::class);
 Route::resource('configuracoes/empresas', EmpresaController::class);

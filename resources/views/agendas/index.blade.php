@@ -4,13 +4,13 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-users"></i> ordens</h3>
+        <h3 class="title-head"><i class="fas fa-calendar"></i> Agenda</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">ordens</li>
+                <li class="breadcrumb-item active" aria-current="page">Agenda</li>
             </ol>
         </nav>
     </div>
@@ -18,22 +18,19 @@
 
 <div class="card bg-light">
     <div class="card-header clearfix">
-        <a href="{{ route('ordens.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
+        <a href="{{ route('agendas.create') }}" class="btn btn-primary float-left"><i class="fa fa-plus"></i>
             Cadastrar</a>
         @if($term)
-        @php
-            $page = $term == 'clientes' ? 'clientes.index' : 'ordens.index';
-        @endphp
-        <a href="{{ route($page) }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i>
+        <a href="{{ route('agendas.index') }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i>
             Voltar</a>
         @endif
-        <form id="form-search" action="{{ route('ordens.busca') }}" method="POST"
+        <form id="form-search" action="{{ route('agendas.busca') }}" method="POST"
             class="form-inline d-flex justify-content-end">
             @csrf
             @method('POST')
             <div class="input-group">
-                <input id="input-search" type="text" name="term" class="form-control rounded-left col-xs-4" name="term"
-                    placeholder="Buscar ordem">
+                <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
+                    placeholder="Buscar agenda" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="rounded-right btn btn-outline-secondary" type="submit"><i
                             class="fa fa-search"></i></button>
@@ -55,34 +52,35 @@
                     <th>#ID</th>
                     <th>Cliente</th>
                     <th>Data</th>
-                    <th>Previsão</th>
+                    <th>Hora</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
-                @forelse($ordens as $ordem)
+                @forelse($agendas as $agenda)
                 <tr>
-                    <td>{{ $ordem->id_ordem }}</td>
-                    <td>{{ $ordem->clientes->cliente }}</td>
-                    <td>{{ $ordem->created_at }}</td>
-                    <td>{{ $ordem->previsao }}</td>
+                    <td>{{ $agenda->id_agenda }}</td>
+                    <td>{{ $agenda->clientes->cliente }}</td>
+                    <td>{{ date("d/m/Y",strtotime($agenda->data)) }}</td>
+                    <td>{{ date("H:i",strtotime($agenda->hora)) }}</td>
+                    <td>{{ $agenda->status }}</td>
                     <td>
                         <button
-                            onclick="window.location.href='{{ route('ordens.show', ['orden' => $ordem->id_ordem]) }}'"
+                            onclick="window.location.href='{{ route('agendas.show', ['agenda' => $agenda->id_agenda]) }}'"
                             class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
-                        <button data-toggle="modal" onclick="deleteData({{$ordem->id_ordem}})"
+                        <button data-toggle="modal" onclick="deleteData({{$agenda->id_agenda}})"
                             data-target="#DeleteModal" class="btn btn-danger btn-sm"><i
                                 class="far fa-trash-alt"></i></button>
                     </td>
                 </tr>
                 @empty
                 <div class="alert alert-danger">
-                    <i class="fa fa-frown"></i> Não há dados a carregar! <a href="{{ route('ordens.index') }}"
-                        title="Listar ordens"><i class="fa fa-sync-alt"></i></a>
+                    <i class="fa fa-frown"></i> Não há dados a carregar! <a href="{{ route('agendas.index') }}"
+                        title="Listar agendas"><i class="fa fa-sync-alt"></i></a>
                 </div>
                 @endforelse
             </table>
-
-            @if(count($ordens) > 1)
-            {{  $ordens->links() }}
+            @if(count($agendas) > 1)
+            {{  $agendas->links() }}
             @endif
         </div>
     </div>
@@ -94,7 +92,7 @@
         <form action="" id="deleteForm" method="post">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
-                    <h4 class="modal-title text-light"><i class="fa fa-check-circle"></i> Remover ordem</h4>
+                    <h4 class="modal-title text-light"><i class="fa fa-check-circle"></i> Remover agenda</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -103,7 +101,7 @@
                     @csrf
                     @method('DELETE')
                     <p class="text-center text-danger"><i class="fa fa-exclamation-triangle"></i> Tem certeza de que
-                        deseja remover esta ordem?</p>
+                        deseja remover este Cliente?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i>
@@ -119,7 +117,7 @@
     function deleteData(id)
     {
     var id = id;
-    var url = '{{ route("ordens.destroy", ":id") }}';
+    var url = '{{ route("agendas.destroy", ":id") }}';
     url = url.replace(':id', id);
     $("#deleteForm").attr('action', url);
     }
@@ -128,14 +126,14 @@
     $("#deleteForm").submit();
     }
 
-    $('#input-search').autocomplete({
+$('#input-search').autocomplete({
     minLength: 1,
     autoFocus: true,
     delay: 300,
     source: function(request, response) {
         _token = $("input[name='_token']").val();
         $.ajax({
-                url: '{{ route("ordens.autocomplete") }}',
+                url: '{{ route("agendas.autocomplete") }}',
                 type: 'POST',
                 dataType: "json",
                 data: {
@@ -148,10 +146,12 @@
             });
         },
         select: function (event, ui) {
-            $('#input-search').val(ui.item.value);
+            $('#input-search').val(ui.item.label);
+           //$('#employeeid').val(ui.item.value);
            return false;
         }
 });
+
 </script>
 
 @endsection

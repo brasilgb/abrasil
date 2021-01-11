@@ -42,13 +42,14 @@ class OrdemController extends Controller
         $ordens = $this->ordem->where('id_ordem', $term)->get();
         return view('ordens.index', compact('ordens', 'term'));
     }
+
  /**
      * Busca de ordens
      */
-    public function ordemcliente(Cliente $cliente)
+    public function ordemcliente($cliente)
     {
-        $term = '';
-        $ordens = $this->ordem->where('cliente_id', $cliente)->get();
+        $term = 'clientes';
+        $ordens = $this->ordem->where('cliente_id', $cliente)->paginate(15);
         return view('ordens.index', compact('ordens', 'term'));
     }
 
@@ -170,7 +171,7 @@ class OrdemController extends Controller
         try {
             $orden->update($data);
             flash('<i class="fa fa-check"></i> Ordem alterada com sucesso!')->success();
-            return redirect()->route('ordens.index');
+            return redirect()->route('ordens.show', ['orden' => $orden->id_ordem]);
         } catch (\Exception $e) {
             $message = 'Erro ao inserir ordem!';
             if (env('APP_DEBUG')) {

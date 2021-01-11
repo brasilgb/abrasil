@@ -156,7 +156,7 @@ class ClienteController extends Controller
         try {
             $cliente->update($data);
             flash('<i class="fa fa-check"></i> Cliente salvo com sucesso!')->success();
-            return redirect()->route('clientes.index');
+            return redirect()->route('clientes.show', ['cliente' => $cliente->id_cliente]);
         } catch (\Exception $e) {
             $message = 'Erro ao inserir cliente!';
             if (env('APP_DEBUG')) {

@@ -11,12 +11,14 @@ class Agenda extends Model
     protected $primaryKey = 'id_agenda';
 //    public $incrementing = false;
 protected $fillable = [
+    'cliente_id',
     'data',
     'hora',
     'servico',
     'detalhes',
     'tecnico',
-    'status'
+    'status',
+    'observacoes'
 ];
 
 

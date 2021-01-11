@@ -35,7 +35,7 @@
                     <a class="{{ (request()->is('ordens*')) ? 'active' : '' }} nav-link" href="{{route('ordens.index')}}">Ordens</a>
                 </li>
                 <li class="nav-item">
-                    <a class="{{ (request()->is('agendamentos*')) ? 'active' : '' }} nav-link" href="{{route('agendamentos.index')}}">Agendamentos</a>
+                    <a class="{{ (request()->is('agendas*')) ? 'active' : '' }} nav-link" href="{{route('agendas.index')}}">Agendamentos</a>
                 </li>
                 <li class="nav-item">
                     <a class="{{ (request()->is('pecas*')) ? 'active' : '' }} nav-link" href="{{route('pecas.index')}}">Peças</a>
@@ -57,7 +57,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="relatorios.clientes"><i class="fa fa-caret-right"></i> Clientes</a>
                         <a class="dropdown-item" href="relatorios.ordens"><i class="fa fa-caret-right"></i> Ordens</a>
-                        <a class="dropdown-item" href="relatorios.agendamentos"><i class="fa fa-caret-right"></i> Agendamentos</a>
+                        <a class="dropdown-item" href="relatorios.agendas"><i class="fa fa-caret-right"></i> Agendamentos</a>
                         <a class="dropdown-item" href="relatorios.pecas"><i class="fa fa-caret-right"></i> Peças</a>
                     </div>
                 </li>
