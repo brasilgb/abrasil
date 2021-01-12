@@ -4,13 +4,13 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-calendar"></i> Agendas</h3>
+        <h3 class="title-head"><i class="fa fa-calendar"></i> Agenda</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('agendas.index') }}">Agendas</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('agendas.index') }}">Agenda</a></li>
               <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
             </ol>
           </nav>
@@ -25,8 +25,8 @@
         @csrf
         @method('POST')
         <div class="input-group">
-            <input type="text" class="cliente form-control rounded-left col-xs-4" name="term"
-                placeholder="Buscar agenda" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id="searchform" type="text" class="form-control rounded-left col-xs-4" name="term"
+                placeholder="Buscar por data" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="rounded-right btn btn-outline-secondary" type="submit"><i
                         class="fa fa-search"></i></button>
@@ -53,7 +53,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Data:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="data">
+                    <input id="dateform" type="text" class="form-control" name="data">
                     @error('data')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -62,7 +62,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Hora:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="hora">
+                    <input id="timeform" type="text" class="form-control" name="hora">
                     @error('hora')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -165,7 +165,11 @@ $('.cliente').autocomplete({
            return false;
         }
 });
-
+$( function() {
+    $( "#dateform, #searchform" ).datepicker({
+        locale: 'pt-BR'
+    });
+  } );
 </script>
 
 @endsection

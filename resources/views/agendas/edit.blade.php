@@ -4,13 +4,13 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-calendar"></i> Agendas</h3>
+        <h3 class="title-head"><i class="fa fa-calendar"></i> Agenda</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('agendas.index') }}">Agendas</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('agendas.index') }}">Agenda</a></li>
               <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
             </ol>
           </nav>
@@ -25,8 +25,8 @@
         @csrf
         @method('POST')
         <div class="input-group">
-            <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
-                placeholder="Buscar agenda" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id="searchform" type="text" class="form-control rounded-left col-xs-4" name="term"
+                placeholder="Buscar por data" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="rounded-right btn btn-outline-secondary" type="submit"><i
                         class="fa fa-search"></i></button>
@@ -43,8 +43,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Cliente</label>
                 <div class="col-sm-10">
-                    <input  id="cliente" type="text" class="form-control" name="cliente" value="{{old('cliente', $agenda->clientes->cliente)}}">
-                    <input id="cliente_id" type="hidden" class="form-control" name="cliente_id" value="{{old('cliente_id', $agenda->cliente_id)}}">
+                    <input  id="" type="text" class="cliente form-control" name="cliente" value="{{old('cliente', $agenda->clientes->cliente)}}">
+                    <input id="" type="hidden" class="cliente_id form-control" name="cliente_id" value="{{old('cliente_id', $agenda->cliente_id)}}">
                     @error('cliente_id')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> O campo cliente deve ser preenchido!</div>
                     @enderror
@@ -53,7 +53,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Data:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="data" value="{{ old('data', $agenda->data) }}">
+                    <input id="dateform" type="text" class="form-control" name="data" value="{{ old('data', date("d/m/Y", strtotime($agenda->data))) }}">
                     @error('data')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -62,7 +62,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Hora:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="hora" value="{{ old('hora', $agenda->hora) }}">
+                    <input id="timeform" type="text" class="form-control" name="hora" value="{{ old('hora', $agenda->hora) }}">
                     @error('hora')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -114,7 +114,7 @@
                 <div class="col-sm-10">
                     <select class="custom-select my-1 mr-sm-2" name="status">
                         @foreach ($status as $key => $value)
-                        <option value="{{ $key }}" {{ old('status', $agenda->status ) == $agenda->status ? 'selected' : '' }}>{{ $value }}</option>
+                        <option value="{{ $key }}" {{ old('status', $key ) == $agenda->status ? 'selected' : '' }}>{{ $value }}</option>
                         @endforeach
                     </select>
                     @error('status')
@@ -142,14 +142,14 @@
 </div>
 <script>
 
-$('#input-search').autocomplete({
+$('.cliente').autocomplete({
     minLength: 1,
     autoFocus: true,
     delay: 300,
     source: function(request, response) {
         _token = $("input[name='_token']").val();
         $.ajax({
-                url: '{{ route("agendas.autocomplete") }}',
+                url: '{{ route("clientes.autocomplete") }}',
                 type: 'POST',
                 dataType: "json",
                 data: {
@@ -162,12 +162,16 @@ $('#input-search').autocomplete({
             });
         },
         select: function (event, ui) {
-            $('#input-search').val(ui.item.label);
-           //$('#employeeid').val(ui.item.value);
+            $('.cliente').val(ui.item.label);
+           $('.cliente_id').val(ui.item.value);
            return false;
         }
 });
-
+$( function() {
+    $( "#dateform, #searchform" ).datepicker({
+        locale: 'pt-BR'
+    });
+  } );
 </script>
 
 @endsection

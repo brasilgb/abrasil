@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -58,6 +59,7 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
         $rules = [
             'cliente_id' => 'required',
@@ -77,6 +79,7 @@ class AgendaController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
             $this->agenda->create($data);
             flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
             return redirect()->route('agendas.index');
@@ -140,6 +143,7 @@ class AgendaController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
             $agenda->update($data);
             flash('<i class="fa fa-check"></i> Agenda salvo com sucesso!')->success();
             return redirect()->route('agendas.show', ['agenda' => $agenda->id_agenda]);

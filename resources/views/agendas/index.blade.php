@@ -29,8 +29,8 @@
             @csrf
             @method('POST')
             <div class="input-group">
-                <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
-                    placeholder="Buscar agenda" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="dateform" type="text" class="cliente form-control rounded-left col-xs-4" name="term"
+                    placeholder="Buscar por data" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="rounded-right btn btn-outline-secondary" type="submit"><i
                             class="fa fa-search"></i></button>
@@ -126,14 +126,14 @@
     $("#deleteForm").submit();
     }
 
-$('#input-search').autocomplete({
+$('.cliente').autocomplete({
     minLength: 1,
     autoFocus: true,
     delay: 300,
     source: function(request, response) {
         _token = $("input[name='_token']").val();
         $.ajax({
-                url: '{{ route("agendas.autocomplete") }}',
+                url: '{{ route("clientes.autocomplete") }}',
                 type: 'POST',
                 dataType: "json",
                 data: {
@@ -146,12 +146,16 @@ $('#input-search').autocomplete({
             });
         },
         select: function (event, ui) {
-            $('#input-search').val(ui.item.label);
+            $('.cliente').val(ui.item.label);
            //$('#employeeid').val(ui.item.value);
            return false;
         }
 });
-
+$( function() {
+    $( "#dateform" ).datepicker({
+        locale: 'pt-BR'
+    });
+  } );
 </script>
 
 @endsection

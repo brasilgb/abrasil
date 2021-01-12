@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>APP - SOS</title>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/local.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/local.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
@@ -90,6 +92,7 @@
     </footer>
 </body>
 <script>
-
+$( "#dateform,#searchform").inputmask('99/99/9999');
+$( "#timeform").inputmask('99:99');
 </script>
 </html>
