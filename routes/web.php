@@ -11,6 +11,7 @@ use App\Http\Controllers\Configuracoes\EmpresaController;
 use App\Http\Controllers\Configuracoes\EmailController;
 use App\Http\Controllers\Configuracoes\FerramentaController;
 use App\Http\Controllers\Configuracoes\UsuarioController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
