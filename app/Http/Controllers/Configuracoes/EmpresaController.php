@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Configuracoes;
 use App\Http\Controllers\Controller;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EmpresaController extends Controller
 {
+    /**
+     * @var Empresa
+     */
+    protected $empresa;
+
+    public function __construct(Empresa $empresa)
+    {
+        $this->empresa = $empresa;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,15 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        return view('empresas.index');
+        $count = $this->empresa->all()->count();
+        if($count > 0):
+            $empresas = $this->empresa->all();
+        else:
+            $this->empresa->create(['empresa' => '']);
+            $empresas = $this->empresa->all();
+        endif;
+
+        return view('empresas.index', compact('empresas'));
     }
 
     /**
@@ -70,7 +88,39 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'empresa' => 'required',
+            'razao' => 'required',
+            'cnpj' => 'required',
+            'logo' => 'required',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'cep' => 'required',
+            'telefone' => 'required',
+            'site' => 'nullable',
+            'email' => 'required'
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $empresa->update($data);
+            flash('<i class="fa fa-check"></i> Empresa registrada com sucesso!')->success();
+            return redirect()->route('empresas.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir empresa!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**

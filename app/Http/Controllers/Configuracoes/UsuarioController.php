@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Configuracoes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
@@ -24,10 +26,20 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        $term = '';
         $usuarios = $this->user->orderBy('id', 'DESC')->paginate(15);
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuarios.index', compact('usuarios', 'term'));
     }
 
+    /**
+     * Busca de usuarios
+     */
+    public function busca(Request $request)
+    {
+        $term = $request->input('term');
+        $usuarios = $this->user->where('nome', $term)->paginate(15);
+        return view('usuarios.index', compact('users', 'term'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +47,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('usuarios.create');
     }
 
     /**
@@ -46,7 +58,37 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //'password' => Hash::make($request->newPassword)
+        $data = $request->all();
+        $rules = [
+            'name' => 'required',
+            'username' => 'required|unique:users',
+            'email' => 'required|email',
+            'funcao' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!',
+            'confirmed' => 'As senhas devem ser iguais!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $data['password'] = Hash::make($request->password);
+            $this->user->create($data);
+            flash('<i class="fa fa-check"></i> Peça salva com sucesso!')->success();
+            return redirect()->route('usuarios.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir peça!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -55,9 +97,9 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $usuario)
     {
-        //
+        return view('usuarios.edit', compact('usuario'));
     }
 
     /**
@@ -66,9 +108,9 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $usuario)
     {
-        //
+        return redirect()->route('usuarios.show', ['usuario' => $usuario->id]);
     }
 
     /**
@@ -92,5 +134,23 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Autocomplete campo usuario
+     */
+    public function autocomplete(Request $request)
+    {
+        $term = $request->input('term');
+        if ($term == '') :
+            $usuarios = $this->user->orderby('name', 'ASC')->select('id', 'name')->limit(5)->get();
+        else :
+            $usuarios = $this->user->orderby('name', 'ASC')->select('id', 'name')->where('name', 'LIKE', $term . '%')->get();
+        endif;
+
+        foreach ($usuarios as $usuario) {
+            $response[] = ['value' => $usuario->id, 'label' => $usuario->name];
+        }
+        return response()->json($response);
     }
 }

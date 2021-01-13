@@ -46,4 +46,7 @@ Route::resource('configuracoes/backups', BackupController::class);
 Route::resource('configuracoes/empresas', EmpresaController::class);
 Route::resource('configuracoes/emails', EmailController::class);
 Route::resource('configuracoes/ferramentas', FerramentaController::class);
+
+Route::post('usuarios/autocomplete', [UsuarioController::class, 'autocomplete'])->name('usuarios.autocomplete');
+Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuarios.busca');
 Route::resource('configuracoes/usuarios', UsuarioController::class);
