@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,10 +13,12 @@ class AgendaController extends Controller
 {
     /**
      * @var Agenda
+     * @var User
      */
-    public function __construct(Agenda $agenda)
+    public function __construct(Agenda $agenda, User $user)
     {
         $this->agenda = $agenda;
+        $this->user = $user;
     }
 
     /**
@@ -48,7 +51,8 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        return view('agendas.create');
+        $users = $this->user->get();
+        return view('agendas.create', compact('users'));
     }
 
     /**
@@ -101,7 +105,8 @@ class AgendaController extends Controller
      */
     public function show(Agenda $agenda)
     {
-        return view('agendas.edit', compact('agenda'));
+        $users = $this->user->get();
+        return view('agendas.edit', compact('agenda', 'users'));
     }
 
     /**
@@ -165,6 +170,8 @@ class AgendaController extends Controller
      */
     public function destroy(Agenda $agenda)
     {
-        //
+        $agenda->delete();
+        flash('<i class="fa fa-check"></i> Agenda removido com sucesso!')->success();
+        return redirect()->route('agendas.index');
     }
 }

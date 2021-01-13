@@ -92,7 +92,9 @@
                 <div class="col-sm-10">
                     <select class="custom-select my-1 mr-sm-2" name="tecnico">
                         <option value="">Selecione o Técnico</option>
-                        <option value="Jose" {{ old('tecnico', $agenda->tecnico) == $agenda->tecnico ? 'selected' : '' }}>{{ $agenda->tecnico }}</option>
+                        @foreach($users as $user)
+                        <option value="{{$user->id}}"  {{ old('tecnico', $user->id) == $agenda->tecnico ? 'selected' : '' }}>{{$user->name}}</option>
+                        @endforeach
                     </select>
                     @error('tecnico')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>

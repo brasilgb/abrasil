@@ -62,7 +62,21 @@
                     <td>{{ $agenda->clientes->cliente }}</td>
                     <td>{{ date("d/m/Y",strtotime($agenda->data)) }}</td>
                     <td>{{ date("H:i",strtotime($agenda->hora)) }}</td>
-                    <td>{{ $agenda->status }}</td>
+                    @php
+                    $status = function($stat){
+                        switch ($stat) {
+                                case '1': return 'Aberto';
+                                break;
+                                case '2': return 'Em andamento';
+                                break;
+                                case '3': return 'Cancelado';
+                                break;
+                                case '4': return 'Concluído';
+                                break;
+                        }
+                    };
+                    @endphp
+                    <td>{{ $status($agenda->status) }}</td>
                     <td>
                         <button
                             onclick="window.location.href='{{ route('agendas.show', ['agenda' => $agenda->id_agenda]) }}'"

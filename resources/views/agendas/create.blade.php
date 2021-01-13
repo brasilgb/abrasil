@@ -92,7 +92,9 @@
                 <div class="col-sm-10">
                     <select class="custom-select my-1 mr-sm-2" name="tecnico">
                         <option value="">Selecione o Técnico</option>
-                        <option value="1">José</option>
+                        @foreach($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endforeach
                     </select>
                     @error('tecnico')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
@@ -102,12 +104,12 @@
 
             @php
             $status = [
-                '0' => 'Selecione o status',
+                '' => 'Selecione o status',
                 '1' => 'Aberto',
                 '2' => 'Em andamento',
                 '3' => 'Cancelado',
                 '4' => 'Concluído',
-                     ];
+                  ];
             @endphp
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Status:</label>
