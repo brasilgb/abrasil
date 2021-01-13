@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'funcao' // 1 => Administrador, 2 => Operador, 3 => Tecnico
     ];
 
     /**
@@ -40,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function agendas(){
+        return $this->hasMany(Agenda::class, 'id', 'tecnico_id');
+    }
 }

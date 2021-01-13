@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('ordens.index') }}">Ordens</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
+              <li class="breadcrumb-item active" aria-current="page">Alterar</li>
             </ol>
           </nav>
     </div>

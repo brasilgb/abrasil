@@ -17,11 +17,12 @@ class CreateAgendasTable extends Migration
             $table->integer('id_agenda')->autoIncrement();
             $table->integer('cliente_id');
             $table->foreign('cliente_id')->references('id_cliente')->on('clientes')->onDelete('cascade');
+            $table->integer('tecnico_id');
+            $table->foreign('tecnico_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('data');
             $table->time('hora');
             $table->string('servico');
             $table->text('detalhes');
-            $table->string('tecnico');
             $table->integer('status');
             $table->text('observacoes')->nullable();
             $table->timestamps();

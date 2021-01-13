@@ -90,13 +90,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Técnico:</label>
                 <div class="col-sm-10">
-                    <select class="custom-select my-1 mr-sm-2" name="tecnico">
+                    <select class="custom-select my-1 mr-sm-2" name="tecnico_id">
                         <option value="">Selecione o Técnico</option>
                         @foreach($users as $user)
                         <option value="{{$user->id}}">{{$user->name}}</option>
                         @endforeach
                     </select>
-                    @error('tecnico')
+                    @error('tecnico_id')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
                 </div>

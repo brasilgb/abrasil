@@ -35,12 +35,12 @@ class AgendaController extends Controller
     }
 
     /**
-     * Busca de ordens
+     * Busca de agendamentos por data
      */
     public function busca(Request $request)
     {
-        $term = $request->input('term');
-        $agendas = $this->agenda->where('cliente_id', $term)->get();
+        $term = Carbon::createFromFormat("d/m/Y", $request->input('term'))->format("Y-m-d");
+        $agendas = $this->agenda->where('data', $term)->get();
         return view('agendas.index', compact('agendas', 'term'));
     }
 
@@ -51,7 +51,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        $users = $this->user->get();
+        $users = $this->user->where('funcao', 3)->get();
         return view('agendas.create', compact('users'));
     }
 
@@ -63,15 +63,14 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->all();
         $rules = [
             'cliente_id' => 'required',
+            'tecnico_id' => 'required',
             'data' => 'required',
             'hora' => 'required',
             'servico' => 'required',
             'detalhes' => 'required',
-            'tecnico' => 'required',
             'status' => 'required',
             'observacoes' => 'nullable'
         ];
@@ -105,7 +104,7 @@ class AgendaController extends Controller
      */
     public function show(Agenda $agenda)
     {
-        $users = $this->user->get();
+        $users = $this->user->where('funcao', 3)->get();
         return view('agendas.edit', compact('agenda', 'users'));
     }
 
@@ -132,11 +131,11 @@ class AgendaController extends Controller
         $data = $request->all();
         $rules = [
             'cliente_id' => 'required',
+            'tecnico_id' => 'required',
             'data' => 'required',
             'hora' => 'required',
             'servico' => 'required',
             'detalhes' => 'required',
-            'tecnico' => 'required',
             'status' => 'required',
             'observacoes' => 'nullable'
         ];

@@ -20,6 +20,7 @@ class CreatePecasTable extends Migration
             $table->integer('quantidade');
             $table->decimal('valor', 10, 2);
             $table->string('situacao');
+            $table->text('observacoes');
             $table->timestamps();
         });
     }

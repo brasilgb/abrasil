@@ -51,6 +51,7 @@
                 <tr>
                     <th>#ID</th>
                     <th>Cliente</th>
+                    <th>Técnico</th>
                     <th>Data</th>
                     <th>Hora</th>
                     <th>Status</th>
@@ -60,6 +61,7 @@
                 <tr>
                     <td>{{ $agenda->id_agenda }}</td>
                     <td>{{ $agenda->clientes->cliente }}</td>
+                    <td>{{ $agenda->users->name }}</td>
                     <td>{{ date("d/m/Y",strtotime($agenda->data)) }}</td>
                     <td>{{ date("H:i",strtotime($agenda->hora)) }}</td>
                     @php

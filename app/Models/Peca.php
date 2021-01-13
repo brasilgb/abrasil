@@ -18,5 +18,6 @@ class Peca extends Model
         'quantidade',
         'valor',
         'situacao',
+        'observacoes'
     ];
 }

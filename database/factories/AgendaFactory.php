@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Agenda;
 use App\Models\Cliente;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AgendaFactory extends Factory
@@ -23,13 +24,13 @@ class AgendaFactory extends Factory
     public function definition()
     {
         return [
-            'cliente_id' => $this->faker->randomElement(Cliente::pluck('id_cliente', 'id_cliente')->toArray()),
+            'cliente_id' => $this->faker->randomElement(Cliente::pluck('id_cliente')->toArray()),
+            'tecnico_id' => $this->faker->randomElement(User::pluck('id')->toArray()),
             'data' => $this->faker->date(),
             'hora' => $this->faker->time(),
             'servico' => 'defeito fonte',
             'detalhes' => 'Fonte aquecendo',
-            'tecnico' => '1',
-            'status' => '0'
+            'status' => '1'
         ];
     }
 }

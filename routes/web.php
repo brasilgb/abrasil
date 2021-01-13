@@ -35,11 +35,13 @@ Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.bus
 Route::resource('ordens', OrdemController::class);
 
 Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->name('agendas.autocomplete');
-Route::post('agendas/busca', [AgendaController::class, 'agendas'])->name('agendas.busca');
+Route::post('agendas/busca', [AgendaController::class, 'busca'])->name('agendas.busca');
 Route::resource('agendas', AgendaController::class);
 
-
+Route::post('pecas/autocomplete', [PecaController::class, 'autocomplete'])->name('pecas.autocomplete');
+Route::post('pecas/busca', [PecaController::class, 'busca'])->name('pecas.busca');
 Route::resource('pecas', PecaController::class);
+
 Route::resource('configuracoes/backups', BackupController::class);
 Route::resource('configuracoes/empresas', EmpresaController::class);
 Route::resource('configuracoes/emails', EmailController::class);

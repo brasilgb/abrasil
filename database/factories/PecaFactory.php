@@ -27,6 +27,7 @@ class PecaFactory extends Factory
             'quantidade' => '45',
             'valor' => '250',
             'situacao' => 'Nova',
+            'observacoes' => ''
         ];
     }
 }

@@ -12,6 +12,7 @@ class Agenda extends Model
 //    public $incrementing = false;
 protected $fillable = [
     'cliente_id',
+    'tecnico_id',
     'data',
     'hora',
     'servico',
@@ -22,7 +23,11 @@ protected $fillable = [
 ];
 
 
-    public function clientes(){
-        return $this->belongsTo(Cliente::class, 'cliente_id', 'id_cliente');
-    }
+public function clientes(){
+    return $this->belongsTo(Cliente::class, 'cliente_id', 'id_cliente');
+}
+
+public function users(){
+    return $this->belongsTo(User::class, 'tecnico_id', 'id');
+}
 }
