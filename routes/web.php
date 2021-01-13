@@ -23,7 +23,7 @@ use App\Http\Controllers\Configuracoes\UsuarioController;
 |
 */
 
-Route::resource('/', DashboardController::class);
+Route::resource('/', DashboardController::class)->middleware('auth');
 
 Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])->name('clientes.autocomplete');
 Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca');
@@ -50,3 +50,7 @@ Route::resource('configuracoes/ferramentas', FerramentaController::class);
 Route::post('usuarios/autocomplete', [UsuarioController::class, 'autocomplete'])->name('usuarios.autocomplete');
 Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuarios.busca');
 Route::resource('configuracoes/usuarios', UsuarioController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
