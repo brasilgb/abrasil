@@ -4,17 +4,17 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-industry" aria-hidden="true"></i>  Empresa</h3>
+        <h3 class="title-head"><i class="fa fa-industry" aria-hidden="true"></i> Empresa</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page"> Empresa</li>
+                <li class="breadcrumb-item active" aria-current="page"> Empresa</li>
             </ol>
-          </nav>
+        </nav>
     </div>
-  </div>
+</div>
 
 <div class="card bg-light">
     <div class="card-header clearfix">
@@ -30,25 +30,31 @@
             @method('PUT')
             @csrf
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Empresa:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    Empresa:</label>
                 <div class="col-sm-10">
-                    <input  id="" type="text" class="form-control" name="empresa" value="{{old('empresa', $empresa->empresa)}}">
+                    <input id="" type="text" class="form-control" name="empresa"
+                        value="{{old('empresa', $empresa->empresa)}}">
                     @error('empresa')
-                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> O campo cliente deve ser preenchido!</div>
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> O campo cliente deve ser
+                        preenchido!</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Razão Social:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Razão
+                    Social:</label>
                 <div class="col-sm-10">
-                    <input id="" type="text" class="form-control" name="razao" value="{{ old('razao', $empresa->razao) }}">
+                    <input id="" type="text" class="form-control" name="razao"
+                        value="{{ old('razao', $empresa->razao) }}">
                     @error('razao')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CNPJ:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    CNPJ:</label>
                 <div class="col-sm-10">
                     <input id="" type="text" class="form-control" name="cnpj" value="{{ old('cnpj', $empresa->cnpj) }}">
                     @error('cnpj')
@@ -57,21 +63,25 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Logo:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    Logo:</label>
                 <div class="col-sm-10">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="logo" id="validatedCustomFile" value="{{ old('logo', $empresa->logo) }}" required>
+                        <input type="file" class="custom-file-input" name="logo" id="validatedCustomFile"
+                            value="{{ old('logo', $empresa->logo) }}" required>
                         <label class="custom-file-label" for="validatedCustomFile"></label>
-                      </div>
+                    </div>
                     @error('logo')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Endereço:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    Endereço:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="endereco" value="{{ old('endereco', $empresa->endereco) }}">
+                    <input type="text" class="form-control" name="endereco"
+                        value="{{ old('endereco', $empresa->endereco) }}">
                     @error('endereco')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -79,7 +89,8 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Bairro:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    Bairro:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="bairro" value="{{ old('bairro', $empresa->bairro) }}">
                     @error('bairro')
@@ -88,7 +99,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Cidade:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    Cidade:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="cidade" value="{{ old('cidade', $empresa->cidade) }}">
                     @error('cidade')
@@ -97,7 +109,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CEP:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    CEP:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="cep" value="{{ old('cep', $empresa->cep) }}">
                     @error('cep')
@@ -106,9 +119,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Telefone:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    Telefone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="telefone" value="{{ old('telefone', $empresa->telefone) }}">
+                    <input type="text" class="form-control" name="telefone"
+                        value="{{ old('telefone', $empresa->telefone) }}">
                     @error('telefone')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -124,7 +139,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> E-mail:</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    E-mail:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="email" value="{{ old('email', $empresa->email) }}">
                     @error('email')
