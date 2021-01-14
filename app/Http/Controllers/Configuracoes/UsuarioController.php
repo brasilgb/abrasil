@@ -120,9 +120,43 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $usuario)
     {
-        //
+        //'password' => Hash::make($request->newPassword)
+        $data = $request->all();
+        $rules = [
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'funcao' => 'required',
+            'password' => 'confirmed',
+            'password_confirmation' => '',
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!',
+            'confirmed' => 'As senhas devem ser iguais!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            if (empty($request->password)) :
+                $data['password'] = Hash::make($request->bdpassword);
+            else :
+                $data['password'] = Hash::make($request->password);
+            endif;
+            $usuario->update($data);
+            flash('<i class="fa fa-check"></i> Peça salva com sucesso!')->success();
+            return redirect()->route('usuarios.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir peça!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**

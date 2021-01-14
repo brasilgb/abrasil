@@ -39,7 +39,7 @@
     <div class="card-body">
         @include("flash::message")
         <form action="{{ route('usuarios.update',['usuario' => $usuario->id]) }}" method="POST">
-            @method('POST')
+            @method('PUT')
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
@@ -97,18 +97,17 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
-                    Senha:</label>
+                <label class="col-sm-2 col-form-label" for=""> Senha:</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" name="password" value="{{ old('password') }}">
+                    <input type="hidden" name="bdpassword" value="{{$usuario->password}}">
                     @error('password')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> O campo senha deve ser preenchido!</div>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
-                    Repita e senha:</label>
+                <label class="col-sm-2 col-form-label" for="">Repita e senha:</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}">
                     @error('password_confirmation')

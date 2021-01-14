@@ -59,7 +59,10 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Logo:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="logo" value="{{ old('logo', $empresa->logo) }}">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="logo" id="validatedCustomFile" value="{{ old('logo', $empresa->logo) }}" required>
+                        <label class="custom-file-label" for="validatedCustomFile"></label>
+                      </div>
                     @error('logo')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -74,6 +77,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Bairro:</label>
                 <div class="col-sm-10">
