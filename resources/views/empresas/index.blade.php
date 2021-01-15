@@ -26,7 +26,7 @@
 
     <div class="card-body">
         @include("flash::message")
-        <form action="{{ route('empresas.update', [$empresa->id_empresa]) }}" method="POST">
+        <form action="{{ route('empresas.update', [$empresa->id_empresa]) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="form-group row">
@@ -69,7 +69,7 @@
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="logo" id="validatedCustomFile"
                             value="{{ old('logo', $empresa->logo) }}" required>
-                        <label class="custom-file-label" for="validatedCustomFile"></label>
+                        <label class="custom-file-label" for="validatedCustomFile">Selecione o arquivo...</label>
                     </div>
                     @error('logo')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
@@ -160,7 +160,10 @@
     @endforeach
 </div>
 <script>
-
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 </script>
 
 @endsection

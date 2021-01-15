@@ -142,7 +142,7 @@ class UsuarioController extends Controller
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
             if (empty($request->password)) :
-                $data['password'] = Hash::make($request->bdpassword);
+                $data['password'] = $request->bdpassword;
             else :
                 $data['password'] = Hash::make($request->password);
             endif;

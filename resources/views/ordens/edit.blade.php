@@ -165,7 +165,7 @@
                 <div class="col-sm-10">
                     <select class="custom-select my-1 mr-sm-2" name="status">
                         @foreach ($status as $key => $value)
-                        <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                        <option value="{{ $key }}" {{ old('status',  $orden->status) == $key ? 'selected' : '' }}>{{ $value }}</option>
                         @endforeach
                     </select>
                     @error('status')
@@ -182,7 +182,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Previsão:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="previsao" value="{{old('previsao', $orden->previsao)}}">
+                    <input id="dateform" type="text" class="form-control" name="previsao" value="{{old('previsao', date("d/m/Y", strtotime($orden->previsao)))}}">
                 </div>
             </div>
 

@@ -60,7 +60,7 @@
                 <td>{{ $peca->id_peca }}</td>
                 <td>{{ $peca->peca }}</td>
                 <td>{{ $peca->quantidade }}</td>
-                <td>{{ $peca->valor }}</td>
+                <td>{{ 'R$ '.number_format($peca->valor, 2, ',', '.')}}</td>
                 <td>{{ $peca->situacao }}</td>
                     <td>
                         <button

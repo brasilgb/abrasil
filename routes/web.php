@@ -23,39 +23,35 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::resource('/', DashboardController::class)->middleware('auth');
 
-Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])->name('clientes.autocomplete');
-Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca');
-Route::resource('clientes', ClienteController::class);
+Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])->name('clientes.autocomplete')->middleware('auth');
+Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca')->middleware('auth');
+Route::resource('clientes', ClienteController::class)->middleware('auth');
 
-Route::get('ordens/ordemcliente/{cliente}', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente');
-Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete');
-Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca');
-Route::resource('ordens', OrdemController::class);
+Route::get('ordens/ordemcliente/{cliente}', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente')->middleware('auth');
+Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete')->middleware('auth');
+Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca')->middleware('auth');
+Route::resource('ordens', OrdemController::class)->middleware('auth');
 
-Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->name('agendas.autocomplete');
-Route::post('agendas/busca', [AgendaController::class, 'busca'])->name('agendas.busca');
-Route::resource('agendas', AgendaController::class);
+Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->name('agendas.autocomplete')->middleware('auth');
+Route::post('agendas/busca', [AgendaController::class, 'busca'])->name('agendas.busca')->middleware('auth');
+Route::resource('agendas', AgendaController::class)->middleware('auth');
 
-Route::post('pecas/autocomplete', [PecaController::class, 'autocomplete'])->name('pecas.autocomplete');
-Route::post('pecas/busca', [PecaController::class, 'busca'])->name('pecas.busca');
-Route::resource('pecas', PecaController::class);
+Route::post('pecas/autocomplete', [PecaController::class, 'autocomplete'])->name('pecas.autocomplete')->middleware('auth');
+Route::post('pecas/busca', [PecaController::class, 'busca'])->name('pecas.busca')->middleware('auth');
+Route::resource('pecas', PecaController::class)->middleware('auth');
 
-Route::resource('configuracoes/backups', BackupController::class);
-Route::resource('configuracoes/empresas', EmpresaController::class);
-Route::resource('configuracoes/emails', EmailController::class);
-Route::resource('configuracoes/ferramentas', FerramentaController::class);
+Route::resource('configuracoes/backups', BackupController::class)->middleware('auth');
+Route::resource('configuracoes/empresas', EmpresaController::class)->middleware('auth');
+Route::resource('configuracoes/emails', EmailController::class)->middleware('auth');
+Route::resource('configuracoes/ferramentas', FerramentaController::class)->middleware('auth');
 
-Route::post('usuarios/autocomplete', [UsuarioController::class, 'autocomplete'])->name('usuarios.autocomplete');
-Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuarios.busca');
-Route::resource('configuracoes/usuarios', UsuarioController::class);
+Route::post('usuarios/autocomplete', [UsuarioController::class, 'autocomplete'])->name('usuarios.autocomplete')->middleware('auth');
+Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuarios.busca')->middleware('auth');
+Route::resource('configuracoes/usuarios', UsuarioController::class)->middleware('auth');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

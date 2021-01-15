@@ -93,7 +93,7 @@ class EmpresaController extends Controller
             'empresa' => 'required',
             'razao' => 'required',
             'cnpj' => 'required',
-            'logo' => 'required',
+            'logo' => 'required|mimes:jpeg,jpg,png|max:2048',
             'endereco' => 'required',
             'bairro' => 'required',
             'cidade' => 'required',
@@ -110,6 +110,8 @@ class EmpresaController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $fileName = time().'.'.$request->logo->extension();
+            $request->logo->move(public_path('img'), $fileName);
             $empresa->update($data);
             flash('<i class="fa fa-check"></i> Empresa registrada com sucesso!')->success();
             return redirect()->route('empresas.index');

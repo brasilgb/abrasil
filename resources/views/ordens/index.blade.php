@@ -22,7 +22,7 @@
             Cadastrar</a>
         @if($term)
         @php
-            $page = $term == 'clientes' ? 'clientes.index' : 'ordens.index';
+        $page = $term == 'clientes' ? 'clientes.index' : 'ordens.index';
         @endphp
         <a href="{{ route($page) }}" class="btn btn-default float-left"><i class="fa fa-angle-left"></i>
             Voltar</a>
@@ -54,16 +54,38 @@
                 <tr>
                     <th>#ID</th>
                     <th>Cliente</th>
-                    <th>Data</th>
-                    <th>Previsão</th>
+                    <th>Data Entrada</th>
+                    <th>Previsão Entrega</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
                 @forelse($ordens as $ordem)
                 <tr>
                     <td>{{ $ordem->id_ordem }}</td>
                     <td>{{ $ordem->clientes->cliente }}</td>
-                    <td>{{ $ordem->created_at }}</td>
-                    <td>{{ $ordem->previsao }}</td>
+                    <td>{{ date("d/m/Y", strtotime($ordem->created_at)) }}</td>
+                    <td>{{ date("d/m/Y", strtotime($ordem->previsao)) }}</td>
+                    @php
+                    $status = function($func){
+                    switch ($func) {
+                    case '1': return 'Em avaliação';
+                    break;
+                    case '2': return 'Orçamento gerado';
+                    break;
+                    case '3': return 'Na bancada';
+                    break;
+                    case '4': return 'Serviço concluído';
+                    break;
+                    case '5': return 'Serviço não efetuado';
+                    break;
+                    case '6': return 'Ordem fechada';
+                    break;
+                    case '7': return 'Equipamento entregue';
+                    break;
+                    }
+                    };
+                    @endphp
+                    <td>{{ $status($ordem->status) }}</td>
                     <td>
                         <button
                             onclick="window.location.href='{{ route('ordens.show', ['orden' => $ordem->id_ordem]) }}'"
