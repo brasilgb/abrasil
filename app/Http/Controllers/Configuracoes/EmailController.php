@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Configuracoes;
 use App\Http\Controllers\Controller;
 use App\Models\Email;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EmailController extends Controller
 {
+    /**
+     * @var Email
+     */
+    protected $email;
+
+    public function __construct(Email $email)
+    {
+        $this->email = $email;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,15 @@ class EmailController extends Controller
      */
     public function index()
     {
-        return view('emails.index');
+        $count = $this->email->all()->count();
+        if($count > 0):
+            $emails = $this->email->all();
+        else:
+            $this->email->create(['servidor' => '']);
+            $emails = $this->email->all();
+        endif;
+
+        return view('emails.index', compact('emails'));
     }
 
     /**
@@ -70,7 +88,33 @@ class EmailController extends Controller
      */
     public function update(Request $request, Email $email)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'servidor' => 'required',
+            'porta' => 'required',
+            'seguranca' => 'required',
+            'usuario' => 'required',
+            'senha' => 'required',
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $email->update($data);
+            flash('<i class="fa fa-check"></i> Dados do e-mail registrados com sucesso!')->success();
+            return redirect()->route('emails.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir dados de e-mail!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**

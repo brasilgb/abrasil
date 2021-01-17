@@ -14,7 +14,12 @@ class CreateBackupsTable extends Migration
     public function up()
     {
         Schema::create('backups', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_backup')->autoIncrement();
+            $table->string('bancodedados');
+            $table->string('usuario')->nullable();
+            $table->string('senha')->nullable();
+            $table->string('diretorio')->nullable();
+            $table->string('discoinstalacao')->nullable();
             $table->timestamps();
         });
     }

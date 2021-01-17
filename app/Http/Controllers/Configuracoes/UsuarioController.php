@@ -79,7 +79,7 @@ class UsuarioController extends Controller
         try {
             $data['password'] = Hash::make($request->password);
             $this->user->create($data);
-            flash('<i class="fa fa-check"></i> Peça salva com sucesso!')->success();
+            flash('<i class="fa fa-check"></i> Usuário salvo com sucesso!')->success();
             return redirect()->route('usuarios.index');
         } catch (\Exception $e) {
             $message = 'Erro ao inserir peça!';
@@ -147,7 +147,7 @@ class UsuarioController extends Controller
                 $data['password'] = Hash::make($request->password);
             endif;
             $usuario->update($data);
-            flash('<i class="fa fa-check"></i> Peça salva com sucesso!')->success();
+            flash('<i class="fa fa-check"></i> Usuário salvo com sucesso!')->success();
             return redirect()->route('usuarios.index');
         } catch (\Exception $e) {
             $message = 'Erro ao inserir peça!';

@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Configuracoes;
 use App\Http\Controllers\Controller;
 use App\Models\Backup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BackupController extends Controller
 {
+    /**
+     * @var Backup
+     */
+    protected $backup;
+
+    public function __construct(Backup $backup)
+    {
+        $this->backup = $backup;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,15 @@ class BackupController extends Controller
      */
     public function index()
     {
-        return view('backups.index');
+        $count = $this->backup->all()->count();
+        if($count > 0):
+            $backups = $this->backup->all();
+        else:
+            $this->backup->create(['bancodedados' => '']);
+            $backups = $this->backup->all();
+        endif;
+
+        return view('backups.index', compact('backups'));
     }
 
     /**
@@ -70,7 +88,33 @@ class BackupController extends Controller
      */
     public function update(Request $request, Backup $backup)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'bancodedados' => 'required',
+            'usuario' => 'required',
+            'senha' => 'required',
+            'diretorio' => 'required',
+            'discoinstalacao' => 'required',
+        ];
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'integer' => 'O campo :attribute só aceita inteiros!',
+            'date_format' => 'O campo :attribute só aceita datas!',
+            'unique' => 'O nome do :attribute já existe na base de dados!'
+        ];
+        $validator = Validator::make($data, $rules, $messages)->validate();
+        try {
+            $backup->update($data);
+            flash('<i class="fa fa-check"></i> Dados de backup registrados com sucesso!')->success();
+            return redirect()->route('backups.index');
+        } catch (\Exception $e) {
+            $message = 'Erro ao inserir dados do backup!';
+            if (env('APP_DEBUG')) {
+                $message = $e->getMessage();
+            }
+            flash($message)->warning();
+            return redirect()->back();
+        }
     }
 
     /**
