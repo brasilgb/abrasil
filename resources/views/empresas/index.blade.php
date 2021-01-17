@@ -68,9 +68,10 @@
                 <div class="col-sm-10">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="logo" id="validatedCustomFile"
-                            value="{{ old('logo', $empresa->logo) }}" required>
+                            value="{{ old('logo') }}">
                         <label class="custom-file-label" for="validatedCustomFile">Selecione o arquivo...</label>
                     </div>
+                    <input type="hidden" name="dblogo" value="{{ $empresa->logo }}">
                     @error('logo')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror

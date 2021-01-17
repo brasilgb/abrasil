@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Configuracoes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
+
 
 class EmpresaController extends Controller
 {
@@ -88,12 +91,13 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
+        //dd(public_path('img/'.$request->dblogo));
         $data = $request->all();
         $rules = [
             'empresa' => 'required',
             'razao' => 'required',
             'cnpj' => 'required',
-            'logo' => 'required|mimes:jpeg,jpg,png|max:2048',
+            'logo' => 'mimes:jpeg,jpg,png',
             'endereco' => 'required',
             'bairro' => 'required',
             'cidade' => 'required',
@@ -110,8 +114,26 @@ class EmpresaController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
-            $fileName = time().'.'.$request->logo->extension();
-            $request->logo->move(public_path('img'), $fileName);
+            if(!empty($request->logo)):
+                // $fileName = time().'.'.$request->logo->extension();
+                // $request->logo->move(public_path('img'), $fileName);
+                // File::delete(public_path('img/'.$request->dblogo));
+                // $data['logo'] = $fileName;
+                
+                $logo = $request->file('logo');
+                $input['logo'] = time().'.'.$logo->extension();
+                $destinationPath = public_path('/img');
+                $img = Image::make($logo->path());
+                $img->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$input['logo']);
+
+                File::delete(public_path('img/'.$request->dblogo));
+                $destinationPath = public_path('/img');
+                $data['logo'] = $input['logo'];
+            else:
+                $data['logo'] = $request->dblogo;    
+            endif;
             $empresa->update($data);
             flash('<i class="fa fa-check"></i> Empresa registrada com sucesso!')->success();
             return redirect()->route('empresas.index');

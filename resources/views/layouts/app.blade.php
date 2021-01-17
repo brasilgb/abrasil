@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+    @foreach (\App\Models\Empresa::all() as $item)
+    @php
+        $logo = $item->logo;
+    @endphp
+@endforeach
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>APP - SOS</title>
+    <link rel="shortcut icon" href="{{asset('img/'.$logo)}}">
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
@@ -12,9 +17,6 @@
     <link rel="stylesheet" href="{{ asset('css/local.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
-</head>
-
-<body class="d-flex flex-column h-100">
     @guest
     <style>
         body,
@@ -22,10 +24,19 @@
             background: #60a3bc !important;
         }
     </style>
+    @endguest
+</head>
+
+<body class="d-flex flex-column h-100">
+    @guest
+    
     @else
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: #375b7e">
         <div class="container">
-            <a class="navbar-brand" href="/">Navbar</a>
+
+                <a class="navbar-brand" href="/"><img class="logo " src="{{asset('img/'.$logo)}}" alt=""></a>
+              
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -120,7 +131,7 @@
     @else
     <footer class="footer mt-auto py-3">
         <div class="container">
-            <span class="text-gray">ABRASIL-SOS</span>
+            <span class="text-gray">Copyright © {{ date("Y")}} <a href="https://abrasildigital.com.br/">ABrasil Digital</a>. Todos os direitos reservados.</span>
         </div>
     </footer>
     @endguest

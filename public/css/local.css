@@ -40,6 +40,15 @@ Breadcumbs personalizado
   float: right;
   background-color: transparent!important;
 }
+/*
+Logotipo
+*/
+.logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border:1px solid white;
+}
 /**
 Barra navegação personalizada
 */
