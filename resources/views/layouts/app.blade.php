@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @foreach (\App\Models\Empresa::all() as $item)
-    @php
-        $logo = $item->logo;
-    @endphp
-@endforeach
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>APP - SOS</title>
-    <link rel="shortcut icon" href="{{asset('img/'.$logo)}}">
+    <link rel="shortcut icon" href="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}">
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
@@ -34,7 +29,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: #375b7e">
         <div class="container">
 
-                <a class="navbar-brand" href="/"><img class="logo " src="{{asset('img/'.$logo)}}" alt=""></a>
+                <a class="navbar-brand" href="/"><img class="logo " src="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}" alt=""></a>
               
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"

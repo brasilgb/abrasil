@@ -109,7 +109,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Observações:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="observacoes" value="{{old('observacoes')}}">
+                    <textarea type="text" class="form-control" name="observacoes">{{old('observacoes')}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -176,7 +176,8 @@ $('#cliente').autocomplete({
             });
         },
         select: function (event, ui) {
-            $('#cliente').val(ui.item.value);
+            $('#cliente').val(ui.item.label);
+            $('#cliente_id').val(ui.item.value);
            return false;
         }
 });

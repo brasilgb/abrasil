@@ -23,7 +23,7 @@
         </div>
     </div>
     @foreach ($backups as $backup)
-    {{ showModelTables('Empresa', 'logo') }}
+    
     <div class="card-body">
         @include("flash::message")
         <form action="{{ route('backups.update', [$backup->id_backup]) }}" method="POST" enctype="multipart/form-data">

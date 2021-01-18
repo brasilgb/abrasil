@@ -63,11 +63,13 @@
                 <tr>
                     <td>{{ $ordem->id_ordem }}</td>
                     <td>{{ $ordem->clientes->cliente }}</td>
-                    <td>{{ date("d/m/Y", strtotime($ordem->created_at)) }}</td>
-                    <td>{{ date("d/m/Y", strtotime($ordem->previsao)) }}</td>
+                    <td>{{ formatDateTime($ordem->created_at, "d/y/Y") }}</td>
+                    <td>{{ formatDateTime($ordem->previsao, "d/y/Y") }}</td>
                     @php
                     $status = function($func){
                     switch ($func) {
+                    case null: return 'Recebido';
+                    break;
                     case '1': return 'Em avaliação';
                     break;
                     case '2': return 'Orçamento gerado';

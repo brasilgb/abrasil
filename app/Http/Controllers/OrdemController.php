@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ordem;
 use App\Models\Cliente;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -95,6 +96,7 @@ class OrdemController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $data['previsao'] = Carbon::createFromFormat("d/m/Y", $request->previsao)->format("Y-m-d");
             $this->ordem->create($data);
             flash('<i class="fa fa-check"></i> Ordem salva com sucesso!')->success();
             return redirect()->route('ordens.index');
@@ -169,6 +171,7 @@ class OrdemController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $data['previsao'] = Carbon::createFromFormat("d/m/Y", $request->previsao)->format("Y-m-d");
             $orden->update($data);
             flash('<i class="fa fa-check"></i> Ordem alterada com sucesso!')->success();
             return redirect()->route('ordens.show', ['orden' => $orden->id_ordem]);
