@@ -5,30 +5,34 @@
 <head>
 
     <title>Hi</title>
-<style>
-    .card {
-  background-color: #fff;
-  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: line;
-  justify-content: center;
+    <style>
+        .container{
+            width: 100%;
+            display: inline;
+        }
+        .tags {
+            display: flex;
+flex-flow: row wrap;
+        }
+        .coluna {
+    width: 20%;
 }
-</style>
+    </style>
 </head>
 
 <body>
 
-        
-        @for ($i = $inicial; $i <= $final; $i++)
 
-        <div class="card">
-        <div class="nomempresa">{{ $empresa['empresa'] }}</div>
-        <div class="numordem">{{ $i }}</div>
-        <div class="telempresa">{{ $empresa['telefone'] }}</div>
-      
+
+        @for ($i = $inicial; $i <= $final; $i++)
+        <div class="tags">
+        <div class="coluna">{{ $empresa['empresa'] }}
+        {{ $i++ }}
+        {{ $empresa['telefone'] }}</div>
+        </div>
         @endfor
-           
+
+
 </body>
 
 </html>
