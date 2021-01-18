@@ -12,18 +12,18 @@
         }
         .tags {
             display: flex;
-flex-flow: row wrap;
+            flex-flow: row wrap;
         }
         .coluna {
     width: 20%;
-}
+        }
     </style>
 </head>
 
 <body>
 
 
-
+<div class="container">
         @for ($i = $inicial; $i <= $final; $i++)
         <div class="tags">
         <div class="coluna">{{ $empresa['empresa'] }}
@@ -31,8 +31,7 @@ flex-flow: row wrap;
         {{ $empresa['telefone'] }}</div>
         </div>
         @endfor
-
+</div>
 
 </body>
-
 </html>
