@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
-
 class EmpresaController extends Controller
 {
     /**
@@ -115,11 +114,6 @@ class EmpresaController extends Controller
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
             if(!empty($request->logo)):
-                // $fileName = time().'.'.$request->logo->extension();
-                // $request->logo->move(public_path('img'), $fileName);
-                // File::delete(public_path('img/'.$request->dblogo));
-                // $data['logo'] = $fileName;
-                
                 $logo = $request->file('logo');
                 $input['logo'] = time().'.'.$logo->extension();
                 $destinationPath = public_path('/img');
@@ -132,7 +126,7 @@ class EmpresaController extends Controller
                 $destinationPath = public_path('/img');
                 $data['logo'] = $input['logo'];
             else:
-                $data['logo'] = $request->dblogo;    
+                $data['logo'] = $request->dblogo;
             endif;
             $empresa->update($data);
             flash('<i class="fa fa-check"></i> Empresa registrada com sucesso!')->success();

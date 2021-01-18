@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-users"></i> ordens</h3>
+        <h3 class="title-head"><i class="fa fa-tools"></i> Ordens</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">

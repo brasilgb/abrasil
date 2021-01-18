@@ -4,10 +4,21 @@ namespace App\Http\Controllers\Configuracoes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ferramenta;
+use App\Models\Ordem;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade\PDF;
 class FerramentaController extends Controller
 {
+
+    /**
+     * @var Ordem
+     */
+    protected $ordem;
+
+    public function __construct(Ordem $ordem)
+    {
+        $this->ordem = $ordem;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +26,15 @@ class FerramentaController extends Controller
      */
     public function index()
     {
-        return view('ferramentas.index');
+        $etiquetainicial = $this->ordem->orderby('id_ordem', 'DESC')->get()->first();
+        return view('ferramentas.index', compact('etiquetainicial'));
     }
 
+    public function geraEtiquetas(){
+        return PDF::loadView('site.certificate.certificate', compact('products'))
+                // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+                ->download('nome-arquivo-pdf-gerado.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *
