@@ -13,15 +13,12 @@
     padding: 0;
 }
 .container {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap-reverse;
-    flex-direction: row-reverse;
-/* alinha o último item a esquerda */
-    justify-content: flex-end;
+
 }
 .box {
+    float: left;
+    margin-right: 110px;
+    width: 22%;
     border: 1px solid #000;
     height: 100px;
     width:calc(100% / 6);
