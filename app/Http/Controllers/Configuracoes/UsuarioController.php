@@ -122,7 +122,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, User $usuario)
     {
-        //'password' => Hash::make($request->newPassword)
+
         $data = $request->all();
         $rules = [
             'name' => 'required',

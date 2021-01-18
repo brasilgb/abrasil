@@ -24,7 +24,7 @@
     </div>
     <div class="card-body">
         @include("flash::message")
-        <form action="{{ route('backups.create') }}" method="POST">
+        <form action="{{ route('ferramentas.gretiquetas') }}" method="POST">
             @method('POST')
             @csrf
             <div class="alert alert-info">

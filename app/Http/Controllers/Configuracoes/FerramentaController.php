@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Configuracoes;
 use App\Http\Controllers\Controller;
 use App\Models\Ferramenta;
 use App\Models\Ordem;
+use App\Models\Empresa;
+use PDF;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF;
+
 class FerramentaController extends Controller
 {
 
@@ -15,9 +17,10 @@ class FerramentaController extends Controller
      */
     protected $ordem;
 
-    public function __construct(Ordem $ordem)
+    public function __construct(Ordem $ordem, Empresa $empresa)
     {
         $this->ordem = $ordem;
+        $this->empresa = $empresa;
     }
     /**
      * Display a listing of the resource.
@@ -30,10 +33,15 @@ class FerramentaController extends Controller
         return view('ferramentas.index', compact('etiquetainicial'));
     }
 
-    public function geraEtiquetas(){
-        return PDF::loadView('site.certificate.certificate', compact('products'))
-                // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-                ->download('nome-arquivo-pdf-gerado.pdf');
+    public function gretiquetas(Request $request){
+        
+        $data = [
+            'inicial' => $request->get('valinicial'),
+            'final' => $request->get('valfinal'),
+            'empresa' => $this->empresa->get()->first()
+        ];
+        $pdf = PDF::loadView('ferramentas.etiquetas', $data);
+        return $pdf->download('etiquetas.pdf');
     }
     /**
      * Show the form for creating a new resource.
