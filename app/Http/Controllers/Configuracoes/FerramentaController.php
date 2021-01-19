@@ -40,8 +40,13 @@ class FerramentaController extends Controller
             'final' => $request->get('valfinal'),
             'empresa' => $this->empresa->get()->first()
         ];
-        $pdf = PDF::loadView('ferramentas.etiquetas', $data);
-        return $pdf->download('etiquetas.pdf');
+        // share data to view
+      view()->share('ferramentas.etiquetas',$data);
+      $pdf = PDF::loadView('ferramentas.etiquetas', $data);
+
+      // download PDF file with download method
+      return $pdf->download('etiquetas.pdf');
+
     }
     /**
      * Show the form for creating a new resource.

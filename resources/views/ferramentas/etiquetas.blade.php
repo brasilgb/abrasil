@@ -1,44 +1,24 @@
+
 <!DOCTYPE html>
-
-<html>
-
+<html lang="{{ config('app.locale') }}">
 <head>
-
-    <title>Hi</title>
-    <style>
-       html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-.container {
-
-}
-.box {
-    float: left;
-    margin-right: 110px;
-    width: 22%;
-    border: 1px solid #000;
-    height: 100px;
-    width:calc(100% / 6);
-    box-sizing: border-box;
-}
-    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel</title>
 </head>
-
 <body>
 
-
-<div class="container">
         @for ($i = $inicial; $i <= $final; $i++)
-        <div class="box">
-        {{ $empresa['empresa'] }}
-        {{ $i++ }}
-        {{ $empresa['telefone'] }}
+<div class="position:fixed">
+        <div style="width:100px; height:100px;float:left;" width="124"  height="65">
+        <div class="nomempresa">{{ $empresa['empresa'] }}</div>
+        <div class="numordem">{{ $i++ }}</div>
+        <div class="telempresa">{{ $empresa['telefone'] }}</div>
         </div>
-        @endfor
-</div>
+    </div>
+        @endfor 
+
 
 </body>
 </html>
