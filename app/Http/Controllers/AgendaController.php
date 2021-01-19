@@ -211,10 +211,7 @@ class AgendaController extends Controller
         $mail->Body = '$mensagem' . "<br/>";
         $mail->AltBody = "Para visualizar esse e-mail corretamente, use um visualizador de e-mail com suporte a HTML!";
 
-        $remetentes = explode(',', $destinocoleta);
-        foreach ($remetentes as $remetente) :
-            $mail->AddAddress(ltrim($remetente), "");
-        endforeach;
+            $mail->AddAddress(ltrim($destino), "");
 
         //$mail->addAttachment($path);
         if (!$mail->Send()) {
