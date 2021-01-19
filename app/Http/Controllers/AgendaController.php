@@ -3,22 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\Cliente;
 use App\Models\User;
+use App\Models\Email;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use PHPMailer\PHPMailer\PHPMailer;
 
 class AgendaController extends Controller
 {
     /**
      * @var Agenda
      * @var User
+     * @var Email
+     * @var Cliente
      */
-    public function __construct(Agenda $agenda, User $user)
+    public function __construct(Agenda $agenda, User $user, Email $email, Cliente $cliente)
     {
         $this->agenda = $agenda;
         $this->user = $user;
+        $this->email = $email;
+        $this->cliente = $cliente;
     }
 
     /**
@@ -172,5 +178,51 @@ class AgendaController extends Controller
         $agenda->delete();
         flash('<i class="fa fa-check"></i> Agenda removido com sucesso!')->success();
         return redirect()->route('agendas.index');
+    }
+
+    public function enviaemail($idcliente)
+    {
+        $usermail = $this->email->all()->first();
+        $clientes = $this->cliente->where('id_cliente', $idcliente)->get();
+        foreach($clientes as $cliente):
+            $remetente = $cliente->cliente;
+            $destino = $cliente->email;
+        endforeach;
+        $mail = new PHPMailer(true);
+        $mail->SMTPDebug = 0; // Enable verbose debug output
+        $mail->CharSet = "UTF-8";
+        $mail->IsSMTP(); //Definimos que usaremos o protocolo SMTP para envio.
+        $mail->Host = $usermail['smtp']; //Podemos usar o servidor do gMail para enviar.
+        $mail->SMTPAuth = true; //Habilitamos a autenticação do SMTP. (true ou false)
+        $mail->Username = $usermail['usuario']; //Usuário do gMail
+        $mail->Password = $usermail['senha']; //Senha do gMail
+        $mail->SMTPSecure = $usermail['seguranca']; //Estabelecemos qual protocolo de segurança será usado.
+        $mail->Port = $usermail['porta']; //Estabelecemos a porta utilizada pelo servidor do gMail.
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true,
+            ),
+        );
+        $mail->SetFrom('' . $usermail['usuario'] . '', '' . $remetente . ''); //Quem está enviando o e-mail.
+        $mail->AddReplyTo('' . $usermail['usuario'] . '', '' . $remetente . ''); //Para que a resposta será enviada.
+        $mail->Subject = 'assunto'; //Assunto do e-mail.
+        $mail->Body = '$mensagem' . "<br/>";
+        $mail->AltBody = "Para visualizar esse e-mail corretamente, use um visualizador de e-mail com suporte a HTML!";
+
+        $remetentes = explode(',', $destinocoleta);
+        foreach ($remetentes as $remetente) :
+            $mail->AddAddress(ltrim($remetente), "");
+        endforeach;
+
+        //$mail->addAttachment($path);
+        if (!$mail->Send()) {
+            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->success();
+            return redirect()->route('home');
+        } else {
+            flash('<i class="fa fa-check"></i> Relatório enviado com sucesso!')->success();
+            return redirect()->route('home');
+        }
     }
 }
