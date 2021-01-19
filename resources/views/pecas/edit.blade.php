@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-calendar"></i> Peças</h3>
+        <h3 class="title-head"><i class="fa fa-memory"></i> Peças</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">

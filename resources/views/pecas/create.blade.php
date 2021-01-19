@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fa fa-calendar"></i> Peças</h3>
+        <h3 class="title-head"><i class="fa fa-memory"></i> Peças</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">
@@ -26,7 +26,7 @@
         @method('POST')
         <div class="input-group">
             <input id="" type="text" class="peca form-control rounded-left col-xs-4" name="term"
-                placeholder="Buscar por peca" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                placeholder="Buscar por peça" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="rounded-right btn btn-default" type="submit"><i
                         class="fa fa-search"></i></button>
