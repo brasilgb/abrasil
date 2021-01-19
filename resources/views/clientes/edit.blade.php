@@ -28,7 +28,7 @@
                 <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
                     placeholder="Buscar cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-outline-secondary" type="submit"><i
+                    <button class="rounded-right btn btn-default" type="submit"><i
                             class="fa fa-search"></i></button>
                 </div>
             </div>

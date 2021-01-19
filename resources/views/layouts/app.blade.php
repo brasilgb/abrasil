@@ -9,9 +9,11 @@
     <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/local.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/local.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/local.css') }}">
+
     @guest
     <style>
         body,
@@ -24,13 +26,13 @@
 
 <body class="d-flex flex-column h-100">
     @guest
-    
+
     @else
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: #375b7e">
         <div class="container">
 
                 <a class="navbar-brand" href="/"><img class="logo " src="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}" alt=""></a>
-              
+
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,14 +42,14 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="{{ (request()->is('/*')) ? 'active' : '' }} nav-link" href="/">Home</a>
+                        <a title="Dashboard" class="{{ (request()->is('/*')) ? 'active' : '' }} nav-link" href="/"><i class="fa fa-tachometer-alt" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{ (request()->is('clientes*')) ? 'active' : '' }} nav-link"
+                        <a title="Clientes" class="{{ (request()->is('clientes*')) ? 'active' : '' }} nav-link"
                             href="{{route('clientes.index')}}">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{ (request()->is('ordens*')) ? 'active' : '' }} nav-link"
+                        <a title="Ordens" class="{{ (request()->is('ordens*')) ? 'active' : '' }} nav-link"
                             href="{{route('ordens.index')}}">Ordens</a>
                     </li>
                     <li class="nav-item">
@@ -55,7 +57,7 @@
                             href="{{route('agendas.index')}}">Agendamentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{ (request()->is('pecas*')) ? 'active' : '' }} nav-link"
+                        <a title="Peças" class="{{ (request()->is('pecas*')) ? 'active' : '' }} nav-link"
                             href="{{route('pecas.index')}}">Peças</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -114,7 +116,7 @@
     @endguest
 
     <div id="main" class="flex-shrink-0">
-        <div class="container">
+        <div class="container fadeIn">
 
             @yield('content')
 
@@ -126,7 +128,7 @@
     @else
     <footer class="footer mt-auto py-3">
         <div class="container">
-            <span class="text-gray">Copyright © {{ date("Y")}} <a href="https://abrasildigital.com.br/">ABrasil Digital</a>. Todos os direitos reservados.</span>
+            <span>Copyright © {{ date("Y")}} <a href="https://abrasildigital.com.br/">ABrasil Digital</a>. Todos os direitos reservados.</span>
         </div>
     </footer>
     @endguest

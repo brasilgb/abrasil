@@ -28,7 +28,7 @@
             <input id="" type="text" class="peca form-control rounded-left col-xs-4" name="term"
                 placeholder="Buscar por peca" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="rounded-right btn btn-outline-secondary" type="submit"><i
+                <button class="rounded-right btn btn-default" type="submit"><i
                         class="fa fa-search"></i></button>
             </div>
         </div>

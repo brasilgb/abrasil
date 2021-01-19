@@ -32,7 +32,7 @@
                 <input id="input-search" type="text" class="form-control rounded-left col-xs-4" name="term"
                     placeholder="Buscar cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-outline-secondary" type="submit"><i
+                    <button class="rounded-right btn btn-default" type="submit"><i
                             class="fa fa-search"></i></button>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
-                    <th></th>
+                    <th style="width: 125px;"></th>
                 </tr>
                 @forelse($clientes as $cliente)
                 <tr>
@@ -62,7 +62,7 @@
                     <td>{{ $cliente->email }}</td>
                     <td>{{ $cliente->telefone }}</td>
                     <td>
-                        <button 
+                        <button
                         onclick="window.location.href='{{ route('ordens.ordemcliente', ['cliente' => $cliente->id_cliente]) }}'"
                         class="btn btn-sm btn-secondary"><i class="fas fa-tools"></i></button>
                         <button

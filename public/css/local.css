@@ -3,8 +3,12 @@ html, body {
   padding: 0;
   height: 100%;
   background: #e7ecee !important;
+  /* overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll; */
 }
-
+body{
+    min-height: 101vh;
+}
 #wrap {
   min-height: 100%;
 }
@@ -22,8 +26,8 @@ html, body {
   clear:both;
   padding-top:20px;
   font-size: 0.9rem;
-  background-color: transparent;
-  border-top: 4px solid #FFF;
+  background-color: #fff;
+  border-top: 1px solid #d2d6de;;
 }
 /**
 Titulo personalizados
@@ -57,9 +61,11 @@ Barra navegação personalizada
     font-size: 0.9rem;
 }
 .navbar-dark .navbar-nav .active {
+    background-color: #375b7e;
     color: rgba(255, 255, 255, 0.9)!important;
 }
 .navbar-dark .navbar-nav .nav-link:hover {
+    background-color: #375b7e;
     color: rgba(255, 255, 255, 0.9)!important;
 }
 .navbar .dropdown-menu {
@@ -71,12 +77,16 @@ Barra navegação personalizada
   }
 
   /* and this styles the dropdwon trigger link, when open */
+  .dropdown-menu{
+      border-color:#305172!important;
+  }
   .navbar .dropdown.show a {
     background-color: #375b7e;
     color: rgba(255, 255, 255, 0.7);
   }
   .navbar .dropdown.show a:hover {
     /*background-color: #fff;*/
+    background-color: #375b7e;
     color: rgba(255, 255, 255, 0.9);
   }
 
@@ -170,3 +180,32 @@ Tela de login
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background: #375b7e !important;
 }
+
+.input-group-text{
+    border-radius: 0!important;
+    background: #ddd!important;
+    color: #444!important;
+}
+/*FadeIn transição de páginas*/
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+    @-moz-keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1; }
+    }
+    @-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+    @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+    .fadeIn {
+        -webkit-animation: fadeIn 1s ease-in-out;
+        -moz-animation: fadeIn 1s ease-in-out;
+        -o-animation: fadeIn 1s ease-in-out;
+        animation: fadeIn 1s ease-in-out;
+        }

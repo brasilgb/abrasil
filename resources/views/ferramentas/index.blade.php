@@ -39,14 +39,14 @@
                         <span class="input-group-text">N° de páginas</span>
                         <input id="" type="text" name="numpaginas" class="numpaginas form-control col-xs-4" value="1">
 
-                        <span class="input-group-text rounded-0">Ordens de</span>
+                        <span class="input-group-text">Ordens de</span>
                         <input id="" type="text" name="valinicial" class="valinicial form-control rounded-0 col-xs-4" value="{{$etiquetainicial['id_ordem'] + 1}}">
 
-                        <span class="input-group-text rounded-0">Até</span>
+                        <span class="input-group-text bg-gray" style="border-radius: 0!important;">Até</span>
                         <input id="" type="text" name="valfinal" class="valfinal form-control  rounded-0 col-xs-4" value="{{$etiquetainicial['id_ordem'] + 96}}">
 
                         <div class="input-group-append">
-                            <button class="geraetiqueta rounded-right btn btn-secondary" type="submit"><i class="fa fa-tag"></i>
+                            <button class="geraetiqueta rounded-right btn btn-primary" type="submit"><i class="fa fa-tag"></i>
                                 Gerar</button>
                         </div>
                     </div>

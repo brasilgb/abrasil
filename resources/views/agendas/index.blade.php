@@ -4,13 +4,13 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="title-head"><i class="fas fa-calendar"></i> Agenda</h3>
+        <h3 class="title-head"><i class="fas fa-calendar"></i> Agendamentos</h3>
     </div>
     <div class="col">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Agenda</li>
+                <li class="breadcrumb-item active" aria-current="page">Agendamentos</li>
             </ol>
         </nav>
     </div>
@@ -32,7 +32,7 @@
                 <input id="dateform" type="text" class="cliente form-control rounded-left col-xs-4" name="term"
                     placeholder="Buscar por data" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-outline-secondary" type="submit"><i
+                    <button class="rounded-right btn btn-default" type="submit"><i
                             class="fa fa-search"></i></button>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <th>Data</th>
                     <th>Hora</th>
                     <th>Status</th>
-                    <th></th>
+                    <th style="width: 90px;"></th>
                 </tr>
                 @forelse($agendas as $agenda)
                 <tr>

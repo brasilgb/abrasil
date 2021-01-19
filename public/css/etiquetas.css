@@ -1,14 +1,14 @@
 @page {
     size: auto;
-    margin-top: 11mm;
+    margin-top: 20mm;
     margin-left: 5mm;
     margin-bottom: 0cm;
     margin-right: 0cm;
 padding: 0;
 }
 div.etiqueta{
-max-width: 32mm;
-max-height: 1.6cm;
+width: 32mm;
+height: 1.6cm;
 margin-right: 8px;
 margin-bottom: 1px;
 float: left;
