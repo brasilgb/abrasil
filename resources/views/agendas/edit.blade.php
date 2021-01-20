@@ -93,7 +93,7 @@
                     <select class="custom-select my-1 mr-sm-2" name="tecnico_id">
                         <option value="">Selecione o Técnico</option>
                         @foreach($users as $user)
-                        <option value="{{$user->id}}"  {{ old('tecnico', $user->id) == $agenda->tecnico_id ? 'selected' : '' }}>{{$user->name}}</option>
+                        <option value="{{$user->id}}"  {{ old('tecnico_id', $user->id) == $agenda->tecnico_id ? 'selected' : '' }}>{{$user->name}}</option>
                         @endforeach
                     </select>
                     @error('tecnico_id')
@@ -103,13 +103,12 @@
             </div>
 
             @php
-            $status = [
-                '' => 'Selecione o status',
-                '1' => 'Aberto',
-                '2' => 'Em andamento',
+                $status = [
+                '1' => 'Aguardando atendimento',
+                '2' => 'Em atendimento',
                 '3' => 'Cancelado',
                 '4' => 'Concluído',
-                     ];
+                  ];
             @endphp
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Status:</label>

@@ -40,13 +40,13 @@
             @method('POST')
             @csrf
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""> <span class="bg-primary">Ordem n°:</span></label>
+                <label class="col-sm-2 col-form-label" for=""> Ordem n°:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="" value="{{ $proxordem }}" readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Cliente</label>
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Cliente:</label>
                 <div class="col-sm-10">
                     <input  id="cliente" type="text" class="form-control" name="cliente" value="{{old('cliente')}}">
                     <input id="cliente_id" type="hidden" class="form-control" name="cliente_id" value="{{old('cliente_id')}}">

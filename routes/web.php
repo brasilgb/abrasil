@@ -11,6 +11,7 @@ use App\Http\Controllers\Configuracoes\EmpresaController;
 use App\Http\Controllers\Configuracoes\EmailController;
 use App\Http\Controllers\Configuracoes\FerramentaController;
 use App\Http\Controllers\Configuracoes\UsuarioController;
+use App\Http\Controllers\Configuracoes\MensagemController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -46,6 +47,7 @@ Route::resource('pecas', PecaController::class)->middleware('auth');
 Route::resource('configuracoes/backups', BackupController::class)->middleware('auth');
 Route::resource('configuracoes/empresas', EmpresaController::class)->middleware('auth');
 Route::resource('configuracoes/emails', EmailController::class)->middleware('auth');
+Route::resource('configuracoes/mensagens', MensagemController::class)->middleware('auth');
 
 Route::post('configuracoes/ferramentas/gretiquetas', [FerramentaController::class, 'gretiquetas'])->name('ferramentas.gretiquetas')->middleware('auth');
 Route::resource('configuracoes/ferramentas', FerramentaController::class)->middleware('auth');
@@ -54,6 +56,3 @@ Route::post('usuarios/autocomplete', [UsuarioController::class, 'autocomplete'])
 Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuarios.busca')->middleware('auth');
 Route::resource('configuracoes/usuarios', UsuarioController::class)->middleware('auth');
 
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

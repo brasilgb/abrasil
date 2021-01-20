@@ -74,15 +74,17 @@
                     break;
                     case '2': return 'Orçamento gerado';
                     break;
-                    case '3': return 'Na bancada';
+                    case '3': return 'Orçamento aprovado';
                     break;
-                    case '4': return 'Serviço concluído';
+                    case '4': return 'Na bancada';
                     break;
-                    case '5': return 'Serviço não efetuado';
+                    case '5': return 'Serviço concluído';
                     break;
-                    case '6': return 'Ordem fechada';
+                    case '6': return 'Serviço não efetuado';
                     break;
-                    case '7': return 'Equipamento entregue';
+                    case '7': return 'Ordem fechada';
+                    break;
+                    case '8': return 'Equipamento entregue';
                     break;
                     }
                     };

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,9 +11,10 @@
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/local.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/local.css') }}">
     <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/local.css') }}">
+
 
     @guest
     <style>
@@ -31,7 +33,8 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: #375b7e">
         <div class="container">
 
-                <a class="navbar-brand" href="/"><img class="logo " src="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}" alt=""></a>
+            <a class="navbar-brand" href="/"><img class="logo "
+                    src="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}" alt=""></a>
 
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -42,7 +45,8 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a title="Dashboard" class="{{ (request()->is('/*')) ? 'active' : '' }} nav-link" href="/"><i class="fa fa-tachometer-alt" aria-hidden="true"></i></a>
+                        <a title="Dashboard" class="{{ (request()->is('/*')) ? 'active' : '' }} nav-link" href="/"><i
+                                class="fa fa-tachometer-alt" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
                         <a title="Clientes" class="{{ (request()->is('clientes*')) ? 'active' : '' }} nav-link"
@@ -75,6 +79,8 @@
                                     class="fa fa-caret-right"></i> Ferramentas</a>
                             <a class="dropdown-item" href="{{route('usuarios.index')}}"><i
                                     class="fa fa-caret-right"></i> Usuários</a>
+                            <a class="dropdown-item" href="{{route('mensagens.index')}}"><i
+                                    class="fa fa-caret-right"></i> Mensagens do sistema</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -128,7 +134,8 @@
     @else
     <footer class="footer mt-auto py-3">
         <div class="container">
-            <span>Copyright © {{ date("Y")}} <a href="https://abrasildigital.com.br/">ABrasil Digital</a>. Todos os direitos reservados.</span>
+            <span>Copyright © {{ date("Y")}} <a href="https://abrasildigital.com.br/">ABrasil Digital</a>. Todos os
+                direitos reservados.</span>
         </div>
     </footer>
     @endguest
@@ -136,6 +143,11 @@
 <script>
     $( "#dateform,#searchform").inputmask('99/99/9999');
     $( "#timeform").inputmask('99:99');
+    $( ".telefone").inputmask('(99)9999-99999');
+    $( ".celular").inputmask('(99)9999-9999');
+    $( ".cep").inputmask('99999-999');
+    $( ".cpf").inputmask('999999999/99');
+    $( ".rg").inputmask('9999999999');
 </script>
 
 </html>

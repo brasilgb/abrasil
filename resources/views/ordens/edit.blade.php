@@ -40,6 +40,12 @@
             @method('PUT')
             @csrf
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""> Ordem n°:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="" value="{{ $orden->id_ordem }}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Nome do  cliente:</label>
                 <div class="col-sm-10">
                     <input id="cliente" type="text" class="form-control" name="cliente" value="{{old('cliente', $orden->clientes->cliente)}}">
@@ -150,14 +156,14 @@
             </fieldset>
             @php
             $status = [
-                '0' => 'Selecione o status',
                 '1' => 'Em avaliação',
                 '2' => 'Orçamento gerado',
-                '3' => 'Na bancada',
-                '4' => 'Serviço concluído',
-                '5' => 'Serviço não efetuado',
-                '6' => 'Ordem fechada',
-                '7' => 'Equipamento entregue'
+                '3' => 'Orçamento aprovado',
+                '4' => 'Na bancada',
+                '5' => 'Serviço concluído',
+                '6' => 'Serviço não efetuado',
+                '7' => 'Ordem fechada',
+                '8' => 'Equipamento entregue'
                      ];
             @endphp
             <div class="form-group row">

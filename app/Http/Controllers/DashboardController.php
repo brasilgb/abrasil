@@ -3,9 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ordem;
+use App\Models\Cliente;
+use App\Models\Peca;
+use App\Models\Agenda;
+use phpDocumentor\Reflection\Types\This;
 
 class DashboardController extends Controller
 {
+    /**
+     * @var Ordem
+     * @var Cliente
+     * @var Peca
+     * @var Agenda
+     */
+    protected $ordem;
+    protected $cliente;
+    protected $peca;
+    protected $agenda;
+
+    public function __construct(Ordem $ordem, Cliente $cliente, Peca $peca, Agenda $agenda)
+    {
+        $this->ordem = $ordem;
+        $this->cliente = $cliente;
+        $this->peca = $peca;
+        $this->agenda = $agenda;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +36,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $ordens = $this->ordem;
+        $clientes = $this->cliente;
+        $pecas = $this->peca;
+        $agendas = $this->agenda;
+
+        return view('dashboard.index', compact('ordens', 'clientes', 'pecas', 'agendas'));
     }
 
     /**

@@ -102,27 +102,13 @@
                 </div>
             </div>
 
-            @php
-            $status = [
-                '' => 'Selecione o status',
-                '1' => 'Aberto',
-                '2' => 'Em andamento',
-                '3' => 'Cancelado',
-                '4' => 'Concluído',
-                  ];
-            @endphp
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Status:</label>
+                <label class="col-sm-2 col-form-label" for=""> Enviar e-mail ao cliente:</label>
                 <div class="col-sm-10">
-                    <select class="custom-select my-1 mr-sm-2" name="status">
-                        @foreach ($status as $key => $value)
-                        <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>{{ $value }}</option>
-                        @endforeach
-                    </select>
-                    @error('status')
-                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
-                    @enderror
-                    </div>
+                        <label class="alterbtn btn btn-default">
+                            <input type="checkbox" name="getemail" id="ativaemail">
+                        </label>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""> Observações:</label>
@@ -167,11 +153,33 @@ $('.cliente').autocomplete({
            return false;
         }
 });
-$( function() {
+
     $( "#dateform, #searchform" ).datepicker({
         locale: 'pt-BR'
     });
-  } );
+
+    $('#ativaemail').click(function () {
+
+    if ($(this).is(':checked')) {
+        $( ".alterbtn" ).removeClass( "btn-default" ).addClass( "btn-info" );
+    } else {
+        $( ".alterbtn" ).removeClass( "btn-info" ).addClass( "btn-default" );
+    }
+});
+// $(this).attr('checked')
+//     $( "#ativaemail" ).click(function(){
+//          alert('ok');
+//         if(this.checked){
+
+//             $('.alterbtn').removeclass('btn-default');
+//             $('.alterbtn').addclass('btn-info');
+//         }else{
+//             $('.alterbtn').removeclass('btn-info');
+//             $(.'alterbtn').addclass('btn-default');
+//         }
+//     });
+
+
 </script>
 
 @endsection

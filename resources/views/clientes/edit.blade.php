@@ -60,13 +60,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Telefone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="telefone" value="{{ $cliente->telefone }}">
+                    <input type="text" class="form-control telefone" name="telefone" value="{{ $cliente->telefone }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Celular:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="celular" value="{{ $cliente->celular }}">
+                    <input type="text" class="form-control celular" name="celular" value="{{ $cliente->celular }}">
                     @error('celular')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -129,7 +129,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CEP:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cep" value="{{ $cliente->cep }}">
+                    <input type="text" class="form-control cep" name="cep" value="{{ $cliente->cep }}">
                     @error('cep')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -138,7 +138,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CPF:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cpf" value="{{ $cliente->cpf }}">
+                    <input type="text" class="form-control cpf" name="cpf" value="{{ $cliente->cpf }}">
                     @error('cpf')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -147,7 +147,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">RG:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="rg" value="{{ $cliente->rg }}">
+                    <input type="text" class="form-control rg" name="rg" value="{{ $cliente->rg }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -159,13 +159,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Telefone do contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="telefone_contato" value="{{ $cliente->telefone_contato }}">
+                    <input type="text" class="form-control telefone" name="telefone_contato" value="{{ $cliente->telefone_contato }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Celular do contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="celular_contato" value="{{ $cliente->celular_contato }}">
+                    <input type="text" class="form-control celular" name="celular_contato" value="{{ $cliente->celular_contato }}">
                 </div>
             </div>
             <div class="form-group row">

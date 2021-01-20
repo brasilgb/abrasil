@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class AgendaController extends Controller
 {
@@ -77,7 +79,6 @@ class AgendaController extends Controller
             'hora' => 'required',
             'servico' => 'required',
             'detalhes' => 'required',
-            'status' => 'required',
             'observacoes' => 'nullable'
         ];
         $messages = [
@@ -89,7 +90,9 @@ class AgendaController extends Controller
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
             $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
+            $data['status'] = 1;
             $this->agenda->create($data);
+            $request->getemail == true ? $this->enviaremail($request->cliente_id) : '';
             flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
             return redirect()->route('agendas.index');
         } catch (\Exception $e) {
@@ -180,16 +183,17 @@ class AgendaController extends Controller
         return redirect()->route('agendas.index');
     }
 
-    public function enviaemail($idcliente)
+    public function enviaremail($idcliente)
     {
         $usermail = $this->email->all()->first();
+
         $clientes = $this->cliente->where('id_cliente', $idcliente)->get();
         foreach($clientes as $cliente):
-            $remetente = $cliente->cliente;
-            $destino = $cliente->email;
+            $nomedestino = $cliente->cliente;
+            $emaildestino = $cliente->email;
         endforeach;
         $mail = new PHPMailer(true);
-        $mail->SMTPDebug = 0; // Enable verbose debug output
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
         $mail->CharSet = "UTF-8";
         $mail->IsSMTP(); //Definimos que usaremos o protocolo SMTP para envio.
         $mail->Host = $usermail['smtp']; //Podemos usar o servidor do gMail para enviar.
@@ -205,21 +209,21 @@ class AgendaController extends Controller
                 'allow_self_signed' => true,
             ),
         );
-        $mail->SetFrom('' . $usermail['usuario'] . '', '' . $remetente . ''); //Quem está enviando o e-mail.
-        $mail->AddReplyTo('' . $usermail['usuario'] . '', '' . $remetente . ''); //Para que a resposta será enviada.
-        $mail->Subject = 'assunto'; //Assunto do e-mail.
-        $mail->Body = '$mensagem' . "<br/>";
+        $mail->SetFrom('' . $usermail['usuario'] . '', '' . $usermail['usuario'] . ''); //Quem está enviando o e-mail.
+        $mail->AddReplyTo('' . $usermail['usuario'] . '', '' . $usermail['usuario'] . ''); //Para que a resposta será enviada.
+        $mail->Subject = 'Titulo da mensagem'; //Assunto do e-mail.
+        $mail->Body = 'mensagem' . "<br/>";
         $mail->AltBody = "Para visualizar esse e-mail corretamente, use um visualizador de e-mail com suporte a HTML!";
 
-            $mail->AddAddress(ltrim($destino), "");
+        $mail->AddAddress($emaildestino, $nomedestino);
 
         //$mail->addAttachment($path);
         if (!$mail->Send()) {
             flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->success();
-            return redirect()->route('home');
+            return redirect()->route('agendas.index');
         } else {
             flash('<i class="fa fa-check"></i> Relatório enviado com sucesso!')->success();
-            return redirect()->route('home');
+            return redirect()->route('agendas.index');
         }
     }
 }

@@ -61,13 +61,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Telefone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="telefone">
+                    <input type="text" class="form-control telefone" name="telefone">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Celular:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="celular">
+                    <input type="text" class="form-control celular" name="celular">
                     @error('celular')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -130,7 +130,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CEP:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cep">
+                    <input type="text" class="form-control cep" name="cep">
                     @error('cep')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -139,7 +139,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CPF:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cpf">
+                    <input type="text" class="form-control cpf" name="cpf">
                     @error('cpf')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -148,7 +148,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">RG:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="rg">
+                    <input type="text" class="form-control rg" name="rg">
                 </div>
             </div>
             <div class="form-group row">
@@ -160,13 +160,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Telefone do contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="telefone_contato">
+                    <input type="text" class="form-control telefone" name="telefone_contato">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Celular do contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="celular_contato">
+                    <input type="text" class="form-control celular" name="celular_contato">
                 </div>
             </div>
             <div class="form-group row">

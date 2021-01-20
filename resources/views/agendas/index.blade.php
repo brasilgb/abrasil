@@ -32,8 +32,7 @@
                 <input id="dateform" type="text" class="cliente form-control rounded-left col-xs-4" name="term"
                     placeholder="Buscar por data" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-default" type="submit"><i
-                            class="fa fa-search"></i></button>
+                    <button class="rounded-right btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
@@ -54,7 +53,7 @@
                     <th>Técnico</th>
                     <th>Data</th>
                     <th>Hora</th>
-                    <th>Status</th>
+                    <th style="width: 190px;">Status</th>
                     <th style="width: 90px;"></th>
                 </tr>
                 @forelse($agendas as $agenda)
@@ -66,19 +65,31 @@
                     <td>{{ date("H:i",strtotime($agenda->hora)) }}</td>
                     @php
                     $status = function($stat){
-                        switch ($stat) {
-                                case '1': return 'Aberto';
-                                break;
-                                case '2': return 'Em andamento';
-                                break;
-                                case '3': return 'Cancelado';
-                                break;
-                                case '4': return 'Concluído';
-                                break;
-                        }
+                    switch ($stat) {
+                    case '1': return 'Aguardando atendimento';
+                    break;
+                    case '2': return 'Em atendimento';
+                    break;
+                    case '3': return 'Cancelado';
+                    break;
+                    case '4': return 'Concluído';
+                    break;
+                    }
+                    };
+                    $bgcolor = function($bg){
+                    switch ($bg) {
+                    case '1': return 'badge bg-secondary';
+                    break;
+                    case '2': return 'badge bg-info';
+                    break;
+                    case '3': return 'badge bg-danger';
+                    break;
+                    case '4': return 'badge bg-success';
+                    break;
+                    }
                     };
                     @endphp
-                    <td>{{ $status($agenda->status) }}</td>
+                    <td><span class="{{ $bgcolor($agenda->status) }}">{{ $status($agenda->status) }}</span></td>
                     <td>
                         <button
                             onclick="window.location.href='{{ route('agendas.show', ['agenda' => $agenda->id_agenda]) }}'"
