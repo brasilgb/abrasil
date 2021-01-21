@@ -125,6 +125,15 @@
             </div>
 
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""> Enviar e-mail ao cliente:</label>
+                <div class="col-sm-10">
+                        <label class="alterbtn btn btn-default">
+                            <input type="checkbox" name="getemail" id="ativaemail">
+                        </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""> Observações:</label>
                 <div class="col-sm-10">
                     <textarea type="text" class="form-control" name="observacoes">{{ old('observacoes', $agenda->observacoes) }}</textarea>
@@ -168,11 +177,19 @@ $('.cliente').autocomplete({
            return false;
         }
 });
-$( function() {
+
     $( "#dateform, #searchform" ).datepicker({
         locale: 'pt-BR'
     });
-  } );
+
+  $('#ativaemail').click(function () {
+
+if ($(this).is(':checked')) {
+    $( ".alterbtn" ).removeClass( "btn-default" ).addClass( "btn-info" );
+} else {
+    $( ".alterbtn" ).removeClass( "btn-info" ).addClass( "btn-default" );
+}
+});
 </script>
 
 @endsection

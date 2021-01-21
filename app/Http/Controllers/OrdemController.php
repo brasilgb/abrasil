@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ordem;
 use App\Models\Cliente;
+use App\Models\Empresa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,11 +16,13 @@ class OrdemController extends Controller
      */
     protected $ordem;
     protected $cliente;
+    protected $empresa;
 
-    public function __construct(Ordem $ordem, Cliente $cliente)
+    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa)
     {
         $this->ordem = $ordem;
         $this->cliente = $cliente;
+        $this->empresa = $empresa;
     }
 
     /**
@@ -214,5 +217,21 @@ class OrdemController extends Controller
             $response[] = ['value' => $ordem->id_ordem];
         }
         return response()->json($response);
+    }
+
+    /**
+     * Imprime recibos de Ordens de serviço
+     */
+    public function recibo(Ordem $orden) {
+        dd($orden->id_ordem);
+        $ordens = $this->ordem->where('id_ordem', $orden->id_orden)->get();
+        $empresa = $this->em
+        $data = [
+            'ordens' => $ordens,
+            'final' => $request->get('valfinal'),
+            'empresa' => $this->empresa->get()->first()
+        ];
+
+      $pdf = PDF::loadView('ferramentas.etiquetas', $data);
     }
 }

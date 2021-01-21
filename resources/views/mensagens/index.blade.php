@@ -26,14 +26,14 @@
 
     <div class="card-body">
         @include("flash::message")
-        <form action="{{ route('mensagens.update', [$mensagem->id_mensagem]) }}" method="POST">
+        <form action="{{ route('mensagens.update', ['mensagen' => $mensagem->id_mensagem]) }}" method="POST">
             @method('PUT')
             @csrf
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Recebimento:</label>
                 <div class="col-sm-10">
-                    <textarea id="" type="text" class="form-control"
+                    <textarea rows="4" type="text" class="form-control"
                         name="recebimento_recibo">{{ old('recebimento_recibo', $mensagem->recebimento_recibo) }}</textarea>
                     @error('recebimento_recibo')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Entrega:</label>
                 <div class="col-sm-10">
-                    <textarea id="" type="text" class="form-control"
+                    <textarea rows="4" type="text" class="form-control"
                         name="entrega_recibo">{{ old('entrega_recibo', $mensagem->entrega_recibo) }}</textarea>
                     @error('entrega_recibo')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
@@ -55,7 +55,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Agendamento:</label>
                 <div class="col-sm-10">
-                    <textarea id="" type="text" class="form-control"
+                    <textarea rows="4" type="text" class="form-control"
                         name="mensagem_agendamento">{{ old('mensagem_agendamento', $mensagem->mensagem_agendamento) }}</textarea>
                     @error('mensagem_agendamento')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
@@ -66,7 +66,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Recebimento:</label>
                 <div class="col-sm-10">
-                    <textarea id="" type="text" class="form-control"
+                    <textarea rows="4" type="text" class="form-control"
                         name="mensagem_servico_concluido">{{ old('mensagem_servico_concluido', $mensagem->mensagem_servico_concluido) }}</textarea>
                     @error('mensagem_servico_concluido')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>

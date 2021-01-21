@@ -31,11 +31,13 @@ Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])
 Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca')->middleware('auth');
 Route::resource('clientes', ClienteController::class)->middleware('auth');
 
+Route::get('ordens/recibo/{orden}', [OrdemController::class, 'recibo'])->name('ordens.recibo')->middleware('auth');
 Route::get('ordens/ordemcliente/{cliente}', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente')->middleware('auth');
 Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete')->middleware('auth');
 Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca')->middleware('auth');
 Route::resource('ordens', OrdemController::class)->middleware('auth');
 
+Route::get('agendas/emailagendas', [AgendaController::class, 'emailagendas'])->name('agendas.emailagendas')->middleware('auth');
 Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->name('agendas.autocomplete')->middleware('auth');
 Route::post('agendas/busca', [AgendaController::class, 'busca'])->name('agendas.busca')->middleware('auth');
 Route::resource('agendas', AgendaController::class)->middleware('auth');

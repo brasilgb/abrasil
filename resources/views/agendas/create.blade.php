@@ -110,6 +110,7 @@
                         </label>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""> Observações:</label>
                 <div class="col-sm-10">
@@ -166,20 +167,6 @@ $('.cliente').autocomplete({
         $( ".alterbtn" ).removeClass( "btn-info" ).addClass( "btn-default" );
     }
 });
-// $(this).attr('checked')
-//     $( "#ativaemail" ).click(function(){
-//          alert('ok');
-//         if(this.checked){
-
-//             $('.alterbtn').removeclass('btn-default');
-//             $('.alterbtn').addclass('btn-info');
-//         }else{
-//             $('.alterbtn').removeclass('btn-info');
-//             $(.'alterbtn').addclass('btn-default');
-//         }
-//     });
-
-
 </script>
 
 @endsection

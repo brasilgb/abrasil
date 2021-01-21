@@ -22,6 +22,9 @@ protected $fillable = [
     'observacoes'
 ];
 
+public function setIdAgendamento() {
+    return Agenda::orderby('id_agenda', 'DESC')->get()->first();
+}
 
 public function clientes(){
     return $this->belongsTo(Cliente::class, 'cliente_id', 'id_cliente');

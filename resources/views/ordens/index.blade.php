@@ -57,7 +57,7 @@
                     <th>Data Entrada</th>
                     <th>Previsão Entrega</th>
                     <th>Status</th>
-                    <th style="width: 90px;"></th>
+                    <th style="width: 130px;"></th>
                 </tr>
                 @forelse($ordens as $ordem)
                 <tr>
@@ -92,6 +92,9 @@
                     <td>{{ $status($ordem->status) }}</td>
                     <td>
                         <button
+                            onclick="window.location.href='{{ route('ordens.recibo', ['orden' => $ordem->id_ordem]) }}'"
+                            class="btn btn-sm btn-info" title="Emitir recibo"><i class="fas fa-receipt"></i></button>
+                            <button
                             onclick="window.location.href='{{ route('ordens.show', ['orden' => $ordem->id_ordem]) }}'"
                             class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
                         <button data-toggle="modal" onclick="deleteData({{$ordem->id_ordem}})"

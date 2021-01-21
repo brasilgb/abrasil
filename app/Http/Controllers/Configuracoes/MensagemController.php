@@ -86,7 +86,7 @@ class MensagemController extends Controller
      * @param  \App\Models\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mensagem $mensagem)
+    public function update(Request $request, Mensagem $mensagen)
     {
         $data = $request->all();
         $rules = [
@@ -103,7 +103,7 @@ class MensagemController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
-            $mensagem->update($data);
+            $mensagen->update($data);
             flash('<i class="fa fa-check"></i> Mensagens registradas com sucesso!')->success();
             return redirect()->route('mensagens.index');
         } catch (\Exception $e) {

@@ -122,7 +122,7 @@
     @endguest
 
     <div id="main" class="flex-shrink-0">
-        <div class="container fadeIn">
+        <div class="container">
 
             @yield('content')
 
