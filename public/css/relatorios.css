@@ -6,31 +6,27 @@
     margin-right: 0cm;
 padding: 0;
 }
-header{
+.container{
 border-bottom: 1px solid #666;
 padding-bottom: 5px;
 }
-.topo{
-margin: 0;
+table{
+    width: 100%;
+padding-bottom: 5px;
 }
-.head-right{
+table td{
+border: 1px solid #666;
+ padding-bottom: 5px;
+}
+.center{
 text-align: center;
-color: #333;
-padding: 5px 0 0 0;
-margin: 0;
-font-size: 14px;
 }
-.empresa{
-text-align: left;
-margin: 0;
-padding: 10px 0 0 0px!important;
-font-size: 16px;
-}
-.logo img{
+.logo{
 padding: 0;
 margin: 0;
 width: 70px;
 height: 70px;
+border: 1px solid #000;
 }
 .footer{
 background-color: #003479;
