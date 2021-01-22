@@ -8,6 +8,7 @@ use App\Models\Empresa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class OrdemController extends Controller
 {
@@ -223,15 +224,17 @@ class OrdemController extends Controller
      * Imprime recibos de Ordens de serviço
      */
     public function recibo(Ordem $orden) {
-        dd($orden->id_ordem);
+        // dd($orden->id_ordem);
         $ordens = $this->ordem->where('id_ordem', $orden->id_orden)->get();
-        $empresa = $this->em
+        $empresa = $this->empresa->get()->first();
         $data = [
             'ordens' => $ordens,
-            'final' => $request->get('valfinal'),
-            'empresa' => $this->empresa->get()->first()
+            'empresa' => $empresa
         ];
 
-      $pdf = PDF::loadView('ferramentas.etiquetas', $data);
+        $pdf = PDF::loadView('ordens.recibo', $data);
+
+        // download PDF file with download method
+        return $pdf->stream('recibo.pdf');
     }
 }
