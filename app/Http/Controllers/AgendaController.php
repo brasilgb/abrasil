@@ -36,23 +36,24 @@ class AgendaController extends Controller
     }
     public function enviaremail($idcliente, $idagendamento)
     {
-        $status = function ($stat) {
-            switch ($stat) {
-                case '1':
-                    return 'Aguardando atendimento';
-                    break;
-                case '2':
-                    return 'Em atendimento';
-                    break;
-                case '3':
-                    return 'Cancelado';
-                    break;
-                case '4':
-                    return 'Concluído';
-                    break;
-            }
-        };
+
         try {
+            $status = function ($stat) {
+                switch ($stat) {
+                    case '1':
+                        return 'Aguardando atendimento';
+                        break;
+                    case '2':
+                        return 'Em atendimento';
+                        break;
+                    case '3':
+                        return 'Cancelado';
+                        break;
+                    case '4':
+                        return 'Concluído';
+                        break;
+                }
+            };
             $usermail = $this->email->all()->first();
             $mensagens = $this->mensagem->all()->first();
             $tecnicos = $this->user->where('id', $idagendamento['tecnico_id'])->get()->first();
@@ -118,10 +119,12 @@ class AgendaController extends Controller
             ';
             $mail->AltBody = '....................................';
             $mail->send();
+            flash('<i class="fa fa-check"></i> Um e-mail foi enviado ao cliente!' . $mail->ErrorInfo)->success();
         } catch (Exception $e) {
-            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->danger();
+            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->warning();
         }
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -185,8 +188,11 @@ class AgendaController extends Controller
             $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
             $data['status'] = 1;
             $this->agenda->create($data);
-            $request->getemail == true ? $this->enviaremail($request->cliente_id, $this->agenda->setIdAgendamento()) : '';
+            if($request->getemail == true):
+                $this->enviaremail($request->cliente_id, $this->agenda->setIdAgendamento());
+            endif;
             flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
+
             return redirect()->route('agendas.index');
         } catch (\Exception $e) {
             $message = 'Erro ao inserir agenda!';
@@ -251,9 +257,12 @@ class AgendaController extends Controller
         try {
             $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
             $agenda->update($data);
-            $request->getemail == true ? $this->enviaremail($request->cliente_id, $agenda->setIdAgendamento()) : '';
+            if($request->getemail == true):
+                $this->enviaremail($request->cliente_id, $agenda->setIdAgendamento());
+            endif;
             flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
             return redirect()->route('agendas.show', ['agenda' => $agenda->id_agenda]);
+
         } catch (\Exception $e) {
             $message = 'Erro ao inserir agenda!';
             if (env('APP_DEBUG')) {
