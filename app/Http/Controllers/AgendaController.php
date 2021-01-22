@@ -119,7 +119,7 @@ class AgendaController extends Controller
             $mail->AltBody = '....................................';
             $mail->send();
         } catch (Exception $e) {
-            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->danger();
+            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->warning();
         }
     }
     /**

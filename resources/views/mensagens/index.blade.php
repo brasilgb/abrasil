@@ -64,7 +64,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="">Recebimento:</label>
+                <label class="col-sm-2 col-form-label" for="">Serviço concluído:</label>
                 <div class="col-sm-10">
                     <textarea rows="4" type="text" class="form-control"
                         name="mensagem_servico_concluido">{{ old('mensagem_servico_concluido', $mensagem->mensagem_servico_concluido) }}</textarea>
