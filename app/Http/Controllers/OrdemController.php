@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ordem;
 use App\Models\Cliente;
 use App\Models\Empresa;
+use App\Models\Mensagem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,11 +20,12 @@ class OrdemController extends Controller
     protected $cliente;
     protected $empresa;
 
-    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa)
+    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem)
     {
         $this->ordem = $ordem;
         $this->cliente = $cliente;
         $this->empresa = $empresa;
+        $this->mensagem = $mensagem;
     }
 
     /**
@@ -225,11 +227,13 @@ class OrdemController extends Controller
      */
     public function recibo(Ordem $orden) {
         // dd($orden->id_ordem);
-        $ordens = $this->ordem->where('id_ordem', $orden->id_orden)->get();
+        $ordens = $this->ordem->where('id_ordem', $orden->id_ordem)->get()->first();
         $empresa = $this->empresa->get()->first();
+        $mensagem = $this->mensagem->get()->first();
         $data = [
             'ordens' => $ordens,
-            'empresa' => $empresa
+            'empresa' => $empresa,
+            'mensagem' => $mensagem
         ];
 
         $pdf = PDF::loadView('ordens.recibo', $data);
