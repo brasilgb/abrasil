@@ -41,6 +41,7 @@
                     @enderror
                 </div>
             </div>
+            
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Razão
                     Social:</label>
@@ -52,6 +53,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     CNPJ:</label>
@@ -62,6 +64,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     Logo:</label>
@@ -77,6 +80,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     Endereço:</label>
@@ -99,6 +103,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     Cidade:</label>
@@ -109,6 +114,18 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
+                    UF:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="uf" value="{{ old('uf', $empresa->uf) }}">
+                    @error('uf')
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     CEP:</label>
@@ -119,6 +136,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     Telefone:</label>
@@ -130,6 +148,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Site:</label>
                 <div class="col-sm-10">
@@ -139,6 +158,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     E-mail:</label>

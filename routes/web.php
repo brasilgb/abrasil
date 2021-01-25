@@ -37,7 +37,7 @@ Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->na
 Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca')->middleware('auth');
 Route::resource('ordens', OrdemController::class)->middleware('auth');
 
-Route::get('agendas/emailagendas', [AgendaController::class, 'emailagendas'])->name('agendas.emailagendas')->middleware('auth');
+Route::get('agendas/enviaremail/{agendaid}/{clienteid}', [AgendaController::class, 'enviaremail'])->name('agendas.enviaremail')->middleware('auth');
 Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->name('agendas.autocomplete')->middleware('auth');
 Route::post('agendas/busca', [AgendaController::class, 'busca'])->name('agendas.busca')->middleware('auth');
 Route::resource('agendas', AgendaController::class)->middleware('auth');

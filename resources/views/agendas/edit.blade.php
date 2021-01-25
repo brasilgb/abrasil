@@ -45,6 +45,7 @@
                 <div class="col-sm-10">
                     <input  id="" type="text" class="cliente form-control" name="cliente" value="{{old('cliente', $agenda->clientes->cliente)}}">
                     <input id="" type="hidden" class="cliente_id form-control" name="cliente_id" value="{{old('cliente_id', $agenda->cliente_id)}}">
+                    <input id="" type="hidden" class="cliente_id form-control" name="id_agenda" value="{{ $agenda->id_agenda }}">
                     @error('cliente_id')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> O campo cliente deve ser preenchido!</div>
                     @enderror

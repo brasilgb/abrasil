@@ -24,7 +24,15 @@ class AgendaController extends Controller
      * @var Cliente
      * @var Mensagem
      * @var Empresa
+     * @var status
      */
+    protected $agenda;
+    protected $user;
+    protected $email;
+    protected $cliente;
+    protected $mensagem;
+    protected $empresa;
+
     public function __construct(Agenda $agenda, User $user, Email $email, Cliente $cliente, Mensagem $mensagem, Empresa $empresa)
     {
         $this->agenda = $agenda;
@@ -33,96 +41,6 @@ class AgendaController extends Controller
         $this->cliente = $cliente;
         $this->mensagem = $mensagem;
         $this->empresa = $empresa;
-    }
-    public function enviaremail($idcliente, $idagendamento)
-    {
-
-        try {
-            $status = function ($stat) {
-                switch ($stat) {
-                    case '1':
-                        return 'Aguardando atendimento';
-                        break;
-                    case '2':
-                        return 'Em atendimento';
-                        break;
-                    case '3':
-                        return 'Cancelado';
-                        break;
-                    case '4':
-                        return 'Concluído';
-                        break;
-                }
-            };
-            $usermail = $this->email->all()->first();
-            $mensagens = $this->mensagem->all()->first();
-            $tecnicos = $this->user->where('id', $idagendamento['tecnico_id'])->get()->first();
-            $clientes = $this->cliente->where('id_cliente', $idcliente)->get()->first();
-            $empresa = $this->empresa->get()->first();
-            $mail = new PHPMailer(true);
-
-            //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $mail->CharSet = "UTF-8";                     // Enable verbose debug output
-            $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = $usermail['usuario'];                     // SMTP username
-            $mail->Password   = $usermail['senha'];                               // SMTP password
-            $mail->SMTPSecure = $usermail['seguranca']; //PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-            $mail->Port       = $usermail['porta'];                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-
-            //Recipients
-            $mail->setFrom('andersonbrasil72@gmail.com', 'Anderson Rodrigues');
-            $mail->addAddress($clientes['email'], $clientes['cliente']);     // Add a recipient
-
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Agendamento de Serviços';
-            $mail->AddEmbeddedImage(public_path('img/' . $empresa['logo']), 'logoimg', public_path('img/' . $empresa['logo']));
-            // ==============Corpo do Email=======================================
-            $mail->Body =
-                '
-            <!DOCTYPE html>
-            <html lang="pt-br">
-            <head>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>' . $idagendamento['servico'] . '</title>
-            </head>
-            <body>
-            <table style="border-collapse: collapse;margin-top:10px;">
-            <tr><td colspan="2" style="font: 12px, verdana, sans-serif;color: #555;">
-            ' . $mensagens['mensagem_agendamento'] . '</td></tr>
-                <tr><td colspan="2">Número do agendamento: ' . $idagendamento['id_agenda'] . '</td></tr>
-                <tr><td colspan="2">Status: <strong>' . $status($idagendamento['status']) . '</strong></td></tr>
-                <tr><td colspan="2">Data - Hora: ' . formatDateTime($idagendamento['data']) . ' - ' . $idagendamento['hora'] . '</td></tr>
-                <tr><td colspan="2">Serviço: ' . $idagendamento['servico'] . '</td></tr>
-                <tr><td colspan="2">Detalhes: ' . $idagendamento['detalhes'] . '</td></tr>
-                <tr><td colspan="2">Responsável: ' . $tecnicos['name'] . '</td></tr>
-                <tr><td colspan="2">Cliente: ' . $clientes['cliente'] . '</td></tr>
-
-                <tr>
-                <td style="width:105px; border-right:1px solid #375B7E;border-top:1px solid #375B7E;">
-                <img src="cid:logoimg">
-                </td>
-                <td style="border-top:1px solid #375B7E;padding-left:10px;">
-                <h3 style="font: 14px, verdana, sans-serif;color: #555;padding: 2px;">' . $empresa['empresa'] . '</h3>
-                <p style="font: 12px, verdana, sans-serif;color: #555;padding: 2px;">' . $empresa['endereco'] . ', ' . $empresa['bairro'] . '<br>
-                ' . $empresa['cidade'] . '<br>
-                ' . $empresa['telefone'] . '</p>
-                </td>
-                </tr>
-                </table>
-            </body>
-            </html>
-            ';
-            $mail->AltBody = '....................................';
-            $mail->send();
-            flash('<i class="fa fa-check"></i> Um e-mail foi enviado ao cliente!' . $mail->ErrorInfo)->success();
-        } catch (Exception $e) {
-            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->warning();
-        }
     }
 
     /**
@@ -188,12 +106,12 @@ class AgendaController extends Controller
             $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
             $data['status'] = 1;
             $this->agenda->create($data);
-            if($request->getemail == true):
-                $this->enviaremail($request->cliente_id, $this->agenda->setIdAgendamento());
+            if ($request->getemail == true) :
+                return redirect()->route('agendas.enviaremail', ['agendaid' => $this->agenda->setIdAgendamento(), 'clienteid' => $request->cliente_id]);
+            else :
+                flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
+                return redirect()->route('agendas.index');
             endif;
-            flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
-
-            return redirect()->route('agendas.index');
         } catch (\Exception $e) {
             $message = 'Erro ao inserir agenda!';
             if (env('APP_DEBUG')) {
@@ -237,6 +155,7 @@ class AgendaController extends Controller
     public function update(Request $request, Agenda $agenda)
     {
         $data = $request->all();
+
         $rules = [
             'cliente_id' => 'required',
             'tecnico_id' => 'required',
@@ -257,12 +176,12 @@ class AgendaController extends Controller
         try {
             $data['data'] = Carbon::createFromFormat("d/m/Y", $request->data)->format("Y-m-d");
             $agenda->update($data);
-            if($request->getemail == true):
-                $this->enviaremail($request->cliente_id, $agenda->setIdAgendamento());
+            if ($request->getemail == true) :
+                return redirect()->route('agendas.enviaremail', ['agendaid' => $request->id_agenda, 'clienteid' => $request->cliente_id]);
+            else :
+                flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
+                return redirect()->route('agendas.show', ['agenda' => $agenda->id_agenda]);
             endif;
-            flash('<i class="fa fa-check"></i> Agenda salva com sucesso!')->success();
-            return redirect()->route('agendas.show', ['agenda' => $agenda->id_agenda]);
-
         } catch (\Exception $e) {
             $message = 'Erro ao inserir agenda!';
             if (env('APP_DEBUG')) {
@@ -284,5 +203,100 @@ class AgendaController extends Controller
         $agenda->delete();
         flash('<i class="fa fa-check"></i> Agenda removido com sucesso!')->success();
         return redirect()->route('agendas.index');
+    }
+
+    public function enviaremail($agendaid, $clienteid)
+    {
+        try {
+            // dd($agendaid.' -- ' .$clienteid);
+
+            $status = function ($stat) {
+                switch ($stat) {
+                    case '1':
+                        return 'Aguardando atendimento';
+                        break;
+                    case '2':
+                        return 'Em atendimento';
+                        break;
+                    case '3':
+                        return 'Cancelado';
+                        break;
+                    case '4':
+                        return 'Concluído';
+                        break;
+                }
+            };
+            $usermail = $this->email->get()->first();
+            $agenda = $this->agenda->where('id_agenda', $agendaid)->get()->first();
+            $mensagens = $this->mensagem->get()->first();
+            $tecnicos = $this->user->where('id', $agenda['tecnico_id'])->get()->first();
+            $clientes = $this->cliente->where('id_cliente', $clienteid)->get()->first();
+            $empresa = $this->empresa->get()->first();
+            $mail = new PHPMailer(true);
+
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->CharSet = "UTF-8";                     // Enable verbose debug output
+            $mail->isSMTP();                                            // Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = $usermail['usuario'];                     // SMTP username
+            $mail->Password   = $usermail['senha'];                               // SMTP password
+            $mail->SMTPSecure = $usermail['seguranca']; //PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = $usermail['porta'];                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('andersonbrasil72@gmail.com', 'Anderson Rodrigues');
+            $mail->addAddress($clientes['email'], $clientes['cliente']);     // Add a recipient
+
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Agendamento de Serviços';
+            $mail->AddEmbeddedImage(public_path('img/' . $empresa['logo']), 'logoimg', public_path('img/' . $empresa['logo']));
+            // ==============Corpo do Email=======================================
+            $mail->Body =
+                '
+            <!DOCTYPE html>
+            <html lang="pt-br">
+            <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>' . $agenda['servico'] . '</title>
+            </head>
+            <body>
+            <table style="border-collapse: collapse;margin-top:10px;">
+            <tr><td colspan="2" style="font: 12px, verdana, sans-serif;color: #555;">
+            ' . $mensagens['mensagem_agendamento'] . '</td></tr>
+            <tr><td colspan="2">Cliente: ' . $clientes['cliente'] . '</td></tr>
+                <tr><td colspan="2">Número do agendamento: ' . $agenda['id_agenda'] . '</td></tr>
+                <tr><td colspan="2">Status: <strong>' . $status($agenda['status']) . '</strong></td></tr>
+                <tr><td colspan="2">Data: ' . formatDateTime($agenda['data']) . '</td></tr>
+                <tr><td colspan="2">Hora: ' . formatDateTime($agenda['hora'], 'H:i') . '</td></tr>
+                <tr><td colspan="2">Serviço: ' . $agenda['servico'] . '</td></tr>
+                <tr><td colspan="2">Detalhes: ' . $agenda['detalhes'] . '</td></tr>
+                <tr><td colspan="2">Responsável: ' . $tecnicos['name'] . '</td></tr>
+
+                <tr>
+                <td style="width:105px; border-right:1px solid #375B7E;border-top:1px solid #375B7E;">
+                <img src="cid:logoimg">
+                </td>
+                <td style="border-top:1px solid #375B7E;padding-left:10px;">
+                <h3 style="font: 14px, verdana, sans-serif;color: #555;padding: 2px;">' . $empresa['empresa'] . '</h3>
+                <p style="font: 12px, verdana, sans-serif;color: #555;padding: 2px;">' . $empresa['endereco'] . ', ' . $empresa['bairro'] . '<br>
+                ' . $empresa['cidade'] . ' - ' .$empresa['uf'].'<br>
+                ' . $empresa['telefone'] . '</p>
+                </td>
+                </tr>
+                </table>
+            </body>
+            </html>
+            ';
+            $mail->AltBody = '....................................';
+            $mail->send();
+            flash('<i class="fa fa-check"></i> Agenda salva e e-mail enviado ao cliente!!' . $mail->ErrorInfo)->success();
+            return redirect()->route('agendas.index');
+        } catch (Exception $e) {
+            flash('<i class="fa fa-check"></i> ocorreu um erro durante o envio!' . $mail->ErrorInfo)->warning();
+        }
     }
 }

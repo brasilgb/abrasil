@@ -100,6 +100,7 @@ class EmpresaController extends Controller
             'endereco' => 'required',
             'bairro' => 'required',
             'cidade' => 'required',
+            'uf' => 'required',
             'cep' => 'required',
             'telefone' => 'required',
             'site' => 'nullable',
