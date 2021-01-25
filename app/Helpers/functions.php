@@ -14,5 +14,6 @@ function showModelTables($model, $field)
 // Formatação de data e hora
 function formatDateTime($value, $format = 'd/m/Y')
 {
+
     return Carbon\Carbon::parse($value)->format($format);
 }

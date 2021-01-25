@@ -92,7 +92,7 @@
                     <td>{{ $status($ordem->status) }}</td>
                     <td>
                         <button
-                            onclick="window.location.href='{{ route('ordens.recibo', ['orden' => $ordem->id_ordem]) }}'"
+                            onclick="window.location.href='{{ route('ordens.recibo', ['orden' => $ordem->id_ordem]) }}, '_blank''"
                             class="btn btn-sm btn-info" title="Emitir recibo"><i class="fas fa-receipt"></i></button>
                             <button
                             onclick="window.location.href='{{ route('ordens.show', ['orden' => $ordem->id_ordem]) }}'"
