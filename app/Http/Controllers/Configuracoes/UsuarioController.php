@@ -58,12 +58,11 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //'password' => Hash::make($request->newPassword)
         $data = $request->all();
         $rules = [
             'name' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'funcao' => 'required',
             'password' => 'required|confirmed',
             'password_confirmation' => 'required',

@@ -44,8 +44,8 @@
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a title="Dashboard" class="{{ (request()->is('/*')) ? 'active' : '' }} nav-link" href="/"><i
+                    <li class="nav-item">
+                        <a title="Dashboard" class="{{ (request()->is('/')) ? 'active' : '' }} nav-link" href="/"><i
                                 class="fa fa-tachometer-alt" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
@@ -122,7 +122,7 @@
     @endguest
 
     <div id="main" class="flex-shrink-0">
-        <div class="container">
+        <div class="container fadeIn">
 
             @yield('content')
 

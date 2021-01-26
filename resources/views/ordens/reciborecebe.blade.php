@@ -62,12 +62,12 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" colspan="2" style="padding: 5px 0 5px 0;">
+                <td colspan="2" style="padding: 10px 0 10px 0;">
                     <p>{!! html_entity_decode($mensagem['recebimento_recibo']) !!}</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" style="padding: 5px; font-weight: bold;">
                     @php
                         setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
                         $now = new Carbon\Carbon();
@@ -135,12 +135,12 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" colspan="2" style="padding: 5px 0 5px 0;">
+                <td colspan="2" style="padding: 10px 0 10px 0;">
                     <p>{!! html_entity_decode($mensagem['recebimento_recibo']) !!}</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" style="padding: 5px; font-weight: bold;">
                     @php
                     setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
                     $now = new Carbon\Carbon();

@@ -61,12 +61,15 @@ Barra navegação personalizada
     font-size: 0.9rem;
 }
 .navbar-dark .navbar-nav .active {
-    background-color: #375b7e;
-    color: rgba(255, 255, 255, 0.9)!important;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,221,222,1) 50%, rgba(255,255,255,1) 100%);
+    color: rgba(0, 0, 0, 0.9)!important;
+	border: 1px solid #18446d;
+	border-radius: 5px;
 }
 .navbar-dark .navbar-nav .nav-link:hover {
-    background-color: #375b7e;
-    color: rgba(255, 255, 255, 0.9)!important;
+    background-color: #375B7E!important;
+    color: #ffffff;
 }
 .navbar .dropdown-menu {
     background: #375b7e;

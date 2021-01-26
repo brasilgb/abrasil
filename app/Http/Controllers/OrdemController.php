@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PDF;
+use Illuminate\Support\Str;
 
 class OrdemController extends Controller
 {
@@ -50,7 +51,7 @@ class OrdemController extends Controller
         return view('ordens.index', compact('ordens', 'term'));
     }
 
- /**
+    /**
      * Busca de ordens
      */
     public function ordemcliente($cliente)
@@ -68,9 +69,13 @@ class OrdemController extends Controller
     public function create()
     {
         $ordens = $this->ordem->orderby('id_ordem', 'ASC')->get();
-        foreach ($ordens as $next) :
-            $proxordem = $next->id_ordem;
-        endforeach;
+        if ($ordens->count() > 0) :
+            foreach ($ordens as $next) :
+                $proxordem = $next->id_ordem;
+            endforeach;
+        else :
+            $proxordem = Str::padLeft(1, 7, 0);
+        endif;
         return view('ordens.create', compact('proxordem'));
     }
 
@@ -225,8 +230,16 @@ class OrdemController extends Controller
     /**
      * Imprime recibos de Ordens de serviço
      */
-    public function recibo(Ordem $orden) {
-        // dd($orden->id_ordem);
+    public function reciborecebe(Ordem $orden)
+    {
+        $this->recibo($orden, 'ordens.reciborecebe');
+    }
+    public function reciboentrega(Ordem $orden)
+    {
+        $this->recibo($orden, 'ordens.reciboentrega');
+    }
+    public function recibo($orden, $recibo)
+    {
         $ordens = $this->ordem->where('id_ordem', $orden->id_ordem)->get()->first();
         $empresa = $this->empresa->get()->first();
         $mensagem = $this->mensagem->get()->first();
@@ -236,7 +249,7 @@ class OrdemController extends Controller
             'mensagem' => $mensagem
         ];
 
-        $pdf = PDF::loadView('ordens.recibo', $data);
+        $pdf = PDF::loadView($recibo, $data);
 
         // download PDF file with download method
         return $pdf->stream('recibo.pdf');

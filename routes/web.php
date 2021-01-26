@@ -25,13 +25,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Auth::routes();
-Route::resource('/', DashboardController::class)->middleware('auth');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboards')->middleware('auth');
 
 Route::post('clientes/autocomplete', [ClienteController::class, 'autocomplete'])->name('clientes.autocomplete')->middleware('auth');
 Route::post('clientes/busca', [ClienteController::class, 'busca'])->name('clientes.busca')->middleware('auth');
 Route::resource('clientes', ClienteController::class)->middleware('auth');
 
-Route::get('ordens/recibo/{orden}', [OrdemController::class, 'recibo'])->name('ordens.recibo')->middleware('auth');
+Route::get('ordens/reciboentrega/{orden}', [OrdemController::class, 'reciboentrega'])->name('ordens.reciboentrega')->middleware('auth');
+Route::get('ordens/reciborecebe/{orden}', [OrdemController::class, 'reciborecebe'])->name('ordens.reciborecebe')->middleware('auth');
 Route::get('ordens/ordemcliente/{cliente}', [OrdemController::class, 'ordemcliente'])->name('ordens.ordemcliente')->middleware('auth');
 Route::post('ordens/autocomplete', [OrdemController::class, 'autocomplete'])->name('ordens.autocomplete')->middleware('auth');
 Route::post('ordens/busca', [OrdemController::class, 'busca'])->name('ordens.busca')->middleware('auth');

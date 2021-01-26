@@ -35,8 +35,7 @@
                 <input id="input-search" type="text" name="term" class="form-control rounded-left col-xs-4" name="term"
                     placeholder="Buscar ordem">
                 <div class="input-group-append">
-                    <button class="rounded-right btn btn-default" type="submit"><i
-                            class="fa fa-search"></i></button>
+                    <button class="rounded-right btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
@@ -63,8 +62,8 @@
                 <tr>
                     <td>{{ $ordem->id_ordem }}</td>
                     <td>{{ $ordem->clientes->cliente }}</td>
-                    <td>{{ formatDateTime($ordem->created_at, "d/y/Y") }}</td>
-                    <td>{{ formatDateTime($ordem->previsao, "d/y/Y") }}</td>
+                    <td>{{ formatDateTime($ordem->created_at) }}</td>
+                    <td>{{ formatDateTime($ordem->previsao) }}</td>
                     @php
                     $status = function($func){
                     switch ($func) {
@@ -91,10 +90,15 @@
                     @endphp
                     <td>{{ $status($ordem->status) }}</td>
                     <td>
+                        @if ($ordem->status == 8)
+                        <button onclick="window.open('{{ route('ordens.reciboentrega', ['orden' => $ordem->id_ordem]) }}')"
+                            class="btn btn-sm btn-success" title="Emitir recibo de entrega"><i class="fas fa-receipt"></i></button>
+                        @else
+                        <button onclick="window.open('{{ route('ordens.reciborecebe', ['orden' => $ordem->id_ordem]) }}')"
+                            class="btn btn-sm btn-warning text-white" title="Emitir recibo de recebimento"><i class="fas fa-receipt"></i></button>
+                        @endif
+
                         <button
-                            onclick="window.location.href='{{ route('ordens.recibo', ['orden' => $ordem->id_ordem]) }}, '_blank''"
-                            class="btn btn-sm btn-info" title="Emitir recibo"><i class="fas fa-receipt"></i></button>
-                            <button
                             onclick="window.location.href='{{ route('ordens.show', ['orden' => $ordem->id_ordem]) }}'"
                             class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
                         <button data-toggle="modal" onclick="deleteData({{$ordem->id_ordem}})"
