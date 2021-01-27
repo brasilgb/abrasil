@@ -1,61 +1,80 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #e7ecee !important;
-  /* overflow: -moz-scrollbars-vertical;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* overflow: -moz-scrollbars-vertical;
   overflow-y: scroll; */
 }
-body{
+
+body {
     min-height: 101vh;
 }
+
 #wrap {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 #main {
-  overflow:auto;
-  padding-top: 70px;
-  padding-bottom:30px; /* this needs to be bigger than footer height*/
+    overflow: auto;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    /* this needs to be bigger than footer height*/
 }
 
 .footer {
-  position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 50px;
-  clear:both;
-  padding-top:20px;
-  font-size: 0.9rem;
-  background-color: #fff;
-  border-top: 1px solid #d2d6de;
+    position: relative;
+    margin-top: -150px;
+    /* negative value of footer height */
+    height: 50px;
+    clear: both;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    background-color: #fff;
+    border-top: 1px solid #d2d6de;
 }
+
+
 /**
 Titulo personalizados
 */
-.title-head{
-  font-size: 1.2rem;
-  padding-top: 10px;
+
+.title-head {
+    font-size: 1.2rem;
+    padding-top: 10px;
 }
+
 
 /**
 Breadcumbs personalizado
 */
-.breadcrumb{
-  float: right;
-  background-color: transparent!important;
+
+.breadcrumb {
+    float: right;
+    background-color: transparent!important;
 }
+
+
 /*
 Logotipo
 */
+
 .logo {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border:1px solid white;
+    height: 40px;
 }
+
+
 /**
 Barra navegação personalizada
 */
+
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #d2d6de;
+}
+
+
+/*
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.7)!important;
     font-size: 0.9rem;
@@ -80,33 +99,43 @@ Barra navegação personalizada
   }
 
   /* and this styles the dropdwon trigger link, when open */
-  .dropdown-menu{
-      border-color:#305172!important;
-  }
-  .navbar .dropdown.show a {
+
+
+/*
+.dropdown-menu {
+    border-color: #305172!important;
+}
+
+.navbar .dropdown.show a {
     background-color: #375b7e;
     color: rgba(255, 255, 255, 0.7);
-  }
-  .navbar .dropdown.show a:hover {
-    /*background-color: #fff;*/
+}
+
+.navbar .dropdown.show a:hover {
+    /*background-color: #fff;*
     background-color: #375b7e;
     color: rgba(255, 255, 255, 0.9);
-  }
+}
+*/
 
-  /* Fieldset e legend */
+
+/* Fieldset e legend */
+
 fieldset {
-	background-color: rgb(235, 231, 231);
+    background-color: rgb(235, 231, 231);
     border-radius: 4px;
     margin-top: 20px!important;
     margin-bottom: 20px!important;
 }
+
 legend {
     max-width: 200px!important;
-	background-color: rgb(230, 227, 227);
-	border: 1px solid #ddd;
-	border-radius: 10px;
+    background-color: rgb(230, 227, 227);
+    border: 1px solid #ddd;
+    border-radius: 10px;
 }
-legend .center{
+
+legend .center {
     text-align: center;
     font-size: 1rem!important;
     font-weight: bold;
@@ -114,9 +143,11 @@ legend .center{
     margin-top: 10px;
 }
 
+
 /*
 Tela de login
 */
+
 .user_card {
     height: 400px;
     width: 350px;
@@ -132,12 +163,13 @@ Tela de login
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
-
 }
+
 .user_card_retype {
     height: 200px;
     width: 600px;
 }
+
 .brand_logo_container {
     position: absolute;
     height: 170px;
@@ -148,74 +180,109 @@ Tela de login
     padding: 10px;
     text-align: center;
 }
+
 .brand_logo {
     height: 150px;
     width: 150px;
     border-radius: 50%;
     border: 2px solid white;
 }
+
 .form_container {
     margin-top: 100px;
 }
+
 .login_btn {
     width: 100%;
     background: #375b7e !important;
     color: white !important;
 }
+
 .login_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 .login_container {
     padding: 0 2rem;
 }
+
 .input-group-text {
     background: #375b7e !important;
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
 }
+
 .input_user,
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background: #375b7e !important;
 }
 
-.input-group-text{
+.input-group-text {
     border-radius: 0!important;
     background: #ddd!important;
     color: #444!important;
 }
+
+
 /*FadeIn transição de páginas*/
+
 @-webkit-keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
     }
-    @-moz-keyframes fadeIn {
-    0% { opacity: 0;}
-    100% { opacity: 1; }
+    100% {
+        opacity: 1;
     }
-    @-o-keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    100% {
+        opacity: 1;
     }
-    .fadeIn {
-        -webkit-animation: fadeIn 1s ease-in-out;
-        -moz-animation: fadeIn 1s ease-in-out;
-        -o-animation: fadeIn 1s ease-in-out;
-        animation: fadeIn 1s ease-in-out;
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation: fadeIn 1s ease-in-out;
+    -moz-animation: fadeIn 1s ease-in-out;
+    -o-animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
+}
+
+
 /*Label*/
-td{
+
+td {
     vertical-align: middle!important;
 }
+
 .badge {
     display: inline-block;
     padding: .4em .6em .5em;
@@ -229,17 +296,24 @@ td{
     border-radius: .25em;
     width: 180px!important;
 }
+
 .table-overflow {
-    max-height:339px!important;
-    overflow-x:auto!important;
-}
-.table-fixa{
-    min-height:339px!important;
+    max-height: 339px!important;
+    overflow-x: auto!important;
 }
 
-.table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+.table-fixa {
+    min-height: 339px!important;
+}
+
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
     border-top: 1px solid #d4d2d2!important;
 }
-.table > thead > tr > th{
+
+.table>thead>tr>th {
     border-bottom: 1px solid #d4d2d2!important;
 }

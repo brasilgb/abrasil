@@ -30,7 +30,7 @@
     @guest
 
     @else
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: #375b7e">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
         <div class="container">
 
             <a class="navbar-brand" href="/"><img class="logo "
