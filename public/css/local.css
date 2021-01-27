@@ -9,6 +9,7 @@ body {
 
 body {
     min-height: 101vh;
+    background:  rgba(222, 221, 222, 0.699);
 }
 
 #wrap {
@@ -69,7 +70,8 @@ Barra navegação personalizada
 */
 
 .navbar {
-    background-color: #fff;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222, 221, 222, 0.411) 50%, rgba(255,255,255,1) 100%);
     border-bottom: 1px solid #d2d6de;
 }
 

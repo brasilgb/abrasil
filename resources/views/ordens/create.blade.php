@@ -115,7 +115,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Previsão:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="previsao" value="{{old('previsao')}}">
+                    <input id="dateform" type="text" class="form-control" name="previsao" value="{{old('previsao')}}">
                 </div>
             </div>
 
@@ -181,5 +181,8 @@ $('#cliente').autocomplete({
            return false;
         }
 });
+$( "#dateform, #searchform" ).datepicker({
+        locale: 'pt-BR'
+    });
 </script>
 @endsection

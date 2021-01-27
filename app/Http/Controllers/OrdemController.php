@@ -71,7 +71,7 @@ class OrdemController extends Controller
         $ordens = $this->ordem->orderby('id_ordem', 'ASC')->get();
         if ($ordens->count() > 0) :
             foreach ($ordens as $next) :
-                $proxordem = $next->id_ordem;
+                $proxordem = Str::padLeft($next->id_ordem + 1, 7, 0);
             endforeach;
         else :
             $proxordem = Str::padLeft(1, 7, 0);

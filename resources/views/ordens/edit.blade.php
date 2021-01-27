@@ -228,5 +228,8 @@ $('#input-search').autocomplete({
            return false;
         }
 });
+$( "#dateform, #searchform" ).datepicker({
+        locale: 'pt-BR'
+    });
 </script>
 @endsection
