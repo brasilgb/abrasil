@@ -122,21 +122,12 @@
                     </div>
                 </div>
             </fieldset>
+@if ()
 
+@endif
             <fieldset class="col-12 col-md-12 px-3">
                 <legend><h1 class="center">Peças</h1></legend>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""> Pecas:</label>
-                <div class="col-sm-10">
-                    <textarea type="text" class="form-control" name="pecas">{{old('pecas', $orden->pecas)}}</textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for=""> Val. Peças:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="valpecas" value="{{old('valpecas', $orden->valpecas)}}">
-                </div>
-            </div>
+
             </fieldset>
 
             <fieldset class="col-12 col-md-12 px-3">
@@ -189,6 +180,15 @@
                 <label class="col-sm-2 col-form-label" for="">Previsão:</label>
                 <div class="col-sm-10">
                     <input id="dateform" type="text" class="form-control" name="previsao" value="{{old('previsao', date("d/m/Y", strtotime($orden->previsao)))}}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""> Enviar e-mail ao cliente:</label>
+                <div class="col-sm-10">
+                        <label class="alterbtn btn btn-default">
+                            <input type="checkbox" name="getemail" id="ativaemail">
+                        </label>
                 </div>
             </div>
 

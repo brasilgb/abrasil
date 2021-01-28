@@ -129,6 +129,7 @@ class OrdemController extends Controller
      */
     public function show(Ordem $orden)
     {
+        $peças =
         return view('ordens.edit', compact('orden'));
     }
 

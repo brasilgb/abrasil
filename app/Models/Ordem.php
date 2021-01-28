@@ -26,7 +26,6 @@ class Ordem extends Model
         'previsao',
         'orcamento',
         'valorcamento',
-        'pecas',
         'valpecas',
         'servico',
         'valservico',
