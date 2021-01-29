@@ -20,8 +20,7 @@ class CreateTriggerDeletePeca extends Migration
         BEGIN
         CALL SP_EstoquePecas (
             old.id_peca,
-            old.quantidade * -1,
-            old.valor
+            old.quantidade * -1
                             );
         END
                     ');

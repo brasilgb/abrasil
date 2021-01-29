@@ -20,8 +20,7 @@ class CreateTriggerDeletePecaOrdem extends Migration
         BEGIN
         CALL SP_EstoquePecas (
             old.id_peca,
-            old.quantidade,
-            old.valor
+            old.quantidade
                             );
         END
                     ');

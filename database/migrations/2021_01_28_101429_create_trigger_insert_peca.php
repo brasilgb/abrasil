@@ -20,8 +20,7 @@ class CreateTriggerInsertPeca extends Migration
         BEGIN
         CALL SP_EstoquePecas (
             new.id_peca,
-            new.quantidade,
-            new.valor
+            new.quantidade
                             );
         END
                     ');

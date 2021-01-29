@@ -43,6 +43,7 @@ Route::post('agendas/autocomplete', [AgendaController::class, 'autocomplete'])->
 Route::post('agendas/busca', [AgendaController::class, 'busca'])->name('agendas.busca')->middleware('auth');
 Route::resource('agendas', AgendaController::class)->middleware('auth');
 
+Route::post('pecas/pecasordens', [PecaController::class, 'pecasordens'])->name('pecas.pecasordens')->middleware('auth');
 Route::post('pecas/autocomplete', [PecaController::class, 'autocomplete'])->name('pecas.autocomplete')->middleware('auth');
 Route::post('pecas/busca', [PecaController::class, 'busca'])->name('pecas.busca')->middleware('auth');
 Route::resource('pecas', PecaController::class)->middleware('auth');

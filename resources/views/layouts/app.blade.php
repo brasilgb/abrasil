@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
     <title>ABSOS - {{ showModelTables('\App\Models\Empresa', 'empresa') }}</title>
     <link rel="shortcut icon" href="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}">
@@ -12,7 +12,7 @@
                 <title>ABSOS</title>
                 <link rel="shortcut icon" href="{{asset('img/logo.jpg')}}">
                 @endif
-    
+
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
@@ -40,8 +40,13 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
         <div class="container">
 
-            <a class="navbar-brand" href="/"><img class="logo "
-                    src="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}" alt=""></a>
+            <a class="navbar-brand" href="/">
+                @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
+                <img class="logo" src="{{ asset('img/'.showModelTables('\App\Models\Empresa', 'logo')) }}" class="brand_logo" alt="Logo">
+                @else
+                <img class="logo" src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
+                @endif
+            </a>
 
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peca;
+use App\Models\Pecas_on_ordens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,10 +11,12 @@ class PecaController extends Controller
 {
     /**
      * @var Peca
+     * @var Pecaoonrdem
      */
-    public function __construct(Peca $peca)
+    public function __construct(Peca $peca, Pecas_on_ordens $pecaonordem)
     {
         $this->peca = $peca;
+        $this->pecaonordem = $pecaonordem;
     }
 
     /**
@@ -159,6 +162,18 @@ class PecaController extends Controller
         return redirect()->route('pecas.index');
     }
 
+    /**
+     * Adiciona peças as ordens de serviço e remove do estoque
+     */
+    public function pecasordens(Request $request){
+        $data['id_ordem'] = $request->ordemid;
+        $data['id_peca'] = $request->pecaid;
+        $data['quantidade'] = 1;
+        $data['valor'] = 20;
+        $this->pecaonordem->create($data);
+        $pecas = 'ok';
+        return response()->json(['pecas' => $pecas]);
+    }
     /**
      * Autocomplete campo cliente
      */

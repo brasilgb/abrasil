@@ -17,7 +17,6 @@ class CreateEstoquePecasTable extends Migration
             $table->integer('id_estoque')->autoIncrement();
             $table->integer('id_peca');
             $table->integer('quantidade');
-            $table->decimal('valor', 10, 2);
             $table->timestamps();
         });
     }

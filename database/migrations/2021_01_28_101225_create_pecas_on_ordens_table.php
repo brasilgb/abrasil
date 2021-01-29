@@ -18,7 +18,6 @@ class CreatePecasOnOrdensTable extends Migration
             $table->integer('id_ordem');
             $table->integer('id_peca');
             $table->integer('quantidade');
-            $table->decimal('valor', 10, 2);
             $table->timestamps();
         });
     }
