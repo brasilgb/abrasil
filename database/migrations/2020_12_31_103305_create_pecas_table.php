@@ -17,6 +17,7 @@ class CreatePecasTable extends Migration
             $table->integer('id_peca')->autoIncrement();
             $table->string('peca');
             $table->text('descricao');
+            $table->string('fabricante');
             $table->integer('quantidade');
             $table->decimal('valor', 10, 2);
             $table->string('situacao');

@@ -15,10 +15,10 @@ class CreateTriggerInsertPecaOrdem extends Migration
     public function up()
     {
         DB::unprepared('
-        CREATE TRIGGER `TRG_insert_peca_ordem` AFTER INSERT ON `pecas_on_ordens`
+        CREATE TRIGGER `TRG_insert_peca_ordem` AFTER INSERT ON `peca_ordem`
         FOR EACH ROW
         BEGIN
-        CALL SP_EstoquePecas (
+        CALL SP_EstoquePeca (
             new.id_peca,
             new.quantidade * -1
                             );

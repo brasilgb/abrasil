@@ -18,7 +18,7 @@ class CreateTriggerUpdatePeca extends Migration
         CREATE TRIGGER `TRG_update_peca` AFTER UPDATE ON `pecas`
         FOR EACH ROW
         BEGIN
-        CALL SP_EstoquePecas (
+        CALL SP_EstoquePeca (
             new.id_peca,
             new.quantidade - old.quantidade
                             );

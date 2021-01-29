@@ -158,9 +158,11 @@
                 </div>
                 <div class="form-group row">
                 <div class="col-sm-2"></div>
-                @if ($pecas->count() > 0)
+                @if ($pecas)
                 <ul class="listpecas">
-                    <li></li>
+                    @foreach ($pecas as $peca)
+                        <li>{{$peca->pecas->peca}}</li>
+                    @endforeach
                 </ul>
                 @else
                 <ul class="listpecas" style="display: none"></ul>
@@ -319,13 +321,12 @@ $( "#dateform, #searchform" ).datepicker({
                     'pecaid': pecaid,
                     'ordemid': ordemid
                     },
-                    success:function(data){
-                    //     $.each(response, function (key, value) {
+                    success:function(response){
+                        $.each(response, function (key, value) {
+                            $(".listpecas").show().html("<li>"+value+"</li>")
+                        // $('#aviariosdolote').append('<option value="' + key + '">' + value + '</option>');
+                    });
 
-                    //     $('#aviariosdolote').append('<option value="' + key + '">' + value + '</option>');
-
-                    // });
-                        $(".listpecas").show().html("<li>"+data.pecas+"</li>")
                     }
             });
             }

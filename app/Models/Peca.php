@@ -15,13 +15,14 @@ class Peca extends Model
     protected $fillable = [
         'peca',
         'descricao',
+        'fabricante',
         'quantidade',
         'valor',
         'situacao',
         'observacoes'
     ];
-    
-    public function pecas_ordens(){
-        return $this->hasMany(Pecas_ordens::class, 'id_peca', 'id_peca');
+
+    public function ordens(){
+        return $this->belongsToMany(Ordem::class, 'peca_ordem', 'id_ordem', 'id_ordem');
     }
 }

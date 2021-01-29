@@ -6,7 +6,8 @@ use App\Models\Ordem;
 use App\Models\Cliente;
 use App\Models\Empresa;
 use App\Models\Mensagem;
-use App\Models\Pecas_on_ordens;
+use App\Models\Peca;
+use App\Models\Peca_ordem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -21,15 +22,15 @@ class OrdemController extends Controller
     protected $ordem;
     protected $cliente;
     protected $empresa;
-    protected $pecasonordens;
+    protected $pecaordem;
 
-    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem, Pecas_on_ordens $pecasonordens)
+    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem, Peca_ordem $pecaordem)
     {
         $this->ordem = $ordem;
         $this->cliente = $cliente;
         $this->empresa = $empresa;
         $this->mensagem = $mensagem;
-        $this->pecasonordens = $pecasonordens;
+        $this->$pecaordem = $pecaordem;
     }
 
     /**
@@ -132,8 +133,14 @@ class OrdemController extends Controller
      */
     public function show(Ordem $orden)
     {
-        $pecas = $this->pecasonordens->where('id_ordem', $orden->id_ordem)->get();
 
+        $pecaordem = Ordem::find($orden->id_ordem);
+        return response()->json(Peca::all());
+        if($pecaordem->count() > 0):
+            $pecas = Peca_ordem::where('id_ordem', $orden->id_ordem)->get();
+        else:
+            $pecas = 0;
+        endif;
         return view('ordens.edit', compact('orden', 'pecas'));
     }
 
@@ -170,8 +177,6 @@ class OrdemController extends Controller
             'previsao' => 'nullable',
             'orcamento' => 'nullable',
             'valorcamento' => 'nullable',
-            'pecas' => 'nullable',
-            'valpecas' => 'nullable',
             'servico' => 'nullable',
             'valservico' => 'nullable',
             'valtotal' => 'nullable',

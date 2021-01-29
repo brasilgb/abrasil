@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peca;
-use App\Models\Pecas_on_ordens;
+use App\Models\Peca_ordem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,10 +13,10 @@ class PecaController extends Controller
      * @var Peca
      * @var Pecaoonrdem
      */
-    public function __construct(Peca $peca, Pecas_on_ordens $pecaonordem)
+    public function __construct(Peca $peca, Peca_ordem $pecaordem)
     {
         $this->peca = $peca;
-        $this->pecaonordem = $pecaonordem;
+        $this->pecaordem = $pecaordem;
     }
 
     /**
@@ -62,6 +62,7 @@ class PecaController extends Controller
         $rules = [
             'peca' => 'required',
             'descricao' => 'required',
+            'fabricante' => 'required',
             'quantidade' => 'required',
             'valor' => 'required',
             'situacao' => 'required',
@@ -123,6 +124,7 @@ class PecaController extends Controller
         $rules = [
             'peca' => 'required',
             'descricao' => 'required',
+            'fabricante' => 'required',
             'quantidade' => 'required',
             'valor' => 'required',
             'situacao' => 'required',
@@ -169,10 +171,9 @@ class PecaController extends Controller
         $data['id_ordem'] = $request->ordemid;
         $data['id_peca'] = $request->pecaid;
         $data['quantidade'] = 1;
-        $data['valor'] = 20;
-        $this->pecaonordem->create($data);
-        $pecas = 'ok';
-        return response()->json(['pecas' => $pecas]);
+        Peca_ordem::create($data);
+        //$po = $this->pecaordem->where('id_ordem', $request->ordemid)->get();
+        return response()->json(['pecas' => 'ok']);
     }
     /**
      * Autocomplete campo cliente

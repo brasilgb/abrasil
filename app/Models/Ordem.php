@@ -26,7 +26,6 @@ class Ordem extends Model
         'previsao',
         'orcamento',
         'valorcamento',
-        'valpecas',
         'servico',
         'valservico',
         'valtotal',
@@ -40,8 +39,8 @@ class Ordem extends Model
     public function clientes(){
         return $this->belongsTo(Cliente::class, 'cliente_id', 'id_cliente');
     }
-    
-    public function pecas_ordens(){
-        return $this->hasMany(Pecas_ordens::class, 'id_ordem', 'id_ordem');
+
+    public function pecas(){
+        return $this->belongsToMany(Peca::class, 'peca_ordem', 'id_peca', 'id_peca');
     }
 }

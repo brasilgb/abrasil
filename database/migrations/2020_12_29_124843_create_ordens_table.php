@@ -28,8 +28,6 @@ class CreateOrdensTable extends Migration
             $table->date('previsao')->nullable();
             $table->text('orcamento')->nullable();
             $table->decimal('valorcamento')->nullable();
-            $table->text('pecas')->nullable();
-            $table->decimal('valpecas')->nullable();
             $table->text('servico')->nullable();
             $table->decimal('valservico')->nullable();
             $table->decimal('valtotal')->nullable();

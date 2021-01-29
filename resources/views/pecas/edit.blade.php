@@ -62,6 +62,16 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Fabricante:</label>
+                <div class="col-sm-10">
+                    <input id="" type="text" class="form-control" name="fabricante" value="{{old('fabricante', $peca->fabricante)}}">
+                    @error('fabricante')
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     Quantidade:</label>

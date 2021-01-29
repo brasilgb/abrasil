@@ -34,8 +34,6 @@ class OrdemFactory extends Factory
             'previsao' => '2020-12-15',
             'orcamento' => 'descricao orcamento',
             'valorcamento' => 152,
-            'pecas' => 'muitas pecas',
-            'valpecas' => 510,
             'servico' => 'troca de sd',
             'valservico' => 584,
             'valtotal' => 1005,

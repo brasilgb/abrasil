@@ -18,7 +18,7 @@ class CreateTriggerInsertPeca extends Migration
         CREATE TRIGGER `TRG_insert_peca` AFTER INSERT ON `pecas`
         FOR EACH ROW
         BEGIN
-        CALL SP_EstoquePecas (
+        CALL SP_EstoquePeca (
             new.id_peca,
             new.quantidade
                             );

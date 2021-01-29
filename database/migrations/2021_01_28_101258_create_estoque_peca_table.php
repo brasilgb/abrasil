@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePecasOnOrdensTable extends Migration
+class CreateEstoquePecaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreatePecasOnOrdensTable extends Migration
      */
     public function up()
     {
-        Schema::create('pecas_on_ordens', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_ordem');
+        Schema::create('estoque_peca', function (Blueprint $table) {
+            $table->integer('id_estoque')->autoIncrement();
             $table->integer('id_peca');
             $table->integer('quantidade');
             $table->timestamps();
@@ -29,6 +28,6 @@ class CreatePecasOnOrdensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pecas_on_ordens');
+        Schema::dropIfExists('estoque_peca');
     }
 }

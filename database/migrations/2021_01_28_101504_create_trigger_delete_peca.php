@@ -18,7 +18,7 @@ class CreateTriggerDeletePeca extends Migration
         CREATE TRIGGER `TRG_delete_peca` AFTER DELETE ON `pecas`
         FOR EACH ROW
         BEGIN
-        CALL SP_EstoquePecas (
+        CALL SP_EstoquePeca (
             old.id_peca,
             old.quantidade * -1
                             );

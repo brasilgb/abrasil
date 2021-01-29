@@ -52,16 +52,27 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Descrição:</label>
                 <div class="col-sm-10">
-                    <textarea type="text" class="form-control" name="descricao"></textarea>
+                    <textarea type="text" class="form-control" name="descricao">{{ old('descricao')}}</textarea>
                     @error('descricao')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Fabricante:</label>
+                <div class="col-sm-10">
+                    <input id="" type="text" class="form-control" name="fabricante" value="{{old('fabricante')}}">
+                    @error('fabricante')
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Quantidade:</label>
                 <div class="col-sm-10">
-                    <input id="" type="text" class="form-control" name="quantidade">
+                    <input id="" type="text" class="form-control" name="quantidade" value="{{old('quantidade')}}">
                     @error('quantidade')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -70,7 +81,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Valor:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="valor">
+                    <input type="text" class="form-control" name="valor" value="{{old('valor')}}">
                     @error('valor')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -101,7 +112,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""> Observações:</label>
                 <div class="col-sm-10">
-                    <textarea type="text" class="form-control" name="observacaos"></textarea>
+                    <textarea type="text" class="form-control" name="observacaos">{{old('fabricante')}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
