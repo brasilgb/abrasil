@@ -4,8 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>APP - SOS</title>
+    
+    @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
+    <title>ABSOS - {{ showModelTables('\App\Models\Empresa', 'empresa') }}</title>
     <link rel="shortcut icon" href="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}">
+                @else
+                <title>ABSOS</title>
+                <link rel="shortcut icon" href="{{asset('img/logo.jpg')}}">
+                @endif
+    
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>

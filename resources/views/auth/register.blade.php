@@ -6,7 +6,11 @@
         <div class="user_card" style="height: 500px!important;width: 400px;">
             <div class="d-flex justify-content-center">
                 <div class="brand_logo_container">
-                    <img src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
+                @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
+                <img src="{{ asset('img/'.showModelTables('\App\Models\Empresa', 'logo')) }}" class="brand_logo" alt="Logo">
+                @else
+                <img src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
+                @endif
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">

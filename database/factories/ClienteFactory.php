@@ -24,8 +24,8 @@ class ClienteFactory extends Factory
         return [
             'cliente' => $this->faker->name,
             'email' => $this->faker->email,
-            'telefone' => $this->faker->tollFreePhoneNumber,
-            'celular' => $this->faker->tollFreePhoneNumber,
+            'telefone' => $this->faker->PhoneNumber,
+            'celular' => $this->faker->PhoneNumber,
             'logradouro' => $this->faker->address,
             'numero' => $this->faker->buildingNumber,
             'complemento' => 'casa',
@@ -36,8 +36,8 @@ class ClienteFactory extends Factory
             'cpf' => '86868686868',
             'rg' => '994949494949',
             'contato' => $this->faker->name,
-            'telefone_contato' => $this->faker->tollFreePhoneNumber,
-            'celular_contato' => $this->faker->tollFreePhoneNumber
+            'telefone_contato' => $this->faker->PhoneNumber,
+            'celular_contato' => $this->faker->PhoneNumber
         ];
     }
 }

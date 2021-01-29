@@ -6,6 +6,7 @@ use App\Models\Ordem;
 use App\Models\Cliente;
 use App\Models\Empresa;
 use App\Models\Mensagem;
+use App\Models\Pecas_on_ordens;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,13 +21,15 @@ class OrdemController extends Controller
     protected $ordem;
     protected $cliente;
     protected $empresa;
+    protected $pecasonordens;
 
-    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem)
+    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem, Pecas_on_ordens $pecasonordens)
     {
         $this->ordem = $ordem;
         $this->cliente = $cliente;
         $this->empresa = $empresa;
         $this->mensagem = $mensagem;
+        $this->pecasonordens = $pecasonordens;
     }
 
     /**
@@ -129,8 +132,9 @@ class OrdemController extends Controller
      */
     public function show(Ordem $orden)
     {
-        $peças =
-        return view('ordens.edit', compact('orden'));
+        $pecas = $this->pecasonordens->where('id_ordem', $orden->id_ordem)->get();
+
+        return view('ordens.edit', compact('orden', 'pecas'));
     }
 
     /**

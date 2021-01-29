@@ -122,13 +122,22 @@
                     </div>
                 </div>
             </fieldset>
-@if ()
+@if ($pecas->count() > 0)
+<fieldset class="col-12 col-md-12 px-3">
+    <legend><h1 class="center">Peças</h1></legend>
 
+</fieldset>
+    @else
+    <fieldset class="col-12 col-md-12 px-3">
+        <legend><h1 class="center">Peças</h1></legend>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for=""> Adicionar peças:</label>
+            <div class="col-sm-10">
+                <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </fieldset>
 @endif
-            <fieldset class="col-12 col-md-12 px-3">
-                <legend><h1 class="center">Peças</h1></legend>
-
-            </fieldset>
 
             <fieldset class="col-12 col-md-12 px-3">
                 <legend><h1 class="center">Serviço</h1></legend>

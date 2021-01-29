@@ -40,4 +40,8 @@ class Ordem extends Model
     public function clientes(){
         return $this->belongsTo(Cliente::class, 'cliente_id', 'id_cliente');
     }
+    
+    public function pecas_ordens(){
+        return $this->hasMany(Pecas_ordens::class, 'id_ordem', 'id_ordem');
+    }
 }

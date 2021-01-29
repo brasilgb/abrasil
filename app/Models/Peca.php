@@ -20,4 +20,8 @@ class Peca extends Model
         'situacao',
         'observacoes'
     ];
+    
+    public function pecas_ordens(){
+        return $this->hasMany(Pecas_ordens::class, 'id_peca', 'id_peca');
+    }
 }
