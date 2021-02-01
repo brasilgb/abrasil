@@ -146,41 +146,46 @@
                     <label class="col-sm-2 col-form-label" for=""> Adicionar peças:</label>
                     <div class="input-group col-sm-10">
                         <div class="input-group-append">
-                            <button id="addpeca" class="rounded-left btn btn-info text-white" title="Adiciona peça a ordem de serviço"><i
-                                    class="fa fa-plus"></i></button>
+                            <button id="addpeca" class="rounded-left btn btn-info text-white"
+                                title="Adiciona peça a ordem de serviço"><i class="fa fa-plus"></i></button>
                         </div>
                         <input type="text" class="peca form-control rounded-right col-xs-4" name="term"
-                            placeholder="Buscar por peça" aria-label="Recipient peças"
-                            aria-describedby="basic-addon2">
+                            placeholder="Buscar por peça" aria-label="Recipient peças" aria-describedby="basic-addon2">
                     </div>
                     <input id="pecaid" type="hidden" name="id_peca">
                     <input id="ordemid" type="hidden" name="id_ordem" value="{{$orden->id_ordem}}">
                 </div>
-                <div class="form-group row">
-                <div class="col-sm-2"></div>
-                @if ($ordens->count() > 0)
-                <div class="col-sm-10"><h4>Peças adicionadas</h4>
-                <div class="listpecas row">
-                    @foreach ($ordens as $ordem)
-                    @foreach(App\Models\Peca::where('id_peca', $ordem->id_peca)->get() as $pecas)
-                    <div class="col-sm-8">{{$pecas->peca}}</div>
-                    <div class="col-sm-3">{{$pecas->valor}}</div>
-                    <div class="col-sm-1"><a href="#">x</a></div>
-                        @endforeach
-                        @endforeach
-                </div>
-                @else
-                <div class="showpecas form-group row" style="display: none">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-10"><h4>Peças adicionadas</h4>
-                            <div class="listpecas"></div>
-                        </div>
-                </div>
-                @endif
-                </div>
-            </div>
-            </fieldset>
 
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">
+                        <span class="titlelist" style="display:@if($ordens->count() > 0){{''}}@else{{'none'}}@endif;">Peças adicionadas</span>
+                    </label>
+                    <div class="col-sm-10">
+                        @if ($ordens->count() > 0)
+                        <ul class="list-group list-group-flush listpecas">
+                            @foreach ($ordens as $ordem)
+                            @foreach(App\Models\Peca::where('id_peca', $ordem->id_peca)->get() as $pecas)
+                            @php
+                                $totalpecas = $pecas->sum('valor');
+                            @endphp
+                            <li class="list-group-item"><i class="fa fa-caret-right text-default"></i>
+                                {{$pecas->peca}}
+                                <span style="margin-left:10%;">{{'R$'.number_format($pecas->valor, 2, ',', '.')}}</span>
+                                <a title="Remover peça da lista" href="{{route('pecas.delpecord', ['peca' => $ordem->id_peca])}}"><i class="fa fa-times text-danger float-right"></i></a>
+                            </li>
+                            @endforeach
+                            @endforeach
+                            <li class="list-group-item list-group-item-action list-group-item-info"><i class="fa fa-check text-success"></i>
+                            Total em peças: {{'R$'.number_format($totalpecas, 2, ',', '.')}}
+                            </li>
+                        </ul>
+                        @else
+                        <ul class="list-group list-group-flush listpecas"> style="display: none">
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+            </fieldset>
 
             <fieldset class="col-12 col-md-12 px-3">
                 <legend>
@@ -334,7 +339,7 @@ $( "#dateform, #searchform" ).datepicker({
                     },
                     success:function(response){
                         $.each(response, function (key, value) {
-                            $(".showpecas").show();
+                            $(".titlelist").show();
                             $(".listpecas").show().html(value);
                     });
 

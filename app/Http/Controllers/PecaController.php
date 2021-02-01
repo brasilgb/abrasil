@@ -175,15 +175,19 @@ class PecaController extends Controller
         $data['quantidade'] = 1;
         $this->ordempeca->create($data);
 
-        $ordens = Ordempeca::where('id_ordem', $request->ordemid)->get();
+        $ordens = Ordempeca::where('id_ordem', $request->ordemid)->get();// 'R$ '.number_format($peca->valor, 2, ',', '.')
         foreach ($ordens as $ordem):
                     foreach($this->peca::where('id_peca', $ordem->id_peca)->get() as $pecas):
-                        $result[] = '<div class="row"><div class="col-sm-8">'.$pecas->peca.'</div>
-                                     <div class="col-sm-3">'.$pecas->valor.'</div>
-                                     <div class="col-sm-1"><a href="#">x</a></div></div>';
+                        $result[] = '<li class="list-group-item"><i class="fa fa-caret-right text-default"></i> '.$pecas->peca.'<span style="margin-left:10%;">R$'.number_format($pecas->valor, 2, ',', '.').'</span><a title="Remover peça da lista" href="'.route('pecas.delpecord', ['peca' => $ordem->id_peca]).'"><i class="fa fa-times text-danger float-right"></i></a></li>';
                     endforeach;
                 endforeach;
         return response()->json(['pecas' => $result]);
+    }
+
+    public function delpecord($peca){
+        $ordem = Ordempeca::where('id_peca', $peca)->get()->first();
+        Ordempeca::where('id_peca', $peca)->delete();
+        return redirect()->route('ordens.show', ['orden' => $ordem['id_ordem']]);
     }
     /**
      * Autocomplete campo cliente

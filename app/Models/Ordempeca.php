@@ -9,6 +9,7 @@ class Ordempeca extends Model
 {
     use HasFactory;
     protected $table = 'ordem_peca';
+
     protected $fillable = [
         'id_peca',
         'id_ordem',
