@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ordem;
 use App\Models\Peca;
-use App\Models\Peca_ordem;
+use App\Models\Ordempeca;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,12 +12,13 @@ class PecaController extends Controller
 {
     /**
      * @var Peca
-     * @var Pecaoonrdem
+     * @var Ordempeca;
      */
-    public function __construct(Peca $peca, Peca_ordem $pecaordem)
+    public function __construct(Ordem $ordem, Peca $peca, Ordempeca $ordempeca)
     {
+        $this->ordem = $ordem;
         $this->peca = $peca;
-        $this->pecaordem = $pecaordem;
+        $this->ordempeca = $ordempeca;
     }
 
     /**
@@ -171,9 +173,17 @@ class PecaController extends Controller
         $data['id_ordem'] = $request->ordemid;
         $data['id_peca'] = $request->pecaid;
         $data['quantidade'] = 1;
-        Peca_ordem::create($data);
-        //$po = $this->pecaordem->where('id_ordem', $request->ordemid)->get();
-        return response()->json(['pecas' => 'ok']);
+        $this->ordempeca->create($data);
+
+        $ordens = Ordempeca::where('id_ordem', $request->ordemid)->get();
+        foreach ($ordens as $ordem):
+                    foreach($this->peca::where('id_peca', $ordem->id_peca)->get() as $pecas):
+                        $result[] = '<div class="row"><div class="col-sm-8">'.$pecas->peca.'</div>
+                                     <div class="col-sm-3">'.$pecas->valor.'</div>
+                                     <div class="col-sm-1"><a href="#">x</a></div></div>';
+                    endforeach;
+                endforeach;
+        return response()->json(['pecas' => $result]);
     }
     /**
      * Autocomplete campo cliente

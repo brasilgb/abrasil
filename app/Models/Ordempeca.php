@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Peca_ordem extends Model
+class Ordempeca extends Model
 {
     use HasFactory;
-    protected $table = 'peca_ordem';
+    protected $table = 'ordem_peca';
     protected $fillable = [
         'id_peca',
         'id_ordem',

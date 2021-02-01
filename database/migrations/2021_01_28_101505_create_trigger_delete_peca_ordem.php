@@ -15,7 +15,7 @@ class CreateTriggerDeletePecaOrdem extends Migration
     public function up()
     {
         DB::unprepared('
-        CREATE TRIGGER `TRG_delete_peca_ordem` AFTER DELETE ON `peca_ordem`
+        CREATE TRIGGER `TRG_delete_peca_ordem` AFTER DELETE ON `ordem_peca`
         FOR EACH ROW
         BEGIN
         CALL SP_EstoquePeca (

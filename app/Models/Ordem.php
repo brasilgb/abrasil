@@ -41,6 +41,6 @@ class Ordem extends Model
     }
 
     public function pecas(){
-        return $this->belongsToMany(Peca::class, 'peca_ordem', 'id_peca', 'id_peca');
+        return $this->hasMany(Peca::class, 'ordem_peca', 'id_peca', 'id_peca');
     }
 }

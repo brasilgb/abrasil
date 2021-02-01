@@ -9,7 +9,7 @@ body {
 
 body {
     min-height: 101vh;
-    background:  rgba(222, 221, 222, 0.699);
+    background: rgba(222, 221, 222, 0.699);
 }
 
 #wrap {
@@ -70,8 +70,8 @@ Barra navegação personalizada
 */
 
 .navbar {
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222, 221, 222, 0.411) 50%, rgba(255,255,255,1) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(222, 221, 222, 0.411) 50%, rgba(255, 255, 255, 1) 100%);
     border-bottom: 1px solid #d2d6de;
 }
 
@@ -82,6 +82,7 @@ Barra navegação personalizada
     font-size: 0.9rem;
 }
 */
+
 .navbar .navbar-nav .active {
     /* background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,221,222,1) 50%, rgba(255,255,255,1) 100%);
@@ -90,6 +91,8 @@ Barra navegação personalizada
     border-radius: 5px; */
     border-bottom: 2px solid #375b7e;
 }
+
+
 /*
 .navbar-dark .navbar-nav .nav-link:hover {
     background-color: #375B7E!important;
@@ -321,4 +324,15 @@ td {
 
 .table>thead>tr>th {
     border-bottom: 1px solid #d4d2d2!important;
+}
+
+
+/*LIst pecas*/
+
+.listpecashead {
+    width: 100%;
+}
+
+.listpeca {
+    width: 100%;
 }

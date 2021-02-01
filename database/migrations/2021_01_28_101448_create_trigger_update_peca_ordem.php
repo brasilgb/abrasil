@@ -15,7 +15,7 @@ class CreateTriggerUpdatePecaOrdem extends Migration
     public function up()
     {
         DB::unprepared('
-        CREATE TRIGGER `TRG_update_peca_ordem` AFTER UPDATE ON `peca_ordem`
+        CREATE TRIGGER `TRG_update_peca_ordem` AFTER UPDATE ON `ordem_peca`
         FOR EACH ROW
         BEGIN
         CALL SP_EstoquePeca (

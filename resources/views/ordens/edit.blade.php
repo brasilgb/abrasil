@@ -158,15 +158,26 @@
                 </div>
                 <div class="form-group row">
                 <div class="col-sm-2"></div>
-                @if ($pecas)
-                <ul class="listpecas">
-                    @foreach ($pecas as $peca)
-                        <li>{{$peca->pecas->peca}}</li>
-                    @endforeach
-                </ul>
+                @if ($ordens->count() > 0)
+                <div class="col-sm-10"><h4>Peças adicionadas</h4>
+                <div class="listpecas row">
+                    @foreach ($ordens as $ordem)
+                    @foreach(App\Models\Peca::where('id_peca', $ordem->id_peca)->get() as $pecas)
+                    <div class="col-sm-8">{{$pecas->peca}}</div>
+                    <div class="col-sm-3">{{$pecas->valor}}</div>
+                    <div class="col-sm-1"><a href="#">x</a></div>
+                        @endforeach
+                        @endforeach
+                </div>
                 @else
-                <ul class="listpecas" style="display: none"></ul>
+                <div class="showpecas form-group row" style="display: none">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10"><h4>Peças adicionadas</h4>
+                            <div class="listpecas"></div>
+                        </div>
+                </div>
                 @endif
+                </div>
             </div>
             </fieldset>
 
@@ -323,8 +334,8 @@ $( "#dateform, #searchform" ).datepicker({
                     },
                     success:function(response){
                         $.each(response, function (key, value) {
-                            $(".listpecas").show().html("<li>"+value+"</li>")
-                        // $('#aviariosdolote').append('<option value="' + key + '">' + value + '</option>');
+                            $(".showpecas").show();
+                            $(".listpecas").show().html(value);
                     });
 
                     }

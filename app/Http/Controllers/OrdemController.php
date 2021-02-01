@@ -6,8 +6,9 @@ use App\Models\Ordem;
 use App\Models\Cliente;
 use App\Models\Empresa;
 use App\Models\Mensagem;
+use App\Models\Ordem_peca;
 use App\Models\Peca;
-use App\Models\Peca_ordem;
+use App\Models\Ordempeca;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -22,15 +23,16 @@ class OrdemController extends Controller
     protected $ordem;
     protected $cliente;
     protected $empresa;
-    protected $pecaordem;
+    protected $mensagem;
+    protected $peca;
 
-    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem, Peca_ordem $pecaordem)
+    public function __construct(Ordem $ordem, Cliente $cliente, Empresa $empresa, Mensagem $mensagem, Peca $peca)
     {
         $this->ordem = $ordem;
         $this->cliente = $cliente;
         $this->empresa = $empresa;
         $this->mensagem = $mensagem;
-        $this->$pecaordem = $pecaordem;
+        $this->peca = $peca;
     }
 
     /**
@@ -133,15 +135,9 @@ class OrdemController extends Controller
      */
     public function show(Ordem $orden)
     {
+            $ordens = Ordempeca::where('id_ordem', $orden->id_ordem)->get();
 
-        $pecaordem = Ordem::find($orden->id_ordem);
-        return response()->json(Peca::all());
-        if($pecaordem->count() > 0):
-            $pecas = Peca_ordem::where('id_ordem', $orden->id_ordem)->get();
-        else:
-            $pecas = 0;
-        endif;
-        return view('ordens.edit', compact('orden', 'pecas'));
+            return view('ordens.edit', compact('orden', 'ordens'));
     }
 
     /**
