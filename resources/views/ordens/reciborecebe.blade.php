@@ -14,7 +14,12 @@
         <!-- Ordem de entrega. -->
         <table>
             <tr>
-                <td><img class="logo" src="{{ asset('img/' . $empresa['logo']) }}" title="{{ $empresa['empresa'] }}">
+                <td>
+                    @if(!empty($empresa['logo']))
+                    <img class="logo" src="{{ asset('img/' . $empresa['logo']) }}" title="{{ $empresa['empresa'] }}">
+                    @else
+                <img class="logo" src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
+                @endif
                 </td>
                 <td class="center cabecalho">
                     <span class="empresa">{{ $empresa['empresa'] }}</span><br>

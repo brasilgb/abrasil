@@ -162,7 +162,7 @@
                     </label>
                     <div class="col-sm-10">
                         @if ($ordens->count() > 0)
-                        <ul class="list-group list-group-flush listpecas">
+                        <ul id="linkpecas" class="list-group list-group-flush listpecas">
                             @php $sum = 0; @endphp
                             @foreach ($ordens as $ordem)
                             @foreach(App\Models\Peca::where('id_peca', $ordem->id_peca)->get() as $pecas)
@@ -170,6 +170,7 @@
                             <li class="list-group-item"><i class="fa fa-caret-right text-default"></i>
                                 {{$pecas->peca}}
                                 <span style="margin-left:10%;">{{'R$'.number_format($pecas->valor, 2, ',', '.')}}</span>
+                        <ul id="linkpecas" class="list-group list-group-flush listpecas">
                                 <a title="Remover peça da lista" href="{{route('pecas.delpecord', ['peca' => $ordem->id_peca])}}"><i class="fa fa-times text-danger float-right"></i></a>
                             </li>
                             @php
