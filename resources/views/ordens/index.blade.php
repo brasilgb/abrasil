@@ -90,11 +90,12 @@
                     @endphp
                     <td>{{ $status($ordem->status) }}</td>
                     <td>
+
                         @if ($ordem->status == 8)
-                        <button onclick="window.open('{{ route('ordens.reciboentrega', ['orden' => $ordem->id_ordem]) }}')"
+                        <button onclick="window.location.href='{{ route('ordens.reciboentrega', ['orden' => $ordem->id_ordem]) }}'"
                             class="btn btn-sm btn-success" title="Emitir recibo de entrega"><i class="fas fa-receipt"></i></button>
                         @else
-                        <button onclick="window.open('{{ route('ordens.reciborecebe', ['orden' => $ordem->id_ordem]) }}')"
+                        <button onclick="window.location.href='{{ route('ordens.reciborecebe', ['orden' => $ordem->id_ordem]) }}'"
                             class="btn btn-sm btn-warning text-white" title="Emitir recibo de recebimento"><i class="fas fa-receipt"></i></button>
                         @endif
 

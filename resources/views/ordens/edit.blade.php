@@ -166,22 +166,21 @@
                             @php $sum = 0; @endphp
                             @foreach ($ordens as $ordem)
                             @foreach(App\Models\Peca::where('id_peca', $ordem->id_peca)->get() as $pecas)
-                            
+
                             <li class="list-group-item"><i class="fa fa-caret-right text-default"></i>
                                 {{$pecas->peca}}
                                 <span style="margin-left:10%;">{{'R$'.number_format($pecas->valor, 2, ',', '.')}}</span>
-                        <ul id="linkpecas" class="list-group list-group-flush listpecas">
                                 <a title="Remover peça da lista" href="{{route('pecas.delpecord', ['peca' => $ordem->id_peca])}}"><i class="fa fa-times text-danger float-right"></i></a>
                             </li>
                             @php
                                 $sum += $pecas->valor;
-                            @endphp 
+                            @endphp
                             @endforeach
                             @endforeach
                             <li class="list-group-item list-group-item-action list-group-item-info"><i class="fa fa-check text-success"></i>
-                           
+
                                 Total em peças: {{'R$'.number_format($sum, 2, ',', '.')}}
-                                
+
                             </li>
                         </ul>
                         @else
@@ -211,7 +210,7 @@
                             value="{{old('valservico', $orden->valservico)}}">
                     </div>
                 </div>
-            
+
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for=""> Val. Total:</label>
                     <div class="col-sm-10">

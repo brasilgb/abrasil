@@ -135,9 +135,9 @@ class OrdemController extends Controller
      */
     public function show(Ordem $orden)
     {
-            $ordens = Ordempeca::where('id_ordem', $orden->id_ordem)->get();
+        $ordens = Ordempeca::where('id_ordem', $orden->id_ordem)->get();
 
-            return view('ordens.edit', compact('orden', 'ordens'));
+        return view('ordens.edit', compact('orden', 'ordens'));
     }
 
     /**
@@ -238,12 +238,28 @@ class OrdemController extends Controller
      */
     public function reciborecebe(Ordem $orden)
     {
-        $this->recibo($orden, 'ordens.reciborecebe');
+        $empresa = $this->empresa->get();
+        $mensagem = $this->mensagem->get();
+        if ($empresa->count() > 0 && $mensagem->count() > 0) :
+            $this->recibo($orden, 'ordens.reciborecebe');
+        else :
+            flash('<i class="fa fa-check"></i> Preencha os dados da empresa e mensagens de sistema!')->warning();
+            return redirect()->route('ordens.index');
+        endif;
     }
+
     public function reciboentrega(Ordem $orden)
     {
-        $this->recibo($orden, 'ordens.reciboentrega');
+        $empresa = $this->empresa->get();
+        $mensagem = $this->mensagem->get();
+        if ($empresa->count() > 0 && $mensagem->count() > 0) :
+            $this->recibo($orden, 'ordens.reciboentrega');
+        else :
+            flash('<i class="fa fa-check"></i> Preencha os dados da empresa e mensagens de sistema!')->warning();
+            return redirect()->route('ordens.index');
+        endif;
     }
+
     public function recibo($orden, $recibo)
     {
         $ordens = $this->ordem->where('id_ordem', $orden->id_ordem)->get()->first();
