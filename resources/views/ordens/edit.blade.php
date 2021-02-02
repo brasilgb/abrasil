@@ -132,7 +132,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for=""> Val. Orçamento:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="valorcamento"
+                        <input type="text" class="totalgeral form-control" name="valorcamento"
                             value="{{old('valorcamento', $orden->valorcamento)}}">
                     </div>
                 </div>
@@ -163,24 +163,28 @@
                     <div class="col-sm-10">
                         @if ($ordens->count() > 0)
                         <ul class="list-group list-group-flush listpecas">
+                            @php $sum = 0; @endphp
                             @foreach ($ordens as $ordem)
                             @foreach(App\Models\Peca::where('id_peca', $ordem->id_peca)->get() as $pecas)
-                            @php
-                                $totalpecas = $pecas->sum('valor');
-                            @endphp
+                            
                             <li class="list-group-item"><i class="fa fa-caret-right text-default"></i>
                                 {{$pecas->peca}}
                                 <span style="margin-left:10%;">{{'R$'.number_format($pecas->valor, 2, ',', '.')}}</span>
                                 <a title="Remover peça da lista" href="{{route('pecas.delpecord', ['peca' => $ordem->id_peca])}}"><i class="fa fa-times text-danger float-right"></i></a>
                             </li>
+                            @php
+                                $sum += $pecas->valor;
+                            @endphp 
                             @endforeach
                             @endforeach
                             <li class="list-group-item list-group-item-action list-group-item-info"><i class="fa fa-check text-success"></i>
-                            Total em peças: {{'R$'.number_format($totalpecas, 2, ',', '.')}}
+                           
+                                Total em peças: {{'R$'.number_format($sum, 2, ',', '.')}}
+                                
                             </li>
                         </ul>
                         @else
-                        <ul class="list-group list-group-flush listpecas"> style="display: none">
+                        <ul class="list-group list-group-flush listpecas" style="display: none">
                         </ul>
                         @endif
                     </div>
@@ -202,8 +206,22 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for=""> Val. Serviço:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="valservico"
+                        <input type="text" class="totalgeral form-control" name="valservico"
                             value="{{old('valservico', $orden->valservico)}}">
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for=""> Val. Total:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="valtotal form-control" name="valtotal"
+                        @php if (empty($sum)):
+                            $sum = 0;
+                        else:
+                            $sum = $sum;
+                        endif
+                        @endphp
+                            value="{{old('valtotal', $sum + $orden->valorcamento + $orden->valservico)}}">
                     </div>
                 </div>
             </fieldset>
@@ -348,5 +366,17 @@ $( "#dateform, #searchform" ).datepicker({
             }
         });
     });
+
+    $(function () {
+    $(".totalgeral").keyup(function () {
+        var valtotal = 0;
+        $(".totalgeral").each(function (index, element) {
+            if ($(element).val()) {
+                valtotal += parseInt($(element).val());
+            }
+        });
+        $(".valtotal").val(valtotal).addClass('bg-gray-light');
+    });
+});
 </script>
 @endsection

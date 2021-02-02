@@ -176,11 +176,14 @@ class PecaController extends Controller
         $this->ordempeca->create($data);
 
         $ordens = Ordempeca::where('id_ordem', $request->ordemid)->get();// 'R$ '.number_format($peca->valor, 2, ',', '.')
+        $sum = 0;
         foreach ($ordens as $ordem):
                     foreach($this->peca::where('id_peca', $ordem->id_peca)->get() as $pecas):
                         $result[] = '<li class="list-group-item"><i class="fa fa-caret-right text-default"></i> '.$pecas->peca.'<span style="margin-left:10%;">R$'.number_format($pecas->valor, 2, ',', '.').'</span><a title="Remover peça da lista" href="'.route('pecas.delpecord', ['peca' => $ordem->id_peca]).'"><i class="fa fa-times text-danger float-right"></i></a></li>';
+                        $sum += $pecas->valor;
                     endforeach;
                 endforeach;
+                array_push($result,'<li class="list-group-item list-group-item-action list-group-item-info"><i class="fa fa-check text-success"></i>Total em peças: '.number_format($sum, 2, ',', '.').'</li><input class="totalgeral" type="hidden" value="'.$sum.'">');
         return response()->json(['pecas' => $result]);
     }
 
