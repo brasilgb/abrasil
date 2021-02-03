@@ -42,9 +42,16 @@ class OrdemController extends Controller
      */
     public function index(Request $request)
     {
+        $empresa = $this->empresa->get();
+        $mensagem = $this->mensagem->get();
+        if ($empresa->count() > 0 && $mensagem->count() > 0) :
+            $link_blank = true;
+        else :
+            $link_blank = false;
+        endif;
         $term = '';
         $ordens = $this->ordem->orderby('id_ordem', 'DESC')->paginate(15);
-        return view('ordens.index', compact('ordens', 'term'));
+        return view('ordens.index', compact('ordens', 'term', 'link_blank'));
     }
 
     /**

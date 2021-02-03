@@ -36,7 +36,7 @@
     </div>
     <div class="card-body">
         @include("flash::message")
-        <form action="{{ route('ordens.store') }}" method="POST">
+        <form action="{{ route('ordens.store') }}" method="POST" autocomplete="off">
             @method('POST')
             @csrf
             <div class="form-group row">

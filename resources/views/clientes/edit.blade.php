@@ -36,7 +36,7 @@
     </div>
     <div class="card-body">
         @include("flash::message")
-        <form action="{{ route('clientes.update', [$cliente->id_cliente]) }}" method="POST">
+        <form action="{{ route('clientes.update', [$cliente->id_cliente]) }}" method="POST" autocomplete="off">
             @method('PUT')
             @csrf
             <div class="form-group row">

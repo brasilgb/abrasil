@@ -62,7 +62,7 @@
                     <td>{{ $cliente->email }}</td>
                     <td>{{ $cliente->telefone }}</td>
                     <td>
-                        <button
+                        <button title="Ordens de serviço do cliente"
                         onclick="window.location.href='{{ route('ordens.ordemcliente', ['cliente' => $cliente->id_cliente]) }}'"
                         class="btn btn-sm btn-secondary"><i class="fas fa-tools"></i></button>
                         <button

@@ -37,7 +37,7 @@
     </div>
     <div class="card-body">
         @include("flash::message")
-        <form action="{{ route('agendas.update', [$agenda->id_agenda]) }}" method="POST">
+        <form action="{{ route('agendas.update', [$agenda->id_agenda]) }}" method="POST" autocomplete="off">
             @method('PUT')
             @csrf
             <div class="form-group row">
