@@ -245,9 +245,9 @@ class OrdemController extends Controller
      */
     public function reciborecebe(Ordem $orden)
     {
-        $empresa = $this->empresa->get();
-        $mensagem = $this->mensagem->get();
-        if ($empresa->count() > 0 && $mensagem->count() > 0) :
+        // $empresa = $this->empresa->get();
+        // $mensagem = $this->mensagem->get();
+        if ($this->empresa->exists() && $this->mensagem->exists()) :
             $this->recibo($orden, 'ordens.reciborecebe');
         else :
             flash('<i class="fa fa-check"></i> Preencha os dados da empresa e mensagens de sistema!')->warning();
@@ -257,9 +257,9 @@ class OrdemController extends Controller
 
     public function reciboentrega(Ordem $orden)
     {
-        $empresa = $this->empresa->get();
-        $mensagem = $this->mensagem->get();
-        if ($empresa->count() > 0 && $mensagem->count() > 0) :
+        // $empresa = $this->empresa->get();
+        // $mensagem = $this->mensagem->get();
+        if ($this->empresa->exists() && $this->mensagem->exists()) :
             $this->recibo($orden, 'ordens.reciboentrega');
         else :
             flash('<i class="fa fa-check"></i> Preencha os dados da empresa e mensagens de sistema!')->warning();
