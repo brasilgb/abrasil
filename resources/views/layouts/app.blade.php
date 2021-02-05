@@ -117,7 +117,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
                             <a class="dropdown-item"
                                 href="{{ route('usuarios.edit', ['usuario' => Auth::user()->id]) }}"><i
-                                    class="fa fa-user"></i> Profile</a>
+                                    class="fa fa-user"></i> Perfil</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out-alt"></i> Sair

@@ -27,14 +27,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $count = $this->empresa->all()->count();
-        if($count > 0):
-            $empresas = $this->empresa->all();
-        else:
-            $this->empresa->create(['empresa' => '']);
-            $empresas = $this->empresa->all();
-        endif;
-
+        $empresas = $this->empresa->all();
         return view('empresas.index', compact('empresas'));
     }
 
@@ -90,7 +83,7 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //dd(public_path('img/'.$request->dblogo));
+
         $data = $request->all();
         $rules = [
             'empresa' => 'required',
@@ -114,22 +107,26 @@ class EmpresaController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
-            if(!empty($request->logo)):
+            if (!empty($request->logo)) :
                 $logo = $request->file('logo');
-                $input['logo'] = time().'.'.$logo->extension();
+                $input['logo'] = time() . '.' . $logo->extension();
                 $destinationPath = public_path('/img');
                 $img = Image::make($logo->path());
                 $img->resize(100, 100, function ($constraint) {
-                $constraint->aspectRatio();
-                })->save($destinationPath.'/'.$input['logo']);
+                    $constraint->aspectRatio();
+                })->save($destinationPath . '/' . $input['logo']);
 
-                File::delete(public_path('img/'.$request->dblogo));
+                File::delete(public_path('img/' . $request->dblogo));
                 $destinationPath = public_path('/img');
                 $data['logo'] = $input['logo'];
-            else:
+            else :
                 $data['logo'] = $request->dblogo;
             endif;
-            $empresa->update($data);
+            if ($empresa->exists()) :
+                $empresa->update($data);
+            else :
+                $empresa->create($data);
+            endif;
             flash('<i class="fa fa-check"></i> Empresa registrada com sucesso!')->success();
             return redirect()->route('empresas.index');
         } catch (\Exception $e) {
