@@ -31,7 +31,7 @@
             @csrf
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="">Recebimento:</label>
+                <label class="col-sm-2 col-form-label" for="">Recibo entrada:</label>
                 <div class="col-sm-10">
                     <textarea rows="4" type="text" class="form-control"
                         name="recebimento_recibo">{{ old('recebimento_recibo', $mensagem->recebimento_recibo) }}</textarea>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="">Entrega:</label>
+                <label class="col-sm-2 col-form-label" for="">Recibo entrega:</label>
                 <div class="col-sm-10">
                     <textarea rows="4" type="text" class="form-control"
                         name="entrega_recibo">{{ old('entrega_recibo', $mensagem->entrega_recibo) }}</textarea>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="">Agendamento:</label>
+                <label class="col-sm-2 col-form-label" for="">E-mail agendamento:</label>
                 <div class="col-sm-10">
                     <textarea rows="4" type="text" class="form-control"
                         name="mensagem_agendamento">{{ old('mensagem_agendamento', $mensagem->mensagem_agendamento) }}</textarea>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="">Serviço concluído:</label>
+                <label class="col-sm-2 col-form-label" for="">Email serviço concluído:</label>
                 <div class="col-sm-10">
                     <textarea rows="4" type="text" class="form-control"
                         name="mensagem_servico_concluido">{{ old('mensagem_servico_concluido', $mensagem->mensagem_servico_concluido) }}</textarea>

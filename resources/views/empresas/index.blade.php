@@ -20,6 +20,7 @@
     <div class="card-header clearfix">
         <div class="card-title">
             <i class="fas fa-sliders-h" aria-hidden="true"></i> Configurações da Empresa
+
         </div>
     </div>
     @foreach ($empresas as $empresa)
@@ -41,7 +42,7 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Razão
                     Social:</label>
@@ -58,7 +59,7 @@
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     CNPJ:</label>
                 <div class="col-sm-10">
-                    <input id="" type="text" class="form-control" name="cnpj" value="{{ old('cnpj', $empresa->cnpj) }}">
+                    <input id="" type="text" class="cnpj form-control" name="cnpj" value="{{ old('cnpj', $empresa->cnpj) }}">
                     @error('cnpj')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -130,7 +131,7 @@
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     CEP:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cep" value="{{ old('cep', $empresa->cep) }}">
+                    <input id="" type="text" class="cep form-control" name="cep" value="{{ old('cep', $empresa->cep) }}">
                     @error('cep')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -141,7 +142,7 @@
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i>
                     Telefone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="telefone"
+                    <input id="" type="text" class="telefone form-control" name="telefone"
                         value="{{ old('telefone', $empresa->telefone) }}">
                     @error('telefone')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>

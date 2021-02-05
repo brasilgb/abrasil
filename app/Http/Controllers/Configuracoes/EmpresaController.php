@@ -27,7 +27,12 @@ class EmpresaController extends Controller
      */
     public function index()
     {
+
+        if (!$this->empresa->exists()) :
+            $this->empresa->create(['empresa' => '']);
+        endif;
         $empresas = $this->empresa->all();
+
         return view('empresas.index', compact('empresas'));
     }
 
@@ -47,9 +52,8 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
     }
 
     /**
@@ -122,11 +126,7 @@ class EmpresaController extends Controller
             else :
                 $data['logo'] = $request->dblogo;
             endif;
-            if ($empresa->exists()) :
-                $empresa->update($data);
-            else :
-                $empresa->create($data);
-            endif;
+            $empresa->update($data);
             flash('<i class="fa fa-check"></i> Empresa registrada com sucesso!')->success();
             return redirect()->route('empresas.index');
         } catch (\Exception $e) {

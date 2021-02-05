@@ -42,9 +42,9 @@ class OrdemController extends Controller
      */
     public function index(Request $request)
     {
-        $empresa = $this->empresa->get();
-        $mensagem = $this->mensagem->get();
-        if ($empresa->count() > 0 && $mensagem->count() > 0) :
+        $empresa = $this->empresa->get()->first();
+        $mensagem = $this->mensagem->get()->first();
+        if (!empty($empresa['empresa']) && !empty($mensagem['recebimento_recibo'])) :
             $link_blank = true;
         else :
             $link_blank = false;
@@ -245,9 +245,9 @@ class OrdemController extends Controller
      */
     public function reciborecebe(Ordem $orden)
     {
-        // $empresa = $this->empresa->get();
-        // $mensagem = $this->mensagem->get();
-        if ($this->empresa->exists() && $this->mensagem->exists()) :
+        $empresa = $this->empresa->get()->first();
+        $mensagem = $this->mensagem->get()->first();
+        if (!empty($empresa['empresa']) && !empty($mensagem['recebimento_recibo'])) :
             $this->recibo($orden, 'ordens.reciborecebe');
         else :
             flash('<i class="fa fa-check"></i> Preencha os dados da empresa e mensagens de sistema!')->warning();
@@ -257,9 +257,9 @@ class OrdemController extends Controller
 
     public function reciboentrega(Ordem $orden)
     {
-        // $empresa = $this->empresa->get();
-        // $mensagem = $this->mensagem->get();
-        if ($this->empresa->exists() && $this->mensagem->exists()) :
+        $empresa = $this->empresa->get()->first();
+        $mensagem = $this->mensagem->get()->first();
+        if (!empty($empresa['empresa']) && !empty($mensagem['recebimento_recibo'])) :
             $this->recibo($orden, 'ordens.reciboentrega');
         else :
             flash('<i class="fa fa-check"></i> Preencha os dados da empresa e mensagens de sistema!')->warning();

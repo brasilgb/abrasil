@@ -159,6 +159,7 @@
     $( ".celular").inputmask('(99)9999-9999');
     $( ".cep").inputmask('99999-999');
     $( ".cpf").inputmask('999999999/99');
+    $( ".cnpj").inputmask('99.999.999/9999-99');
     $( ".rg").inputmask('9999999999');
 </script>
 
