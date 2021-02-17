@@ -43,16 +43,27 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Nome do cliente:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cliente">
+                    <input type="text" class="form-control" name="cliente" value="{{ old('cliente') }}">
                     @error('cliente')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Nascimento:</label>
+                <div class="col-sm-10">
+                    <input id="dateform" type="text" class="form-control" name="nascimento" value="{{ old('nascimento') }}">
+                    @error('nascimento')
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> E-mail:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="email">
+                    <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                     @error('email')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -61,13 +72,13 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Telefone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control telefone" name="telefone">
+                    <input type="text" class="form-control telefone" name="telefone" value="{{ old('telefone') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Celular:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control celular" name="celular">
+                    <input type="text" class="form-control celular" name="celular" value="{{ old('celular') }}">
                     @error('celular')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -76,7 +87,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Logradouro:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="logradouro">
+                    <input type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
                     @error('logradouro')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -85,7 +96,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Número:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="numero">
+                    <input type="text" class="form-control" name="numero" value="{{ old('numero') }}">
                     @error('numero')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -94,7 +105,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Complemento:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="complemento">
+                    <input type="text" class="form-control" name="complemento" value="{{ old('complemento') }}">
                     @error('complemento')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -103,7 +114,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Bairro:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="bairro">
+                    <input type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
                     @error('bairro')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -112,7 +123,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> UF:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="estado" value="RS">
+                    <input type="text" class="form-control" name="estado"  value="{{ old('estado', 'RS') }}">
                     @error('estado')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> UF</div>
                     @enderror
@@ -121,7 +132,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Cidade:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cidade">
+                    <input type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
                     @error('cidade')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -130,7 +141,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CEP:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control cep" name="cep">
+                    <input type="text" class="form-control cep" name="cep" value="{{ old('cep') }}">
                     @error('cep')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -139,7 +150,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> CPF:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control cpf" name="cpf">
+                    <input type="text" class="form-control cpf" name="cpf" value="{{ old('cpf') }}">
                     @error('cpf')
                     <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
                     @enderror
@@ -148,25 +159,25 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">RG:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control rg" name="rg">
+                    <input type="text" class="form-control rg" name="rg" value="{{ old('rg') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="contato">
+                    <input type="text" class="form-control" name="contato" value="{{ old('contato') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Telefone do contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control telefone" name="telefone_contato">
+                    <input type="text" class="form-control telefone" name="telefone_contato" value="{{ old('telefone_contato') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Celular do contato:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control celular" name="celular_contato">
+                    <input type="text" class="form-control celular" name="celular_contato" value="{{ old('celular_contato') }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -206,7 +217,9 @@ $('#input-search').autocomplete({
            return false;
         }
 });
-
+$( "#dateform, #searchform" ).datepicker({
+        locale: 'pt-BR'
+    });
 </script>
 
 @endsection

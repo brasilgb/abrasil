@@ -3,13 +3,13 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    background: rgb(242, 242, 242);
     /* overflow: -moz-scrollbars-vertical;
   overflow-y: scroll; */
 }
 
 body {
     min-height: 101vh;
-    background: rgba(222, 221, 222, 0.699);
 }
 
 #wrap {

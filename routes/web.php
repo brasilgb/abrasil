@@ -12,6 +12,10 @@ use App\Http\Controllers\Configuracoes\EmailController;
 use App\Http\Controllers\Configuracoes\FerramentaController;
 use App\Http\Controllers\Configuracoes\UsuarioController;
 use App\Http\Controllers\Configuracoes\MensagemController;
+use App\Http\Controllers\Relatorios\ClienteController as RelCliente;
+use App\Http\Controllers\Relatorios\OrdemController as RelOrdem;
+use App\Http\Controllers\Relatorios\PecaController as RelPeca;
+use App\Http\Controllers\Relatorios\AgendaController as RelAgenda;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -60,4 +64,9 @@ Route::resource('configuracoes/ferramentas', FerramentaController::class)->middl
 Route::post('usuarios/autocomplete', [UsuarioController::class, 'autocomplete'])->name('usuarios.autocomplete')->middleware('auth');
 Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuarios.busca')->middleware('auth');
 Route::resource('configuracoes/usuarios', UsuarioController::class)->middleware('auth');
+
+Route::get('relatorios/clientes', [RelCliente::class, 'index'])->name('relatorios.clientes')->middleware('auth');
+Route::get('relatorios/ordens', [RelOrdem::class, 'index'])->name('relatorios.ordens')->middleware('auth');
+Route::get('relatorios/pecas', [RelPeca::class, 'index'])->name('relatorios.pecas')->middleware('auth');
+Route::get('relatorios/agendas', [RelAgenda::class, 'index'])->name('relatorios.agendas')->middleware('auth');
 

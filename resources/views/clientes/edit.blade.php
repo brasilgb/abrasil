@@ -48,6 +48,17 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> Nascimento:</label>
+                <div class="col-sm-10">
+                    <input id="dateform" type="text" class="form-control" name="nascimento" value="{{ date("d/m/Y", strtotime($cliente->nascimento)) }}">
+                    @error('nascimento')
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for=""><i class="fa fa-asterisk text-danger small"></i> E-mail:</label>
                 <div class="col-sm-10">
@@ -205,7 +216,9 @@ $('#input-search').autocomplete({
            return false;
         }
 });
-
+$( "#dateform, #searchform" ).datepicker({
+        locale: 'pt-BR'
+    });
 </script>
 
 @endsection

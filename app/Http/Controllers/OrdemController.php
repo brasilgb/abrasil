@@ -59,9 +59,14 @@ class OrdemController extends Controller
      */
     public function busca(Request $request)
     {
+        if (!empty($empresa['empresa']) && !empty($mensagem['recebimento_recibo'])) :
+            $link_blank = true;
+        else :
+            $link_blank = false;
+        endif;
         $term = $request->input('term');
         $ordens = $this->ordem->where('id_ordem', $term)->get();
-        return view('ordens.index', compact('ordens', 'term'));
+        return view('ordens.index', compact('ordens', 'term', 'link_blank'));
     }
 
     /**

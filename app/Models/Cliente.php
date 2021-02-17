@@ -13,6 +13,7 @@ class Cliente extends Model
 //    public $incrementing = false;
 protected $fillable = [
     'cliente',
+    'nascimento',
     'email',
     'telefone',
     'celular',

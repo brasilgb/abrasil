@@ -99,13 +99,14 @@
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="relatorios.clientes"><i class="fa fa-caret-right"></i>
+                            <a class="dropdown-item" href="{{ route('relatorios.clientes') }}"><i class="fa fa-caret-right"></i>
                                 Clientes</a>
-                            <a class="dropdown-item" href="relatorios.ordens"><i class="fa fa-caret-right"></i>
+                            <a class="dropdown-item" href="{{ route('relatorios.ordens') }}"><i class="fa fa-caret-right"></i>
                                 Ordens</a>
-                            <a class="dropdown-item" href="relatorios.agendas"><i class="fa fa-caret-right"></i>
+                            <a class="dropdown-item" href="{{ route('relatorios.agendas') }}"><i class="fa fa-caret-right"></i>
                                 Agendamentos</a>
-                            <a class="dropdown-item" href="relatorios.pecas"><i class="fa fa-caret-right"></i> Peças</a>
+                            <a class="dropdown-item" href="{{ route('relatorios.pecas') }}"><i class="fa fa-caret-right"></i>
+                                Peças</a>
                         </div>
                     </li>
                 </ul>

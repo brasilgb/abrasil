@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
@@ -83,6 +84,7 @@ class ClienteController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $data['nascimento'] = Carbon::createFromFormat("d/m/Y", $request->nascimento)->format("Y-m-d");
             $this->cliente->create($data);
             flash('<i class="fa fa-check"></i> Cliente salvo com sucesso!')->success();
             return redirect()->route('clientes.index');
@@ -154,6 +156,7 @@ class ClienteController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages)->validate();
         try {
+            $data['nascimento'] = Carbon::createFromFormat("d/m/Y", $request->nascimento)->format("Y-m-d");
             $cliente->update($data);
             flash('<i class="fa fa-check"></i> Cliente salvo com sucesso!')->success();
             return redirect()->route('clientes.show', ['cliente' => $cliente->id_cliente]);
