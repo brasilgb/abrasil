@@ -74,9 +74,15 @@ class OrdemController extends Controller
      */
     public function ordemcliente($cliente)
     {
+
+        if (!empty($empresa['empresa']) && !empty($mensagem['recebimento_recibo'])) :
+            $link_blank = true;
+        else :
+            $link_blank = false;
+        endif;
         $term = 'clientes';
         $ordens = $this->ordem->where('cliente_id', $cliente)->paginate(15);
-        return view('ordens.index', compact('ordens', 'term'));
+        return view('ordens.index', compact('ordens', 'term', 'link_blank'));
     }
 
     /**
