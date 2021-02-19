@@ -251,6 +251,30 @@
                     @enderror
                 </div>
             </div>
+
+            @php
+            $pagamento = [
+            '1' => 'Aberto',
+            '2' => 'Somente serviços',
+            '3' => 'Somente peças',
+            '4' => 'Total'
+            ];
+            @endphp
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for=""> Pagamento:</label>
+                <div class="col-sm-10">
+                    <select class="custom-select my-1 mr-sm-2" name="pagamento">
+                        @foreach ($pagamento as $key => $value)
+                        <option value="{{ $key }}" {{ old('pagamento',  $orden->pagamento) == $key ? 'selected' : '' }}>
+                            {{ $value }}</option>
+                        @endforeach
+                    </select>
+                    @error('pagamento')
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> {{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="">Observações:</label>
                 <div class="col-sm-10">

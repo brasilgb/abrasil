@@ -189,6 +189,7 @@ class OrdemController extends Controller
             'valservico' => 'nullable',
             'valtotal' => 'nullable',
             'status' => 'nullable', //orcamento,comunicado, entregue
+            'pagamento' => 'nullable', // 1 - Aberto, 2 - Somente peças, 3 - Somente serviços, 4 - Totalotal
             'dt_entrega' => 'nullable',
             'tecnico' => 'nullable'
         ];

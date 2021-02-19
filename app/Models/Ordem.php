@@ -30,6 +30,7 @@ class Ordem extends Model
         'valservico',
         'valtotal',
         'status',//orcamento,comunicado, entregue
+        'pagamento', // 1 - Aberto, 2 - Somente peças, 3 - Somente serviços, 4 - Totalotal
         'dt_entrega',
         'hr_entrega',
         'tecnico',

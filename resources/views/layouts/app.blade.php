@@ -8,10 +8,10 @@
     @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
     <title>ABSOS - {{ showModelTables('\App\Models\Empresa', 'empresa') }}</title>
     <link rel="shortcut icon" href="{{asset('img/'.showModelTables('App\Models\Empresa', 'logo'))}}">
-                @else
-                <title>ABSOS</title>
-                <link rel="shortcut icon" href="{{asset('img/logo.jpg')}}">
-                @endif
+    @else
+    <title>ABSOS</title>
+    <link rel="shortcut icon" href="{{asset('img/logo.jpg')}}">
+    @endif
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
@@ -34,6 +34,7 @@
 </head>
 
 <body class="d-flex flex-column h-100">
+    <header>
     @guest
 
     @else
@@ -42,7 +43,8 @@
 
             <a class="navbar-brand" href="/">
                 @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
-                <img class="logo" src="{{ asset('img/'.showModelTables('\App\Models\Empresa', 'logo')) }}" class="brand_logo" alt="Logo">
+                <img class="logo" src="{{ asset('img/'.showModelTables('\App\Models\Empresa', 'logo')) }}"
+                    class="brand_logo" alt="Logo">
                 @else
                 <img class="logo" src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
                 @endif
@@ -99,14 +101,18 @@
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="{{ route('relatorios.clientes') }}"><i class="fa fa-caret-right"></i>
-                                Clientes</a>
-                            <a class="dropdown-item" href="{{ route('relatorios.ordens') }}"><i class="fa fa-caret-right"></i>
+                            <a class="dropdown-item" href="{{ route('relatorios.ordens') }}"><i
+                                    class="fa fa-caret-right"></i>
                                 Ordens</a>
-                            <a class="dropdown-item" href="{{ route('relatorios.agendas') }}"><i class="fa fa-caret-right"></i>
+                            <a class="dropdown-item" href="{{ route('relatorios.agendas') }}"><i
+                                    class="fa fa-caret-right"></i>
                                 Agendamentos</a>
-                            <a class="dropdown-item" href="{{ route('relatorios.pecas') }}"><i class="fa fa-caret-right"></i>
+                            <a class="dropdown-item" href="{{ route('relatorios.pecas') }}"><i
+                                    class="fa fa-caret-right"></i>
                                 Peças</a>
+                            <a class="dropdown-item" href="{{ route('relatorios.financeiro') }}"><i
+                                    class="fa fa-caret-right"></i>
+                                Financeiro</a>
                         </div>
                     </li>
                 </ul>
@@ -132,6 +138,7 @@
             </div>
         </div>
     </nav>
+    </header>
     @endguest
 
     <div id="main" class="flex-shrink-0">

@@ -32,6 +32,7 @@ class CreateOrdensTable extends Migration
             $table->decimal('valservico')->nullable();
             $table->decimal('valtotal')->nullable();
             $table->integer('status')->nullable();
+            $table->integer('pagamento')->nullable();
             $table->date('dt_entrega')->nullable();
             $table->string('tecnico')->nullable();
             $table->timestamps();

@@ -38,6 +38,7 @@ class OrdemFactory extends Factory
             'valservico' => 584,
             'valtotal' => 1005,
             'status' => 1,
+            'pagamento' => 1,
             'dt_entrega' => '2020-12-20 20:00:00',
             'tecnico' => 'Anderson',
         ];
