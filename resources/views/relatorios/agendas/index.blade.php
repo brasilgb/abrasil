@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card bg-light">
+<div class="card bg-light shadow-sm">
     <div class="card-header">
         <h5><i class="fa fa-file-invoice"></i> Relatório de agendamentos</h5>
     </div>

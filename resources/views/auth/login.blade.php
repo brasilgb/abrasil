@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.applogin')
 
 @section('content')
 <div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
+    <div class="d-flex justify-content-center">
         <div class="user_card">
             <div class="d-flex justify-content-center">
                 <div class="brand_logo_container">
@@ -11,7 +11,7 @@
                 @else
                 <img src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
                 @endif
-                    
+
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
@@ -32,7 +32,7 @@
                         @enderror
                     </div>
 
-                    <div class="input-group mb-2">
+                    <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
@@ -72,7 +72,7 @@
 
                 <div class="d-flex justify-content-center links">
                     @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                    <a class="btn btn-link" href="#" data-toggle="modal" data-target="#senhaModal">
                         {{ __('Perdeu sua senha?') }}
                     </a>
                     @endif
@@ -87,5 +87,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="senhaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom border-secundary">
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-exclamation-triangle text-red"></i> Perda de Senha</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <i class="fa fa-lightbulb text-green"></i> Perdeu sua senha? Entre em contato com o administrador do sistema e solicite uma nova senha!
+        </div>
+        <div class="modal-footer border-top border-secundary">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 @endsection

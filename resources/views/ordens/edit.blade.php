@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card bg-light">
+    <div class="card bg-light shadow-sm">
         <div class="card-header">
             <div class="row">
                 <div class="col">
@@ -225,8 +225,8 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for=""> Val. Total:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="valtotal form-control" name="valtotal" 
-                            @php 
+                            <input type="text" class="valtotal form-control" name="valtotal"
+                            @php
                             if (empty($sum)):
                                     $sum = 0;
                                 else:

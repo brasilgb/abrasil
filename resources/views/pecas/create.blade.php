@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card bg-light">
+    <div class="card bg-light shadow-sm">
         <div class="card-header">
             <div class="row">
                 <div class="col">
