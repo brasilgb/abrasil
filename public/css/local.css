@@ -3,13 +3,13 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: rgb(242, 242, 242);
+    background: rgb(221, 221, 221);
     /* overflow: -moz-scrollbars-vertical;
   overflow-y: scroll; */
 }
 
 body {
-    min-height: 101vh;
+    min-height: 100vh;
 }
 
 #wrap {
@@ -18,11 +18,13 @@ body {
 
 #main {
     overflow: auto;
-    padding-top: 70px;
+    padding-top: 80px;
     padding-bottom: 30px;
     /* this needs to be bigger than footer height*/
 }
-
+.card{
+    border:1px solid #fff;
+}
 .footer {
     position: relative;
     margin-top: -150px;
@@ -31,8 +33,8 @@ body {
     clear: both;
     padding-top: 20px;
     font-size: 0.9rem;
-    background-color: #fff;
-    border-top: 1px solid #d2d6de;
+    background-color: rgb(233, 233, 233);
+    border-top: 2px solid #ffffff;
 }
 
 /**
@@ -61,6 +63,8 @@ Logotipo
 
 .logo {
     height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 
@@ -69,9 +73,9 @@ Barra navegação personalizada
 */
 
 .navbar {
-    background: rgb(255, 255, 255);
+    background: rgb(18, 58, 145)!important;
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(222, 221, 222, 0.411) 50%, rgba(255, 255, 255, 1) 100%);
-    border-bottom: 1px solid #d2d6de;
+    border-bottom: 2px solid #ffffff;
 }
 
 
@@ -88,10 +92,15 @@ Barra navegação personalizada
     color: rgba(0, 0, 0, 0.9)!important;
 	border: 1px solid #d8d7d7;
     border-radius: 5px; */
-    border-bottom: 2px solid #375b7e;
+    border-bottom: 1px solid #ffffff;
 }
 
-
+.navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+    background: rgb(18, 58, 145)!important;
+}
+.navbar-dark .navbar-nav .nav-link {
+    background: rgb(18, 58, 145)!important;
+}
 /*
 .navbar-dark .navbar-nav .nav-link:hover {
     background-color: #375B7E!important;

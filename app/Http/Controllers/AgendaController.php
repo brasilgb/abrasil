@@ -283,7 +283,7 @@ class AgendaController extends Controller
                 <td style="border-top:1px solid #375B7E;padding-left:10px;">
                 <h3 style="font: 14px, verdana, sans-serif;color: #555;padding: 2px;">' . $empresa['empresa'] . '</h3>
                 <p style="font: 12px, verdana, sans-serif;color: #555;padding: 2px;">' . $empresa['endereco'] . ', ' . $empresa['bairro'] . '<br>
-                ' . $empresa['cidade'] . ' - ' .$empresa['uf'].'<br>
+                ' . $empresa['cidade'] . ' - ' . $empresa['uf'] . '<br>
                 ' . $empresa['telefone'] . '</p>
                 </td>
                 </tr>

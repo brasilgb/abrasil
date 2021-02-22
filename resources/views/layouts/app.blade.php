@@ -38,15 +38,14 @@
     @guest
 
     @else
-    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container">
 
             <a class="navbar-brand" href="/">
                 @if(!empty(showModelTables('\App\Models\Empresa', 'logo')))
-                <img class="logo" src="{{ asset('img/'.showModelTables('\App\Models\Empresa', 'logo')) }}"
-                    class="brand_logo" alt="Logo">
+                <img class="logo" src="{{ asset('img/'.showModelTables('\App\Models\Empresa', 'logo')) }}" alt="Logo">
                 @else
-                <img class="logo" src="{{ asset('img/logo.jpg') }}" class="brand_logo" alt="Logo">
+                <img class="logo" src="{{ asset('img/logo.jpg') }}" alt="Logo">
                 @endif
             </a>
 
@@ -98,7 +97,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01"
+                        <a class="{{ (request()->is('relatorios*')) ? 'active' : '' }} nav-link dropdown-toggle" href="http://example.com" id="dropdown01"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
                             <a class="dropdown-item" href="{{ route('relatorios.ordens') }}"><i
@@ -153,7 +152,7 @@
 
     @else
     <footer class="footer mt-auto py-3">
-        <div class="container">
+        <div class="container text-center">
             <span>Copyright © {{ date("Y")}} <a href="https://abrasildigital.com.br/">ABrasil Digital</a>. Todos os
                 direitos reservados.</span>
         </div>
