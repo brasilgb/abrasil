@@ -20,7 +20,6 @@ class OrdemController extends Controller
     public function index()
     {
         $ordens = $this->ordem->get();
-
         return view('relatorios.ordens.index', compact('ordens'));
     }
 }
