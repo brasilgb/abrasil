@@ -66,6 +66,7 @@ Route::post('usuarios/busca', [UsuarioController::class, 'busca'])->name('usuari
 Route::resource('configuracoes/usuarios', UsuarioController::class)->middleware('auth');
 
 Route::get('relatorios/ordens', [RelOrdem::class, 'index'])->name('relatorios.ordens')->middleware('auth');
+Route::get('relatorios/ordens/status/{status}', [RelOrdem::class, 'status'])->name('relatorios.status')->middleware('auth');
 Route::get('relatorios/pecas', [RelPeca::class, 'index'])->name('relatorios.pecas')->middleware('auth');
 Route::get('relatorios/agendas', [RelAgenda::class, 'index'])->name('relatorios.agendas')->middleware('auth');
 Route::get('relatorios/financeiro', [FinanceiroController::class, 'index'])->name('relatorios.financeiro')->middleware('auth');

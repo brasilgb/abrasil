@@ -59,6 +59,8 @@ class OrdemController extends Controller
      */
     public function busca(Request $request)
     {
+        $empresa = $this->empresa->get()->first();
+        $mensagem = $this->mensagem->get()->first();
         if (!empty($empresa['empresa']) && !empty($mensagem['recebimento_recibo'])) :
             $link_blank = true;
         else :

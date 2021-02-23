@@ -16,7 +16,7 @@
                         <tr class="table-active">
                             <th>Avaliação</th>
                             <th>Orç. gerados</th>
-                            <th>Orç. aprovadoos</th>
+                            <th>Orç. aprovados</th>
                             <th>Na bancada</th>
                             <th>Serv.Concluído</th>
                             <th>Serv. não efetuado</th>
@@ -26,14 +26,14 @@
                     </thead>
                     <tbody>
                         <tr class="table-light">
-                            <td><a class="stretched-link" href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 1)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 2)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 3)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 4)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 5)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 6)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 7)->count() }}</a></td>
-                            <td><a href="#" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 8)->count() }}</a></td>
+                            <td><a class="" href="{{ route('relatorios.status', ['status' => 1]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 1)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 2]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 2)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 3]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 3)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 4]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 4)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 5]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 5)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 6]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 6)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 7]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 7)->count() }}</a></td>
+                            <td><a href="{{ route('relatorios.status', ['status' => 8]) }}" title="Ordens de serviço em avaliação">{{ $ordens->where('status', 8)->count() }}</a></td>
                         </tr>
                     </tbody>
                 </table>
